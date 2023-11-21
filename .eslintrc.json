@@ -1,0 +1,30 @@
+{
+  "extends": "next/core-web-vitals",
+  "plugins": ["@typescript-eslint", "import"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["src/bot/**"],
+      "rules": { "react-hooks/rules-of-hooks": "off" }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "wehere-bot-3072",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev:next": "bash scripts/dev-next.sh",
+    "dev:node": "nodemon --signal SIGTERM --watch src --ext .ts,.js,.json,.ftl scripts/dev-node.ts",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint --dir .",
+    "lint:fix": "next lint --fix --dir .",
+    "clean": "rimraf .next/ node_modules/"
+  },
+  "dependencies": {
+    "@grammyjs/conversations": "^1.1.2",
+    "@grammyjs/fluent": "^1.0.3",
+    "@moebius/fluent": "^1.1.0",
+    "dotenv": "^16.3.1",
+    "grammy": "^1.19.2",
+    "html-escaper": "^3.0.3",
+    "mongodb": "^6.3.0",
+    "next": "14.0.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/html-escaper": "^3",
+    "@types/node": "^20.10.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.3",
+    "eslint-plugin-import": "^2.29.0",
+    "nodemon": "^3.0.1",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5"
+  },
+  "packageManager": "yarn@4.0.2"
+}
