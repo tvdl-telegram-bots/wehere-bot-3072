@@ -1,4 +1,4 @@
-import { UserId, UserIsh } from "../typing";
+import { UserId, UserIsh } from "../typing/common";
 
 export function toUserId(userIsh: UserIsh) {
   if (/^[0-9]+$/.test(userIsh)) {

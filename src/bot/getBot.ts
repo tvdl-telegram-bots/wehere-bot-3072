@@ -1,27 +1,40 @@
 import { conversations } from "@grammyjs/conversations";
 import { useFluent } from "@grammyjs/fluent";
+import { Fluent } from "@moebius/fluent";
 import { Bot, GrammyError, HttpError, session } from "grammy";
+import { Db } from "mongodb";
 
 import { getDb } from "./getDb";
 import { getFluent } from "./getFluent";
 
-import Connect from "@/commands/Connect";
-import Disconnect from "@/commands/Disconnect";
-import GetRole from "@/commands/GetRole";
-import SendMessage from "@/commands/SendMessage";
-import SetRole from "@/commands/SetRole";
-import Start from "@/commands/Start";
-import Subscribe from "@/commands/Subscribe";
-import Unsubscribe from "@/commands/Unsubscribe";
+import Connect from "@/bot/commands/Connect";
+import Disconnect from "@/bot/commands/Disconnect";
+import GetRole from "@/bot/commands/GetRole";
+import Reply from "@/bot/commands/Reply";
+import SendMessage from "@/bot/commands/SendMessage";
+import SetRole from "@/bot/commands/SetRole";
+import Start from "@/bot/commands/Start";
+import Status from "@/bot/commands/Status";
+import Subscribe from "@/bot/commands/Subscribe";
+import Unsubscribe from "@/bot/commands/Unsubscribe";
 import { BotContext, Command } from "@/types";
-import { Env, Ftl } from "@/typing";
+import { Env, Ftl } from "@/typing/common";
+import { assert } from "@/utils/assert";
 
-export async function getBot({ env, ftl }: { env: Env; ftl: Ftl }) {
-  const [db, fluent] = await Promise.all([getDb({ env }), getFluent(ftl)]);
+export async function getBot0({
+  db,
+  fluent,
+  env,
+}: {
+  db: Db;
+  fluent: Fluent;
+  env: Env;
+}) {
   const bot = new Bot<BotContext>(env.TELEGRAM_BOT_TOKEN);
 
   bot.use(async (ctx, next) => {
     ctx.db = db;
+    ctx.fluentInstance = fluent;
     await next();
   });
 
@@ -35,13 +48,15 @@ export async function getBot({ env, ftl }: { env: Env; ftl: Ftl }) {
   });
 
   const commands: Command[] = [
-    SetRole,
-    GetRole,
-    Subscribe,
-    Unsubscribe,
     Connect,
     Disconnect,
+    GetRole,
+    Reply,
+    SetRole,
     Start,
+    Status,
+    Subscribe,
+    Unsubscribe,
   ];
 
   for (const c of commands) {
@@ -51,19 +66,26 @@ export async function getBot({ env, ftl }: { env: Env; ftl: Ftl }) {
   }
 
   for (const c of commands) {
-    bot.command(c.commandName, c.handler);
+    if (c.handler) {
+      bot.command(c.commandName, c.handler);
+    }
+    if (c.handleMessage) {
+      bot.command(c.commandName, c.handleMessage);
+    }
   }
 
-  bot.on("callback_query:data", async (ctx, next) => {
-    const data = ctx.callbackQuery.data;
-    console.log(data);
+  bot.on("callback_query:data", async (ctx) => {
+    const url = new URL(ctx.callbackQuery.data);
+    assert(url.protocol === "wehere:", "invalid protocol");
+
     for (const c of commands) {
       if (!c.handleCallbackQuery) continue;
-      const regexp = new RegExp("\\/" + c.commandName + "\\b");
-      if (!regexp.test(data)) continue;
+      if (url.pathname !== "/" + c.commandName) continue;
       return await c.handleCallbackQuery(ctx);
     }
-    await next();
+
+    console.log(url);
+    ctx.reply("Unknown callback query");
   });
 
   bot.on("message::bot_command", async (ctx) => {
@@ -71,7 +93,7 @@ export async function getBot({ env, ftl }: { env: Env; ftl: Ftl }) {
   });
 
   bot.on("message", async (ctx) => {
-    return await SendMessage.handler(ctx);
+    return await SendMessage.handler?.(ctx);
   });
 
   bot.catch((err) => {
@@ -88,4 +110,9 @@ export async function getBot({ env, ftl }: { env: Env; ftl: Ftl }) {
   });
 
   return bot;
+}
+
+export async function getBot({ env, ftl }: { env: Env; ftl: Ftl }) {
+  const [db, fluent] = await Promise.all([getDb({ env }), getFluent(ftl)]);
+  return await getBot0({ db, fluent, env });
 }

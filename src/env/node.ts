@@ -2,7 +2,7 @@ import fs from "fs";
 
 import { config } from "dotenv";
 
-import { Env, Ftl } from "@/typing";
+import { Env, Ftl } from "@/typing/common";
 
 config();
 

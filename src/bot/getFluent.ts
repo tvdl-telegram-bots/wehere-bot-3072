@@ -1,6 +1,6 @@
 import { Fluent } from "@moebius/fluent";
 
-import { Ftl } from "@/typing";
+import { Ftl } from "@/typing/common";
 
 export async function getFluent(ftl: Ftl) {
   const fluent = new Fluent();

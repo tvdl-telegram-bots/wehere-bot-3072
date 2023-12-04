@@ -1,13 +1,12 @@
 import { webhookCallback } from "grammy";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { getBot } from "@/bot/getBot";
-import { ENV, FTL } from "@/env/server";
+import { getAppBot } from "@/app/_/utils/globals";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const bot = await getBot({ env: ENV, ftl: FTL });
+  const bot = await getAppBot();
   await webhookCallback(bot, "next-js")(req, res);
 }

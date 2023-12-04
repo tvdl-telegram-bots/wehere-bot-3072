@@ -16,6 +16,7 @@ export const Ftl = z.object({
 
 export type Ftl = z.infer<typeof Ftl>;
 
+/** @deprecated use UserId instead */
 export const UserIsh = z.string().min(1);
 export type UserIsh = z.infer<typeof UserIsh>;
 
@@ -28,9 +29,16 @@ export type Timestamp = z.infer<typeof Timestamp>;
 export const ChatId = z.coerce.number().int().safe();
 export type ChatId = z.infer<typeof UserId>;
 
+export const MessageId = z.coerce.number().int().safe();
+export type MessageId = z.infer<typeof UserId>;
+
+export const MessageDirection = z.enum(["from_mortal", "from_angel"]);
+export type MessageDirection = z.infer<typeof MessageDirection>;
+
 export const Role = z.enum(["mortal", "angel", "admin"]);
 export type Role = z.infer<typeof Role>;
 
+// TODO: move to typing/server.ts
 export const PersistentRole = z.object({
   userId: UserId,
   role: Role.nullish(),
@@ -39,30 +47,3 @@ export const PersistentRole = z.object({
 });
 
 export type PersistentRole = z.infer<typeof PersistentRole>;
-
-export const PersistentMessage = z.object({
-  mortalChatId: ChatId,
-  fromRole: Role,
-  createdBy: UserId.nullish(),
-  createdAt: Timestamp.nullish(),
-});
-
-export type PersistentMessage = z.infer<typeof PersistentMessage>;
-
-export const PersistentSubscription = z.object({
-  chatId: ChatId,
-  enabled: z.boolean().nullish(),
-  updatedAt: Timestamp.nullish(),
-  updatedBy: UserId.nullish(),
-});
-
-export type PersistentSubscription = z.infer<typeof PersistentSubscription>;
-
-export const PersistentConnection = z.object({
-  angelChatId: ChatId,
-  mortalChatId: ChatId.nullish(),
-  updatedBy: UserId.nullish(),
-  updatedAt: Timestamp.nullish(),
-});
-
-export type PersistentConnection = z.infer<typeof PersistentConnection>;

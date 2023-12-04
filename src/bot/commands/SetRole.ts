@@ -1,10 +1,10 @@
 import { createConversation } from "@grammyjs/conversations";
 import { escape } from "html-escaper";
 
-import { BotContext } from "../types";
-import { ChatId, PersistentRole, Role, UserIsh } from "../typing";
+import { BotContext } from "../../types";
+import { ChatId, PersistentRole, Role, UserIsh } from "../../typing/common";
+import { toUserId } from "../../utils/id";
 import { withConversationErrorHandler } from "../utils/error";
-import { toUserId } from "../utils/id";
 
 const id = "3e4d600d-3be5-40be-82f4-cf806ec1459d";
 

@@ -1,6 +1,6 @@
 import { Db, MongoClient } from "mongodb";
 
-import { Env } from "@/typing";
+import { Env } from "@/typing/common";
 
 async function connect(uri: string): Promise<MongoClient> {
   console.log("Connecting to:", uri);

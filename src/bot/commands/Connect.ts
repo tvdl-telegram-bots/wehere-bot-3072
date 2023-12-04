@@ -1,16 +1,16 @@
 import { createConversation } from "@grammyjs/conversations";
 import { z } from "zod";
 
-import { setConnection } from "@/operations/angel";
-import { fromChatIsh } from "@/operations/mortal";
-import { BotContext, Command } from "@/types";
-import { ChatId } from "@/typing";
-import { assert, nonNullable } from "@/utils/assert";
+import { setConnection } from "@/bot/operations/__deprecated/angel";
+import { fromChatIsh } from "@/bot/operations/__deprecated/mortal";
 import {
   withConversationErrorHandler,
   withDefaultErrorHandler,
-} from "@/utils/error";
-import html from "@/utils/html";
+} from "@/bot/utils/error";
+import html from "@/bot/utils/html";
+import { BotContext, Command } from "@/types";
+import { ChatId } from "@/typing/common";
+import { assert, nonNullable } from "@/utils/assert";
 
 const id = "4bb6b29a-653a-49a9-9205-de939ccfbedf";
 

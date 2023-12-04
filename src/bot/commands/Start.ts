@@ -1,8 +1,8 @@
-import { getRole } from "../operations/admin";
-import { getAdminName, getAngelName } from "../operations/angel";
-import { toChatIsh } from "../operations/mortal";
-import { Command } from "../types";
-import { nonNullable } from "../utils/assert";
+import { Command } from "../../types";
+import { nonNullable } from "../../utils/assert";
+import { getRole } from "../operations/__deprecated/admin";
+import { getAdminName, getAngelName } from "../operations/__deprecated/angel";
+import { toChatIsh } from "../operations/__deprecated/mortal";
 import { withDefaultErrorHandler } from "../utils/error";
 import html from "../utils/html";
 

@@ -1,6 +1,6 @@
 import { Db } from "mongodb";
 
-import { PersistentRole, UserId } from "../typing";
+import { PersistentRole, UserId } from "../../../typing/common";
 
 export async function getRole(db: Db, userId: UserId) {
   const doc = await db

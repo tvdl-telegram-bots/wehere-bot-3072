@@ -1,8 +1,8 @@
 import { Conversation } from "@grammyjs/conversations";
 import { escape } from "html-escaper";
 
-import { BotContext } from "../types";
-import { ChatId } from "../typing";
+import { BotContext } from "../../types";
+import { ChatId } from "../../typing/common";
 
 export function withConversationErrorHandler(
   converse: (conversation: Conversation<BotContext>, ctx: BotContext) => void

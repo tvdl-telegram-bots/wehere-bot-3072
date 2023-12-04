@@ -1,0 +1,9 @@
+{
+  "entry": [
+    "src/pages/**/*.{ts,tsx}",
+    "scripts/dev-node.ts",
+    "src/app/**/{layout,page,route}.*"
+  ],
+  "extensions": [".ts", ".tsx"],
+  "ignorePatterns": ["node_modules/**"]
+}

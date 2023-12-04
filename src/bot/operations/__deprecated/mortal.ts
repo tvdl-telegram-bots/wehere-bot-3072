@@ -1,4 +1,12 @@
-import { ChatId } from "../typing";
+import { Db, WithoutId } from "mongodb";
+
+import { ChatId } from "../../../typing/common";
+
+import {
+  PersistentMortalSubscription,
+  PersistentThread,
+  PersistentThreadMessage,
+} from "@/typing/server";
 
 const EMOJIS = `
   🐵 🐒 🦍 🦧 🐶 🐕 🦮 🐕‍🦺 🐩 🐺 🦊 🦝 🐱 🐈 🐈‍⬛ 🦁 🐯 🐅 🐆 🐴
@@ -116,4 +124,72 @@ export function fromChatIsh(chatIsh: string): ChatId | undefined {
   remainder = remainder * FIRST_NAMES.length + firstNameIndex;
   remainder = remainder * EMOJIS.length + emojiIndex;
   return remainder;
+}
+
+export function generateThreadName() {
+  const lastNameAt = Math.floor(Math.random() * LAST_NAMES.length);
+  const number = Date.now().toString().slice(-2);
+  return LAST_NAMES[lastNameAt] + number;
+}
+
+export function generateThreadEmoji() {
+  const emojiAt = Math.floor(Math.random() * EMOJIS.length);
+  return EMOJIS[emojiAt];
+}
+
+export async function getThreadFromMortalChatId(
+  db: Db,
+  { chatId }: { chatId: ChatId }
+) {
+  const now = Date.now();
+
+  const existingMortalSub = await db
+    .collection("mortal_subscription")
+    .findOne({ chatId })
+    .then((doc) => PersistentMortalSubscription.parse(doc))
+    .catch(() => undefined);
+
+  const existingThread = existingMortalSub?.threadId
+    ? await db
+        .collection("thread")
+        .findOne({ _id: existingMortalSub.threadId })
+        .then((doc) => PersistentThread.parse(doc))
+        .catch(() => undefined)
+    : undefined;
+
+  if (existingThread) {
+    return existingThread;
+  }
+
+  const { insertedId } = await db.collection("thread").insertOne({
+    name: generateThreadName(),
+    emoji: generateThreadEmoji(),
+    createdAt: now,
+  });
+
+  const newThread = await db
+    .collection("thread")
+    .findOne({ _id: insertedId })
+    .then((doc) => PersistentThread.parse(doc));
+
+  await db.collection("mortal_subscription").updateOne(
+    { chatId },
+    {
+      $set: {
+        threadId: newThread._id,
+        updatedAt: now,
+      } satisfies Partial<PersistentMortalSubscription>,
+    },
+    { upsert: true }
+  );
+
+  return newThread;
+}
+
+export async function createMessage(
+  db: Db,
+  message: WithoutId<PersistentThreadMessage>
+): Promise<PersistentThreadMessage> {
+  const ack = await db.collection("thread_message").insertOne(message);
+  return { _id: ack.insertedId, ...message };
 }

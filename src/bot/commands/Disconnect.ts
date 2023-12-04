@@ -1,8 +1,8 @@
 import { escape } from "html-escaper";
 
-import { setConnection } from "../operations/angel";
-import { Command } from "../types";
-import { nonNullable } from "../utils/assert";
+import { Command } from "../../types";
+import { nonNullable } from "../../utils/assert";
+import { setConnection } from "../operations/__deprecated/angel";
 import { withDefaultErrorHandler } from "../utils/error";
 
 const handler = withDefaultErrorHandler(async (ctx) => {
