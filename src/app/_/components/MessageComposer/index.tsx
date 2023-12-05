@@ -1,7 +1,12 @@
 import cx from "clsx";
 import React from "react";
 
+import { httpPost } from "../../utils/swr";
+
 import styles from "./index.module.scss";
+
+import { Result$CreateThreadMessage } from "@/app/api/CreateThreadMessage/typing";
+import { formatErrorShallowly } from "@/utils/format";
 
 type Props = {
   className?: string;
@@ -22,15 +27,15 @@ export default function MessageComposer({
   const handleSend = async () => {
     try {
       setBusy(true);
-      await fetch("/api/CreateThreadMessage", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, threadId }),
+      await httpPost(Result$CreateThreadMessage)({
+        path: "/api/CreateThreadMessage",
+        params: { text, threadId },
       });
       setText("");
       onMessageSent?.();
-    } catch {
-      alert("an error occured");
+    } catch (e) {
+      console.error(e);
+      alert(formatErrorShallowly(e));
     } finally {
       setBusy(false);
     }

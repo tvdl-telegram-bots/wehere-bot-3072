@@ -40,7 +40,7 @@ async function getThreadMessages(
     .toArray();
 
   const messages = parseDocs(PersistentThreadMessage)(docs.slice(0, limit))
-    .toSorted((a, b) => compareObjectId(a._id, b._id))
+    .sort((a, b) => compareObjectId(a._id, b._id))
     .map((p) => ({
       id: p._id.toHexString(),
       direction: p.direction,

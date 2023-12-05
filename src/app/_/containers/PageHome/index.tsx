@@ -9,6 +9,7 @@ import { httpPost } from "../../utils/swr";
 import styles from "./index.module.scss";
 
 import { Result$CreateThread } from "@/app/api/CreateThread/typing";
+import { formatErrorShallowly } from "@/utils/format";
 
 type Props = {
   className?: string;
@@ -29,7 +30,7 @@ export default function PageHome({ className, style }: Props) {
       router.push(`/t/${result.threadId}`);
     } catch (e) {
       console.error(e);
-      alert("an error occured");
+      alert(formatErrorShallowly(e));
     } finally {
       setBusy(false);
     }

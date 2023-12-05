@@ -52,7 +52,7 @@ export default function PageThread({
   });
 
   const messages = [
-    ...(resource_prevMessages.data?.toReversed() || []),
+    ...(resource_prevMessages.data?.slice().reverse() || []),
     ...(resource_nextMessages.data || []),
   ].flatMap((page) => page.results);
 
@@ -64,6 +64,10 @@ export default function PageThread({
       <div className={styles.loadingIndicator}>
         {resource_prevMessages.isLoading ? (
           <span aria-busy="true">{"Loading..."}</span>
+        ) : resource_prevMessages.error ? (
+          <button onClick={resource_prevMessages.loadMore}>
+            {"Load previous messages"}
+          </button>
         ) : (
           <AutoTrigger onVisible={resource_prevMessages.loadMore} />
         )}
@@ -76,6 +80,10 @@ export default function PageThread({
       <div className={styles.loadingIndicator}>
         {resource_nextMessages.isLoading ? (
           <span aria-busy="true">{"Loading..."}</span>
+        ) : resource_nextMessages.error ? (
+          <button onClick={resource_nextMessages.loadMore}>
+            {"Load previous messages"}
+          </button>
         ) : (
           <AutoTrigger onVisible={resource_nextMessages.loadMore} />
         )}
