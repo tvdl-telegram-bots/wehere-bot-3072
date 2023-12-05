@@ -9,6 +9,7 @@ export type BotContext = Context &
   FluentContextFlavor & {
     db: Db;
     fluentInstance: Fluent;
+    withLocale: Fluent["withLocale"];
   };
 
 export type EssentialContext = Pick<

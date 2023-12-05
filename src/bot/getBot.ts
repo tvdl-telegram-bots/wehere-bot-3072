@@ -35,6 +35,7 @@ export async function getBot0({
   bot.use(async (ctx, next) => {
     ctx.db = db;
     ctx.fluentInstance = fluent;
+    ctx.withLocale = fluent.withLocale.bind(fluent);
     await next();
   });
 

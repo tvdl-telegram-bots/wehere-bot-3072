@@ -1,6 +1,8 @@
 import { ObjectId } from "mongodb";
 import { z } from "zod";
 
+import { getChatLocale } from "../operations/getChatLocale";
+
 import { withDefaultErrorHandler } from "@/bot/utils/error";
 import html from "@/bot/utils/html";
 import { Command } from "@/types";
@@ -33,10 +35,12 @@ const handleCallbackQuery = withDefaultErrorHandler(async (ctx) => {
 
   assert(ack.matchedCount > 0);
 
+  const locale = await getChatLocale(ctx, msg0.chat.id);
+
   await ctx.api.sendMessage(
     nonNullable(msg0.chat.id),
     [
-      ctx.t("html-replying-to", {
+      ctx.withLocale(locale)("html-replying-to", {
         name: html.strong(formatThread(thread)),
       }),
       "",

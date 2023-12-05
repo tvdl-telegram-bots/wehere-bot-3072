@@ -10,6 +10,7 @@ import {
   createMessage,
   getThreadFromMortalChatId,
 } from "../operations/__deprecated/mortal";
+import { getChatLocale } from "../operations/getChatLocale";
 import notifyNewMessage from "../operations/notifyNewMessage";
 import { withDefaultErrorHandler } from "../utils/error";
 
@@ -45,16 +46,20 @@ async function handlerForMortal(ctx: BotContext) {
 
 async function handlerForAngel(ctx: BotContext) {
   const msg0 = nonNullable(ctx.message);
-
+  const locale = await getChatLocale(ctx, msg0.chat.id);
   const angelSub = await getAngelSubscription(ctx.db, { chatId: msg0.chat.id });
+
   if (!angelSub) {
-    const keyboard = InlineKeyboard.from([
-      [InlineKeyboard.text(ctx.t("text-subscribe"), `wehere:/subscribe`)],
-    ]);
     ctx.api.sendMessage(
       msg0.chat.id,
-      ctx.t("html-not-subscribing"),
-      { parse_mode: "HTML", reply_markup: keyboard } //
+      ctx.withLocale(locale)("html-not-subscribing"),
+      {
+        parse_mode: "HTML",
+        reply_markup: new InlineKeyboard().text(
+          ctx.withLocale(locale)("text-subscribe"),
+          `wehere:/subscribe`
+        ),
+      } //
     );
     return;
   }

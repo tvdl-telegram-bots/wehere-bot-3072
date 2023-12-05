@@ -1,7 +1,13 @@
 import { ObjectId } from "mongodb";
 import { z } from "zod";
 
-import { ChatId, MessageDirection, MessageId, Timestamp } from "./common";
+import {
+  ChatId,
+  Locale,
+  MessageDirection,
+  MessageId,
+  Timestamp,
+} from "./common";
 
 export const PersistentObjectId = z.instanceof(ObjectId);
 
@@ -50,3 +56,12 @@ export const PersistentThreadMessage = z.object({
 });
 
 export type PersistentThreadMessage = z.infer<typeof PersistentThreadMessage>;
+
+export const PersistentChat = z.object({
+  _id: PersistentObjectId,
+  chatId: ChatId,
+  locale: Locale.nullish(),
+  updatedAt: Timestamp.nullish(),
+});
+
+export type PersistentChat = z.infer<typeof PersistentChat>;

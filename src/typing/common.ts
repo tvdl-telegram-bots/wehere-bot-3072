@@ -4,7 +4,6 @@ export const Env = z.object({
   TELEGRAM_BOT_TOKEN: z.string().min(1),
   MONGODB_URI: z.string().startsWith("mongodb"),
   MONGODB_DBNAME: z.string().min(1),
-  RESOURCE_DIR: z.string().min(1),
 });
 
 export type Env = z.infer<typeof Env>;
@@ -47,3 +46,6 @@ export const PersistentRole = z.object({
 });
 
 export type PersistentRole = z.infer<typeof PersistentRole>;
+
+export const Locale = z.enum(["en", "vi"]);
+export type Locale = z.infer<typeof Locale>;

@@ -12,7 +12,6 @@ export const ENV = Env.parse({
     process.env.MONGODB_URI ||
     decodeURIComponent(process.env.MONGODB_URI__URLENCODED || ""),
   MONGODB_DBNAME: process.env.MONGODB_DBNAME,
-  RESOURCE_DIR: process.env.RESOURCE_DIR,
 });
 
 export const FTL = Ftl.parse({
