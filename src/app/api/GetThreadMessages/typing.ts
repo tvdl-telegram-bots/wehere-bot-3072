@@ -9,6 +9,8 @@ export const ThreadMessage = z.object({
   createdAt: Timestamp.nullish(),
 });
 
+export type ThreadMessage = z.infer<typeof ThreadMessage>;
+
 export const Params$GetThreadMessages = z
   .object({
     threadId: z.string(),

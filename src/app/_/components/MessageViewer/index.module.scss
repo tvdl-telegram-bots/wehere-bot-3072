@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 12px;
+
+  &.direction_fromMortal {
+    flex-direction: row-reverse;
+  }
+
+  &.direction_fromAngel {
+    flex-direction: row;
+  }
+}
+
+.avatar {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  border-radius: 48px;
+  background-color: blue;
+  flex: 0 0 auto;
+
+  .direction_fromMortal & {
+    display: none;
+  }
+}
+
+.content {
+  min-height: 48px;
+  border-radius: 12px;
+  background-color: lightgray;
+  flex: 0 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 12px;
+
+  .direction_fromMortal & {
+    background-color: blue;
+    color: white;
+  }
+}
+
+.space {
+  min-width: 20%;
+}

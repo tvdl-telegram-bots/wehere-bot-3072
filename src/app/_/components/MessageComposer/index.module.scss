@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.textarea {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.button {
+  width: auto;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  padding: 24px;
+}

@@ -45,11 +45,15 @@ export function useResourceInfinite<P, R>({
   initialParams,
   getNextParams,
   fetcher,
+  swrConfig,
 }: {
   path: string;
   initialParams: P | null | undefined;
   getNextParams: (previousPageData: PageData<P, R>) => P | null | undefined;
   fetcher: (resourceKey: ResourceKey<P>) => Promise<R>;
+  swrConfig?: {
+    refreshInterval?: number;
+  };
 }) {
   const keyLoader = (
     index: number,
@@ -68,7 +72,8 @@ export function useResourceInfinite<P, R>({
     async (resourceKey: ResourceKey<P>): Promise<PageData<P, R>> => {
       const result = await fetcher(resourceKey);
       return { result, params: resourceKey.params };
-    }
+    },
+    swrConfig
   );
 
   const lastPageData = last(swr.data);

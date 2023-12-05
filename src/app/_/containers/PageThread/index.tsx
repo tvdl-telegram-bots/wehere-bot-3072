@@ -3,6 +3,9 @@
 import cx from "clsx";
 import React from "react";
 
+import AutoTrigger from "../../components/AutoTrigger";
+import MessageComposer from "../../components/MessageComposer";
+import MessageViewer from "../../components/MessageViewer";
 import { httpGet, useResourceInfinite } from "../../utils/swr";
 
 import styles from "./index.module.scss";
@@ -25,7 +28,7 @@ export default function PageThread({
   threadId,
   origin,
 }: Props) {
-  const resource_previousMessages = useResourceInfinite<
+  const resource_prevMessages = useResourceInfinite<
     Params$GetThreadMessages,
     Result$GetThreadMessages
   >({
@@ -36,25 +39,52 @@ export default function PageThread({
     fetcher: httpGet(Result$GetThreadMessages),
   });
 
+  const resource_nextMessages = useResourceInfinite<
+    Params$GetThreadMessages,
+    Result$GetThreadMessages
+  >({
+    path: "/api/GetThreadMessages",
+    initialParams: { threadId, since: origin, limit: 12 },
+    getNextParams: ({ params, result }) =>
+      result.nextPrior ? { ...params, prior: result.nextPrior } : undefined,
+    fetcher: httpGet(Result$GetThreadMessages),
+    swrConfig: { refreshInterval: 10000 },
+  });
+
+  const messages = [
+    ...(resource_prevMessages.data?.toReversed() || []),
+    ...(resource_nextMessages.data || []),
+  ].flatMap((page) => page.results);
+
   return (
     <main
       className={cx(styles.container, className, "container")}
       style={style}
     >
-      <ul>
-        {resource_previousMessages.data?.map((page, index) => (
-          <li key={index}>
-            <pre style={{ whiteSpace: "pre-wrap" }}>{JSON.stringify(page)}</pre>
-          </li>
+      <div className={styles.loadingIndicator}>
+        {resource_prevMessages.isLoading ? (
+          <span aria-busy="true">{"Loading..."}</span>
+        ) : (
+          <AutoTrigger onVisible={resource_prevMessages.loadMore} />
+        )}
+      </div>
+      <div className={styles.messageList}>
+        {messages.map((m) => (
+          <MessageViewer key={m.id} message={m} />
         ))}
-      </ul>
-      <button
-        onClick={resource_previousMessages.loadMore}
-        disabled={!resource_previousMessages.loadMore}
-        aria-busy={resource_previousMessages.isLoading ? "true" : undefined}
-      >
-        Load More
-      </button>
+      </div>
+      <div className={styles.loadingIndicator}>
+        {resource_nextMessages.isLoading ? (
+          <span aria-busy="true">{"Loading..."}</span>
+        ) : (
+          <AutoTrigger onVisible={resource_nextMessages.loadMore} />
+        )}
+      </div>
+      <MessageComposer
+        style={{ margin: "12px 0" }}
+        threadId={threadId}
+        onMessageSent={() => resource_nextMessages.swr.mutate()}
+      />
     </main>
   );
 }

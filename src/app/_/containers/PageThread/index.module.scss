@@ -1,0 +1,10 @@
+.messageList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.loadingIndicator {
+  opacity: 80%;
+  text-align: center;
+}
