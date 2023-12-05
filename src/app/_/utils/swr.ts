@@ -1,6 +1,6 @@
 import useSWRInfinite from "swr/infinite";
+import { ZodType } from "zod";
 
-import { IParse } from "@/types";
 import { last } from "@/utils/array";
 
 type BaseQueryForHttpGet = Record<
@@ -13,7 +13,7 @@ export type ResourceKey<P = void> = {
   params: P;
 };
 
-export function httpGet<R>(schema: IParse<R>) {
+export function httpGet<R>(schema: ZodType<R>) {
   return async function ({
     path,
     params,
@@ -30,6 +30,37 @@ export function httpGet<R>(schema: IParse<R>) {
       method: "GET",
       headers: { Accepts: "application/json" },
     });
+    if (!response.ok) {
+      throw new Error(
+        [
+          "Failed to GET",
+          url,
+          `${response.status} ${response.statusText}`,
+        ].join("\n")
+      );
+    }
+    const data = await response.json();
+    return schema.parse(data);
+  };
+}
+
+export function httpPost<R>(schema: ZodType<R>) {
+  return async function ({ path, params }: ResourceKey<unknown>): Promise<R> {
+    const response = await fetch(path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(params),
+    });
+    if (!response.ok) {
+      throw new Error(
+        [
+          "Failed to GET",
+          path,
+          JSON.stringify(params),
+          `${response.status} ${response.statusText}`,
+        ].join("\n")
+      );
+    }
     const data = await response.json();
     return schema.parse(data);
   };

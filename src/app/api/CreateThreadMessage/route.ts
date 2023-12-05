@@ -28,8 +28,6 @@ async function run(ctx: EssentialContext, params: Params$CreateThreadMessage) {
 export const POST = withRouteErrorHandler(async (req) => {
   const params = await req.json().then(Params$CreateThreadMessage.parse);
   const ctx = await getAppCtx();
-
   await run(ctx, params);
-
   return NextResponse.json(null);
 });

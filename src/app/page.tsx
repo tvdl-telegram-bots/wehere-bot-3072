@@ -1,3 +1,5 @@
+import PageHome from "./_/containers/PageHome";
+
 export default function Home() {
-  return <main></main>;
+  return <PageHome />;
 }

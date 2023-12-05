@@ -18,7 +18,7 @@
   width: 48px;
   height: 48px;
   border-radius: 48px;
-  background-color: blue;
+  background-color: var(--primary);
   flex: 0 0 auto;
 
   .direction_fromMortal & {
@@ -29,15 +29,16 @@
 .content {
   min-height: 48px;
   border-radius: 12px;
-  background-color: lightgray;
+  background-color: var(--secondary);
+  color: var(--secondary-inverse);
   flex: 0 1 auto;
   min-width: 0;
   box-sizing: border-box;
   padding: 12px;
 
   .direction_fromMortal & {
-    background-color: blue;
-    color: white;
+    background-color: var(--primary);
+    color: var(--primary-inverse);
   }
 }
 

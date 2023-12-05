@@ -1,6 +1,7 @@
 import { Db, WithoutId } from "mongodb";
 
 import { ChatId } from "../../../typing/common";
+import { createThread } from "../createThread";
 
 import {
   PersistentMortalSubscription,
@@ -161,16 +162,7 @@ export async function getThreadFromMortalChatId(
     return existingThread;
   }
 
-  const { insertedId } = await db.collection("thread").insertOne({
-    name: generateThreadName(),
-    emoji: generateThreadEmoji(),
-    createdAt: now,
-  });
-
-  const newThread = await db
-    .collection("thread")
-    .findOne({ _id: insertedId })
-    .then((doc) => PersistentThread.parse(doc));
+  const newThread = await createThread({ db });
 
   await db.collection("mortal_subscription").updateOne(
     { chatId },
