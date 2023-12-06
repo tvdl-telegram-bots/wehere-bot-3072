@@ -49,10 +49,14 @@ export async function getAppApi() {
 }
 
 export async function getAppCtx(): Promise<EssentialContext> {
-  const [db, api, fluentInstance] = await Promise.all([
+  const [db, api, fluent] = await Promise.all([
     getAppDb(),
     getAppApi(),
     getAppFluent(),
   ]);
-  return { db, api, fluentInstance };
+  return {
+    db,
+    api,
+    withLocale: fluent.withLocale.bind(fluent),
+  };
 }

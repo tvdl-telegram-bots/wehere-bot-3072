@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@grammyjs/conversations": "^1.1.2",
-    "@grammyjs/fluent": "^1.0.3",
     "@moebius/fluent": "^1.1.0",
     "@picocss/pico": "^1.5.10",
     "clsx": "^2.0.0",

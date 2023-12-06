@@ -3,6 +3,8 @@ import { WithoutId } from "mongodb";
 
 import html from "../utils/html";
 
+import { getChatLocale } from "./getChatLocale";
+
 import { EssentialContext } from "@/types";
 import { ChatId } from "@/typing/common";
 import {
@@ -23,8 +25,6 @@ export default async function notifyNewMessage(
   ctx: EssentialContext,
   { message, excludesChats = [] }: Params
 ) {
-  const t = ctx.fluentInstance.translate.bind(ctx.fluentInstance, "vi");
-
   // 1. Notify mortals
   const mortalSubs = await ctx.db
     .collection("mortal_subscription")
@@ -69,10 +69,11 @@ export default async function notifyNewMessage(
         ].join(" ");
 
   for (const sub of angelSubs) {
+    const locale = await getChatLocale(ctx, sub.chatId);
     const keyboard =
       message.direction === "from_mortal"
         ? new InlineKeyboard().text(
-            t("text-reply"),
+            ctx.withLocale(locale)("text-reply"),
             `wehere:/reply?threadId=${thread._id.toHexString()}`
           )
         : undefined;

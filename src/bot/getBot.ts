@@ -1,5 +1,4 @@
 import { conversations } from "@grammyjs/conversations";
-import { useFluent } from "@grammyjs/fluent";
 import { Fluent } from "@moebius/fluent";
 import { Bot, GrammyError, HttpError, session } from "grammy";
 import { Db } from "mongodb";
@@ -34,19 +33,12 @@ export async function getBot0({
 
   bot.use(async (ctx, next) => {
     ctx.db = db;
-    ctx.fluentInstance = fluent;
     ctx.withLocale = fluent.withLocale.bind(fluent);
     await next();
   });
 
   bot.use(session({ initial: () => ({}) })); // TODO: persistent session
-  bot.use(useFluent({ fluent }));
   bot.use(conversations());
-
-  bot.use(async (ctx, next) => {
-    ctx.fluent.useLocale("vi");
-    await next();
-  });
 
   const commands: Command[] = [
     Connect,

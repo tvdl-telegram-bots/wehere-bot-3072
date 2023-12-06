@@ -1,21 +1,15 @@
 import { ConversationFlavor } from "@grammyjs/conversations";
-import { FluentContextFlavor } from "@grammyjs/fluent";
 import { Fluent } from "@moebius/fluent";
 import { Context, Middleware } from "grammy";
 import { Db } from "mongodb";
 
 export type BotContext = Context &
-  ConversationFlavor &
-  FluentContextFlavor & {
+  ConversationFlavor & {
     db: Db;
-    fluentInstance: Fluent;
     withLocale: Fluent["withLocale"];
   };
 
-export type EssentialContext = Pick<
-  BotContext,
-  "db" | "api" | "fluentInstance"
->;
+export type EssentialContext = Pick<BotContext, "db" | "api" | "withLocale">;
 
 export type Command = {
   commandName: string;

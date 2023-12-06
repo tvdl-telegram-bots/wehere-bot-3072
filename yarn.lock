@@ -144,16 +144,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@grammyjs/fluent@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "@grammyjs/fluent@npm:1.0.3"
-  peerDependencies:
-    "@moebius/fluent": ^1.0.0
-    grammy: ^1.5.0
-  checksum: a7bd15d15fea094ea8286ec2d0d8da944c5c85abbc63e73a9912f03d633955e1bd6354af7387b76b6c6d51f29f1d5fc92b079da5197866a5c53a9f753a89b0e5
-  languageName: node
-  linkType: hard
-
 "@grammyjs/types@npm:3.3.0, @grammyjs/types@npm:^3.1.1":
   version: 3.3.0
   resolution: "@grammyjs/types@npm:3.3.0"
@@ -4810,7 +4800,6 @@ __metadata:
   resolution: "wehere-bot-3072@workspace:."
   dependencies:
     "@grammyjs/conversations": "npm:^1.1.2"
-    "@grammyjs/fluent": "npm:^1.0.3"
     "@moebius/fluent": "npm:^1.1.0"
     "@picocss/pico": "npm:^1.5.10"
     "@types/html-escaper": "npm:^3"
