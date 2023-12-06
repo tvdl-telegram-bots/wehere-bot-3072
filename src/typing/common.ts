@@ -37,15 +37,5 @@ export type MessageDirection = z.infer<typeof MessageDirection>;
 export const Role = z.enum(["mortal", "angel", "admin"]);
 export type Role = z.infer<typeof Role>;
 
-// TODO: move to typing/server.ts
-export const PersistentRole = z.object({
-  userId: UserId,
-  role: Role.nullish(),
-  updatedAt: Timestamp.nullish(),
-  updatedBy: UserId.nullish(),
-});
-
-export type PersistentRole = z.infer<typeof PersistentRole>;
-
 export const Locale = z.enum(["en", "vi"]);
 export type Locale = z.infer<typeof Locale>;

@@ -6,7 +6,9 @@ import {
   Locale,
   MessageDirection,
   MessageId,
+  Role,
   Timestamp,
+  UserId,
 } from "./common";
 
 export const PersistentObjectId = z.instanceof(ObjectId);
@@ -65,3 +67,11 @@ export const PersistentChat = z.object({
 });
 
 export type PersistentChat = z.infer<typeof PersistentChat>;
+
+export const PersistentRole = z.object({
+  userId: UserId,
+  role: Role.nullish(),
+  updatedAt: Timestamp.nullish(),
+});
+
+export type PersistentRole = z.infer<typeof PersistentRole>;

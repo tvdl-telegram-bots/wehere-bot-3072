@@ -21,9 +21,8 @@ const handler = withDefaultErrorHandler(async (ctx) => {
     msg0.chat.id,
     [
       ctx.withLocale(locale)("html-alright-you-subscribing"),
-      "",
       html.pre(html.literal(JSON.stringify({ ack }))),
-    ].join("\n"),
+    ].join("\n\n"),
     {
       parse_mode: "HTML",
       reply_markup: new InlineKeyboard().text(

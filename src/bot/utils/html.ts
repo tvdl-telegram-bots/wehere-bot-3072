@@ -12,7 +12,7 @@ const html = {
   s: (text: string) => "<s>" + text + "</s>",
   strong: (text: string) => "<strong>" + text + "</strong>",
   u: (text: string) => "<u>" + text + "</u>",
-  literal: (text: string) => escape(text),
+  literal: (value: string | number | boolean | null) => escape(`${value}`),
 };
 
 export default html;
