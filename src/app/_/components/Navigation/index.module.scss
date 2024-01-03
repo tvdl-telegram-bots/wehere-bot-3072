@@ -4,8 +4,8 @@
 
 .Sidebar {
   width: 360px;
-  background-color: var(--color--surface);
-  color: var(--color-on-surface);
+  background-color: var(--color--surface-container);
+  color: var(--color-on-surface-container);
   padding: 32px 28px;
 
   .slotProduct {
@@ -61,5 +61,155 @@
 
   .label {
     font-size: 1rem;
+  }
+}
+
+.Rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  padding: 56px 0;
+  border-right: 1px solid var(--color--outline-variant);
+  background-color: var(--color--surface-container);
+  color: var(--color--on-surface-container);
+
+  ul {
+    all: unset;
+    display: flex;
+    box-sizing: border-box;
+
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  li {
+    all: unset;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  .buttonMenu {
+    all: unset;
+    display: flex;
+    box-sizing: border-box;
+
+    align-items: center;
+    cursor: pointer;
+    font-size: 24px;
+    height: 48px;
+    justify-content: center;
+    margin-bottom: 56px;
+    width: 48px;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+
+    --state-color: transparent;
+    --state-opacity: 0;
+
+    &:hover {
+      --state-color: var(--color--on-surface-variant);
+      --state-opacity: var(--state--hover--state-layer-opacity);
+    }
+
+    &:active {
+      --state-color: var(--color--on-surface-variant);
+      --state-opacity: var(--state--pressed--state-layer-opacity);
+    }
+
+    &:before {
+      display: flex;
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: var(--state-opacity);
+      background-color: var(--state-color);
+      transition-property: background-color, opacity;
+      transition-duration: 0.125s;
+    }
+
+    & > * {
+      position: relative;
+    }
+  }
+}
+
+.RailItem {
+  all: unset;
+  display: flex;
+  box-sizing: border-box;
+
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  gap: 4px;
+
+  --icon-bg: transparent;
+  --icon-fg: var(--color--on-surface-variant);
+  --label-fg: var(--color--on-surface-variant);
+  --label-weight: 500;
+
+  &.active {
+    --icon-bg: var(--color--secondary-container);
+    --icon-fg: var(--color--on-secondary-container);
+    --label-fg: var(--color--on-surface);
+    --label-weight: 700;
+  }
+
+  --state-color: transparent;
+  --state-opacity: 0;
+
+  &:hover {
+    --state-color: var(--color--on-surface);
+    --state-opacity: var(--state--hover--state-layer-opacity);
+  }
+
+  &:active {
+    --state-color: var(--color--on-surface);
+    --state-opacity: var(--state--pressed--state-layer-opacity);
+  }
+
+  .icon {
+    align-items: center;
+    border-radius: 16px;
+    color: var(--icon-fg);
+    background-color: var(--icon-bg);
+    display: flex;
+    font-size: 24px;
+    height: 32px;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    width: 56px;
+
+    &::before {
+      background-color: var(--state-color);
+      content: "";
+      display: flex;
+      inset: 0;
+      opacity: var(--state-opacity);
+      position: absolute;
+      transition-duration: 125ms;
+      transition-property: background-color, opacity;
+    }
+
+    & > * {
+      position: relative;
+    }
+  }
+
+  .label {
+    display: block;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--label-fg);
+    font-size: 0.8rem;
+    font-weight: var(--label-weight);
   }
 }

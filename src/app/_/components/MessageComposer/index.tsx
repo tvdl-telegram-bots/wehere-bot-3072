@@ -1,5 +1,6 @@
 import cx from "clsx";
 import React from "react";
+import { MdSend } from "react-icons/md";
 
 import { httpPost } from "../../utils/swr";
 
@@ -50,7 +51,7 @@ export default function MessageComposer({
         onChange={(e) => setText(e.target.value)}
       />
       <button className={styles.button} onClick={handleSend} disabled={busy}>
-        {"Send"}
+        <MdSend />
       </button>
     </div>
   );

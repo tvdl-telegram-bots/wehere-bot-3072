@@ -70,7 +70,7 @@ export default function PageThread({
 
   const items: Item$Navigation[] = [
     { icon: <MdHome />, label: "Trang chủ", href: "/" },
-    { icon: <MdChat />, label: "Trò chuyện", href: "/t" },
+    { icon: <MdChat />, label: "Trò chuyện", href: "/t", active: true },
   ];
 
   return (
@@ -91,6 +91,11 @@ export default function PageThread({
           <Navigation.Sidebar
             items={items}
             slotProduct={<LogoWeHere.Fixed variant="color" size="120px" />}
+          />
+        ) : layoutBasicApi.navigationRail ? (
+          <Navigation.Rail
+            items={items}
+            buttonMenu={layoutBasicApi.navigationRail.buttonMenu}
           />
         ) : (
           <pre>
