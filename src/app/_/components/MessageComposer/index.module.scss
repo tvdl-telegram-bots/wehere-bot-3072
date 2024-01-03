@@ -6,13 +6,39 @@
 }
 
 .textarea {
+  all: unset;
+  display: flex;
+  box-sizing: border-box;
+
+  outline: solid 1px var(--color--outline);
+  border-radius: 12px;
+  padding: 16px;
   flex: 1 1 auto;
   min-width: 0;
+  color: var(--color--on-surface);
+
+  &:hover {
+    outline-color: var(--color--on-surface);
+  }
+
+  &:focus {
+    outline-color: var(--color--primary);
+    outline-width: 2px;
+  }
 }
 
 .button {
+  all: unset;
+  display: flex;
+  box-sizing: border-box;
+
+  align-items: center;
+  justify-content: center;
   width: auto;
   flex: 0 0 auto;
-  box-sizing: border-box;
   padding: 24px;
+  cursor: pointer;
+  background-color: var(--color--primary);
+  color: var(--color--on-primary);
+  border-radius: 12px;
 }

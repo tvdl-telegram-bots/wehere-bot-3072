@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "@picocss/pico";
-import "./globals.css";
 
-const inter = Inter({ subsets: ["latin", "vietnamese"] });
+import "normalize.css";
+import "./globals.css";
+import { fontAlumniSans } from "./_/utils/fonts";
 
 export const metadata: Metadata = {
   title: "WeHere",
@@ -18,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={fontAlumniSans.variable}>{children}</body>
     </html>
   );
 }

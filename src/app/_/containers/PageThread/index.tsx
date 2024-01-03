@@ -1,11 +1,19 @@
 "use client";
 
 import cx from "clsx";
+import { useRouter } from "next/navigation";
 import React from "react";
+import { MdArrowBack, MdChat, MdHome } from "react-icons/md";
 
 import AutoTrigger from "../../components/AutoTrigger";
+import LayoutBasic from "../../components/LayoutBasic";
+import { useLayoutBasicApi } from "../../components/LayoutBasic/hooks/useLayoutBasicApi";
+import LogoWeHere from "../../components/LogoWeHere";
 import MessageComposer from "../../components/MessageComposer";
 import MessageViewer from "../../components/MessageViewer";
+import Navigation from "../../components/Navigation";
+import { Item$Navigation } from "../../components/Navigation/types";
+import TopAppBar from "../../components/TopAppBar";
 import { httpGet, useResourceInfinite } from "../../utils/swr";
 
 import styles from "./index.module.scss";
@@ -28,6 +36,8 @@ export default function PageThread({
   threadId,
   origin,
 }: Props) {
+  const router = useRouter();
+
   const resource_prevMessages = useResourceInfinite<
     Params$GetThreadMessages,
     Result$GetThreadMessages
@@ -56,43 +66,76 @@ export default function PageThread({
     ...(resource_nextMessages.data || []),
   ].flatMap((page) => page.results);
 
+  const layoutBasicApi = useLayoutBasicApi();
+
+  const items: Item$Navigation[] = [
+    { icon: <MdHome />, label: "Trang chủ", href: "/" },
+    { icon: <MdChat />, label: "Trò chuyện", href: "/t" },
+  ];
+
   return (
-    <main
-      className={cx(styles.container, className, "container")}
-      style={style}
-    >
-      <div className={styles.loadingIndicator}>
-        {resource_prevMessages.isLoading ? (
-          <span aria-busy="true">{"Loading..."}</span>
-        ) : resource_prevMessages.error ? (
-          <button onClick={resource_prevMessages.loadMore}>
-            {"Load previous messages"}
-          </button>
+    <LayoutBasic.Root className={cx(styles.container, className)} style={style}>
+      <LayoutBasic.Top>
+        <TopAppBar.Root
+          label={<TopAppBar.Label label={"Trò chuyện cùng WeHere"} />}
+          iconL={
+            <TopAppBar.Button
+              icon={<MdArrowBack />}
+              onClick={() => router.back()}
+            />
+          }
+        />
+      </LayoutBasic.Top>
+      <LayoutBasic.Left>
+        {layoutBasicApi.navigationSidebar ? (
+          <Navigation.Sidebar
+            items={items}
+            slotProduct={<LogoWeHere.Fixed variant="color" size="120px" />}
+          />
         ) : (
-          <AutoTrigger onVisible={resource_prevMessages.loadMore} />
+          <pre>
+            {JSON.stringify([
+              layoutBasicApi.navigationSidebar,
+              layoutBasicApi.navigationRail,
+            ])}
+          </pre>
         )}
-      </div>
-      <div className={styles.messageList}>
-        {messages.map((m) => (
-          <MessageViewer key={m.id} message={m} />
-        ))}
-      </div>
-      <div className={styles.loadingIndicator}>
-        {resource_nextMessages.isLoading ? (
-          <span aria-busy="true">{"Loading..."}</span>
-        ) : resource_nextMessages.error ? (
-          <button onClick={resource_nextMessages.loadMore}>
-            {"Load previous messages"}
-          </button>
-        ) : (
-          <AutoTrigger onVisible={resource_nextMessages.loadMore} />
-        )}
-      </div>
-      <MessageComposer
-        style={{ margin: "12px 0" }}
-        threadId={threadId}
-        onMessageSent={() => resource_nextMessages.swr.mutate()}
-      />
-    </main>
+      </LayoutBasic.Left>
+      <LayoutBasic.Center className={styles.LayoutBasic_Center}>
+        <div className={styles.loadingIndicator}>
+          {resource_prevMessages.isLoading ? (
+            <span aria-busy="true">{"Loading..."}</span>
+          ) : resource_prevMessages.error ? (
+            <button onClick={resource_prevMessages.loadMore}>
+              {"Load previous messages"}
+            </button>
+          ) : (
+            <AutoTrigger onVisible={resource_prevMessages.loadMore} />
+          )}
+        </div>
+        <div className={styles.messageList}>
+          {messages.map((m) => (
+            <MessageViewer.Root key={m.id} message={m} />
+          ))}
+        </div>
+        <div className={styles.loadingIndicator}>
+          {resource_nextMessages.isLoading ? (
+            <span aria-busy="true">{"Loading..."}</span>
+          ) : resource_nextMessages.error ? (
+            <button onClick={resource_nextMessages.loadMore}>
+              {"Load previous messages"}
+            </button>
+          ) : (
+            <AutoTrigger onVisible={resource_nextMessages.loadMore} />
+          )}
+        </div>
+      </LayoutBasic.Center>
+      <LayoutBasic.Bottom className={styles.LayoutBasic_Bottom}>
+        <MessageComposer
+          threadId={threadId}
+          onMessageSent={() => resource_nextMessages.swr.mutate()}
+        />
+      </LayoutBasic.Bottom>
+    </LayoutBasic.Root>
   );
 }

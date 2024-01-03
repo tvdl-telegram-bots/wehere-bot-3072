@@ -11,37 +11,96 @@
   &.direction_fromAngel {
     flex-direction: row;
   }
-}
 
-.avatar {
-  display: flex;
-  width: 48px;
-  height: 48px;
-  border-radius: 48px;
-  background-color: var(--primary);
-  flex: 0 0 auto;
-
-  .direction_fromMortal & {
-    display: none;
-  }
-}
-
-.content {
-  min-height: 48px;
-  border-radius: 12px;
-  background-color: var(--secondary);
-  color: var(--secondary-inverse);
-  flex: 0 1 auto;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 12px;
-
-  .direction_fromMortal & {
+  .avatar {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    border-radius: 48px;
     background-color: var(--primary);
-    color: var(--primary-inverse);
+    flex: 0 0 auto;
+
+    .direction_fromMortal & {
+      display: none;
+    }
+  }
+
+  .content {
+    min-height: 48px;
+    border-radius: 12px;
+    background-color: var(--secondary);
+    color: var(--secondary-inverse);
+    flex: 0 1 auto;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 12px;
+
+    .direction_fromMortal & {
+      background-color: var(--primary);
+      color: var(--primary-inverse);
+    }
+  }
+
+  .space {
+    min-width: 20%;
   }
 }
 
-.space {
-  min-width: 20%;
+.FromMe {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  // border: 1px solid hsl(1407rad, 50%, 50%);
+  gap: 8px;
+
+  .space {
+    // border: 1px solid hsl(1436rad, 50%, 50%);
+    min-width: 20%;
+    flex: 1 0 auto;
+  }
+
+  .content {
+    background-color: var(--color--primary);
+    border-radius: 12px;
+    // border: 1px solid hsl(1437rad, 50%, 50%);
+    color: var(--color--on-primary);
+    flex: 0 1 auto;
+    min-height: 48px;
+    min-width: 0;
+    padding: 16px;
+  }
+}
+
+.FromThem {
+  display: flex;
+  // border: 1px solid hsl(1408rad, 50%, 50%);
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 8px;
+
+  .avatar {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    border-radius: 48px;
+    background-color: var(--color--primary);
+    flex: 0 0 auto;
+  }
+
+  .content {
+    background-color: var(--color--surface-container);
+    border-radius: 12px;
+    // border: 1px solid hsl(1437rad, 50%, 50%);
+    color: var(--color--on-surface);
+    flex: 0 1 auto;
+    min-height: 48px;
+    min-width: 0;
+    padding: 16px;
+  }
+
+  .space {
+    // border: 1px solid hsl(1448rad, 50%, 50%);
+    min-width: 20%;
+    flex: 1 0 auto;
+  }
 }

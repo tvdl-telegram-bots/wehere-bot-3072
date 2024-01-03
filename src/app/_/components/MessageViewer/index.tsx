@@ -5,17 +5,71 @@ import styles from "./index.module.scss";
 
 import { ThreadMessage } from "@/app/api/GetThreadMessages/typing";
 
-type Props = {
+function FromMe({
+  className,
+  style,
+  message,
+}: {
   className?: string;
   style?: React.CSSProperties;
   message: ThreadMessage;
-};
+}) {
+  return (
+    <div className={cx(styles.FromMe, className)} style={style}>
+      <div className={styles.space}></div>
+      <div className={styles.content}>{message.text}</div>
+    </div>
+  );
+}
 
-export default function MessageViewer({ className, style, message }: Props) {
+function FromThem({
+  className,
+  style,
+  message,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+  message: ThreadMessage;
+}) {
+  return (
+    <div className={cx(styles.FromThem, className)} style={style}>
+      <div className={styles.avatar}></div>
+      <div className={styles.content}>{message.text}</div>
+      <div className={styles.space}></div>
+    </div>
+  );
+}
+
+function Root({
+  className,
+  style,
+  message,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+  message: ThreadMessage;
+}) {
+  switch (message.direction) {
+    case "from_angel":
+      return <FromThem className={className} style={style} message={message} />;
+    case "from_mortal":
+      return <FromMe className={className} style={style} message={message} />;
+  }
+}
+
+function Legacy({
+  className,
+  style,
+  message,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+  message: ThreadMessage;
+}) {
   return (
     <div
       className={cx(
-        styles.container,
+        styles.Legacy,
         className,
         message.direction === "from_mortal"
           ? styles.direction_fromMortal
@@ -32,3 +86,7 @@ export default function MessageViewer({ className, style, message }: Props) {
     </div>
   );
 }
+
+const MessageViewer = { Legacy, FromMe, FromThem, Root };
+
+export default MessageViewer;

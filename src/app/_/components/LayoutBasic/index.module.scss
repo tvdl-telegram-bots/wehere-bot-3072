@@ -1,0 +1,41 @@
+.Root {
+  // border: 1px solid hsl(1rad, 50%, 50%);
+  display: grid;
+  grid-template-areas: "L T T" "L C R" "L B B";
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
+  height: 100dvh;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.Left {
+  grid-area: L;
+  // border: 1px solid hsl(2rad, 50%, 50%);
+  overflow-y: auto;
+  display: flex;
+  align-items: stretch;
+}
+
+.Top {
+  grid-area: T;
+  // border: 1px solid hsl(3rad, 50%, 50%);
+}
+
+.Center {
+  grid-area: C;
+  // border: 1px solid hsl(4rad, 50%, 50%);
+  overflow-y: auto;
+}
+
+.Right {
+  grid-area: R;
+  // border: 1px solid hsl(5rad, 50%, 50%);
+}
+
+.Bottom {
+  grid-area: B;
+  // border: 1px solid hsl(6rad, 50%, 50%);
+}

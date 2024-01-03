@@ -3373,6 +3373,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"normalize.css@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "normalize.css@npm:8.0.1"
+  checksum: 4ddf56d1af5ca755fa5e692e718316d8758ecb792aa96e1ad206824b5810a043763d681d6f7697d46573515f5e9690038b4c91a95c1997567128815545fb8cd7
+  languageName: node
+  linkType: hard
+
 "o-son@npm:^1.0.1":
   version: 1.0.2
   resolution: "o-son@npm:1.0.2"
@@ -3736,6 +3743,15 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 66dfc5f93e13d0674e78ef41f92ed21dfb80f9c4ac4ac25a4b51046d41d4d2186abc915b897f69d3d0ebbffe6184e7c5876f2af26bfa956f179225d921be713a
+  languageName: node
+  linkType: hard
+
+"react-icons@npm:^4.12.0":
+  version: 4.12.0
+  resolution: "react-icons@npm:4.12.0"
+  peerDependencies:
+    react: "*"
+  checksum: 2170f43031ee7365539f72d4075cbe6c7fbf9a66d6cf4494aa9393b194272da0564f5b19d1b24dbfc567c0ac89f5fe5b8974d92dd83f61e252388dde6a226fb8
   languageName: node
   linkType: hard
 
@@ -4817,8 +4833,10 @@ __metadata:
     mongodb: "npm:^6.3.0"
     next: "npm:14.0.3"
     nodemon: "npm:^3.0.1"
+    normalize.css: "npm:^8.0.1"
     react: "npm:^18"
     react-dom: "npm:^18"
+    react-icons: "npm:^4.12.0"
     rimraf: "npm:^5.0.5"
     sass: "npm:^1.69.5"
     swr: "npm:^2.2.4"
