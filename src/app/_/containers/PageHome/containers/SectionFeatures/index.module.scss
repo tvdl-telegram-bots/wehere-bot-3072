@@ -1,0 +1,35 @@
+.Card {
+  padding: 16px;
+  border-radius: 12px;
+  background-color: var(--color--surface-container-low);
+  overflow: hidden;
+  box-shadow: 0px 1px 2px 0px rgb(0 0 0 / 30%), 0px 1px 3px 1px rgb(0 0 0 / 15%);
+
+  & > .title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  & > .description {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+  }
+}
+
+.Root {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 16px;
+
+  @media screen and (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (min-width: 1240px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

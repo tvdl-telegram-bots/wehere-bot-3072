@@ -1,0 +1,93 @@
+.container {
+  all: unset;
+  display: flex;
+  box-sizing: border-box;
+
+  height: 40px;
+  padding: 4px 24px;
+  font-size: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+
+  --content-color: var(--color--on-primary);
+  --content-opacity: 100%;
+  --background-color: var(--color--primary);
+  --background-opacity: 100%;
+  --state-color: transparent;
+  --state-opacity: 0;
+
+  &:hover {
+    --state-color: var(--color--on-primary);
+    --state-opacity: var(--state--hover--state-layer-opacity);
+  }
+
+  &:active {
+    --state-color: var(--color--on-primary);
+    --state-opacity: var(--state--pressed--state-layer-opacity);
+  }
+
+  &:disabled {
+    --background-color: var(--color-on-surface);
+    --background-opacity: 12%;
+    --content-color: var(--color--on-surface);
+    --content-opacity: 38%;
+    --state-color: transparent;
+    --state-opacity: 0;
+  }
+
+  & > .background {
+    position: absolute;
+    inset: 0;
+    background-color: var(--background-color);
+    opacity: var(--background-opacity);
+  }
+
+  & > .state {
+    position: absolute;
+    inset: 0;
+    background-color: var(--state-color);
+    opacity: var(--state-opacity);
+  }
+
+  & > .content {
+    position: relative;
+    inset: 0;
+    color: var(--content-color);
+    opacity: var(--content-opacity);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > .label {
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  // // &:disabled {
+  // background-color: var(--color-on-surface);
+  // opacity: 0.12;
+
+  // * {
+  //   color: var(--color-on-surface);
+  // }
+  // // }
+
+  // &:before {
+  //   display: flex;
+  //   content: "";
+  //   position: absolute;
+  //   inset: 0;
+  //   opacity: var(--state-opacity);
+  //   background-color: var(--state-color);
+  //   transition-property: background-color, opacity;
+  //   transition-duration: 0.125s;
+  // }
+}

@@ -4,7 +4,7 @@ export type WindowSizeClass = "compact" | "medium" | "expanded";
 
 function getWindowSizeClass(): WindowSizeClass {
   const w = window.innerWidth;
-  return w < 600 ? "compact" : w < 840 ? "medium" : "expanded";
+  return w < 600 ? "compact" : w < 1240 ? "medium" : "expanded";
 }
 
 export function useWindowSizeClass() {
