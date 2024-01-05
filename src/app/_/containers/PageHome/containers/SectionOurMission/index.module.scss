@@ -14,7 +14,7 @@
     box-sizing: border-box;
 
     font-size: 2rem;
-    color: var(--color--primary);
+    color: var(--md-sys-color-primary);
   }
 
   & > p {
@@ -24,6 +24,6 @@
 
     font-size: 1rem;
     max-width: 800px;
-    color: var(--color--on-surface);
+    color: var(--md-sys-color-on-surface);
   }
 }

@@ -3,8 +3,8 @@
   min-height: 64px;
   padding: 8px 16px;
   gap: 12px;
-  background-color: var(--color--surface);
-  color: var(--color--on-surface);
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
 
   .icon {
     align-items: center;
@@ -46,12 +46,12 @@
   --state-opacity: 0;
 
   &:hover {
-    --state-color: var(--color--on-surface-variant);
+    --state-color: var(--md-sys-color-on-surface-variant);
     --state-opacity: var(--state--hover--state-layer-opacity);
   }
 
   &:active {
-    --state-color: var(--color--on-surface-variant);
+    --state-color: var(--md-sys-color-on-surface-variant);
     --state-opacity: var(--state--pressed--state-layer-opacity);
   }
 

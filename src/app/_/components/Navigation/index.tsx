@@ -2,9 +2,15 @@ import cx from "clsx";
 import Link from "next/link";
 import React from "react";
 import { MdMenu } from "react-icons/md";
+import { mutate } from "swr";
+import { z } from "zod";
+
+import { httpPost } from "../../utils/swr";
 
 import styles from "./index.module.scss";
 import { Item } from "./types";
+
+import { Params$UpdateSessionState } from "@/app/api/UpdateSessionState/typing";
 
 function ItemViewer({
   className,
@@ -119,6 +125,22 @@ function Rail({
           </li>
         ))}
       </ul>
+
+      <button
+        onClick={async () => {
+          await httpPost(z.unknown())({
+            path: "/api/UpdateSessionState",
+            params: {
+              sessionState: {
+                themeName: Math.random() > 0.5 ? "dark" : "light",
+              },
+            } satisfies Params$UpdateSessionState,
+          });
+          await mutate({ path: "/api/ReadSessionState", params: {} });
+        }}
+      >
+        {"Switch Theme"}
+      </button>
     </div>
   );
 }

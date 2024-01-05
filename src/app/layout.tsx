@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
-
 import "normalize.css";
 import "./globals.css";
+
+import cx from "clsx";
+import { Metadata } from "next";
+
 import { fontAlumniSans } from "./_/utils/fonts";
 
 export const metadata: Metadata = {
@@ -16,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={fontAlumniSans.variable}>{children}</body>
+    <html lang="vi">
+      <body className={cx(fontAlumniSans.variable)}>{children}</body>
     </html>
   );
 }

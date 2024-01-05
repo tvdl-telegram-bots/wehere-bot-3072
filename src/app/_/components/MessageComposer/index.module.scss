@@ -10,21 +10,21 @@
   display: flex;
   box-sizing: border-box;
 
-  border: 1px solid var(--color--outline);
+  border: 1px solid var(--md-sys-color-outline);
   border-radius: 12px;
   padding: 16px;
   flex: 1 1 auto;
   min-width: 0;
-  color: var(--color--on-surface);
+  color: var(--md-sys-color-on-surface);
   height: 72px;
 
   &:hover {
-    border-color: var(--color--on-surface);
+    border-color: var(--md-sys-color-on-surface);
   }
 
   &:focus {
-    border-color: var(--color--primary);
-    outline: solid 1px var(--color--primary);
+    border-color: var(--md-sys-color-primary);
+    outline: solid 1px var(--md-sys-color-primary);
   }
 }
 
@@ -34,9 +34,9 @@
   box-sizing: border-box;
 
   align-items: center;
-  background-color: var(--color--primary);
+  background-color: var(--md-sys-color-primary);
   border-radius: 36px;
-  color: var(--color--on-primary);
+  color: var(--md-sys-color-on-primary);
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 36px;
@@ -51,12 +51,12 @@
   --state-opacity: 0;
 
   &:hover {
-    --state-color: var(--color--on-primary);
+    --state-color: var(--md-sys-color-on-primary);
     --state-opacity: var(--state--hover--state-layer-opacity);
   }
 
   &:active {
-    --state-color: var(--color--on-primary);
+    --state-color: var(--md-sys-color-on-primary);
     --state-opacity: var(--state--pressed--state-layer-opacity);
   }
 

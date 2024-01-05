@@ -1,5 +1,28 @@
-import PageHome from "./_/containers/PageHome";
+import { cookies } from "next/headers";
+import { unstable_serialize } from "swr";
 
-export default function Home() {
-  return <PageHome />;
+import PageHome from "./_/containers/PageHome";
+import { run$ReadSessionState } from "./api/ReadSessionState/route";
+
+import { SWRConfig } from "@/app/_/components/SWRConfig";
+
+export default async function Home() {
+  const cookieStore = cookies();
+
+  const result$ReadSessionState = await run$ReadSessionState({
+    cookies: cookieStore,
+  });
+
+  return (
+    <SWRConfig
+      value={{
+        fallback: {
+          [unstable_serialize({ path: "/api/ReadSessionState", params: {} })]:
+            result$ReadSessionState,
+        },
+      }}
+    >
+      <PageHome />
+    </SWRConfig>
+  );
 }

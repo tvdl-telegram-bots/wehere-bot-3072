@@ -4,8 +4,8 @@
 
 .Sidebar {
   width: 360px;
-  background-color: var(--color--surface-container);
-  color: var(--color-on-surface-container);
+  background-color: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface-container);
   padding: 32px 28px;
 
   .slotProduct {
@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
     padding: 36px 0;
-    border-bottom: 1px solid var(--color--outline-variant);
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
   }
 
   ul {
@@ -43,9 +43,10 @@
   border-radius: 28px;
   overflow: hidden;
   position: relative;
+  color: var(--md-sys-color-on-surface);
 
   &:hover::before {
-    background-color: var(--color--on-surface);
+    background-color: var(--md-sys-color-on-surface);
     content: "";
     display: block;
     inset: 0;
@@ -70,9 +71,9 @@
   align-items: center;
   width: 80px;
   padding: 56px 0;
-  border-right: 1px solid var(--color--outline-variant);
-  background-color: var(--color--surface-container);
-  color: var(--color--on-surface-container);
+  border-right: 1px solid var(--md-sys-color-outline-variant);
+  background-color: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface-container);
 
   ul {
     all: unset;
@@ -110,12 +111,12 @@
     --state-opacity: 0;
 
     &:hover {
-      --state-color: var(--color--on-surface-variant);
+      --state-color: var(--md-sys-color-on-surface-variant);
       --state-opacity: var(--state--hover--state-layer-opacity);
     }
 
     &:active {
-      --state-color: var(--color--on-surface-variant);
+      --state-color: var(--md-sys-color-on-surface-variant);
       --state-opacity: var(--state--pressed--state-layer-opacity);
     }
 
@@ -149,14 +150,14 @@
   gap: 4px;
 
   --icon-bg: transparent;
-  --icon-fg: var(--color--on-surface-variant);
-  --label-fg: var(--color--on-surface-variant);
+  --icon-fg: var(--md-sys-color-on-surface-variant);
+  --label-fg: var(--md-sys-color-on-surface-variant);
   --label-weight: 500;
 
   &.active {
-    --icon-bg: var(--color--secondary-container);
-    --icon-fg: var(--color--on-secondary-container);
-    --label-fg: var(--color--on-surface);
+    --icon-bg: var(--md-sys-color-secondary-container);
+    --icon-fg: var(--md-sys-color-on-secondary-container);
+    --label-fg: var(--md-sys-color-on-surface);
     --label-weight: 700;
   }
 
@@ -164,12 +165,12 @@
   --state-opacity: 0;
 
   &:hover {
-    --state-color: var(--color--on-surface);
+    --state-color: var(--md-sys-color-on-surface);
     --state-opacity: var(--state--hover--state-layer-opacity);
   }
 
   &:active {
-    --state-color: var(--color--on-surface);
+    --state-color: var(--md-sys-color-on-surface);
     --state-opacity: var(--state--pressed--state-layer-opacity);
   }
 

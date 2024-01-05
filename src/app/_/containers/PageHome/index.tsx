@@ -3,7 +3,7 @@
 import cx from "clsx";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { MdArrowBack, MdChat, MdHome } from "react-icons/md";
+import { MdChat, MdHome } from "react-icons/md";
 
 import ButtonFilled from "../../components/ButtonFilled";
 import EmphasisContainer from "../../components/EmphasisContainer";
@@ -12,7 +12,7 @@ import { useLayoutBasicApi } from "../../components/LayoutBasic/hooks/useLayoutB
 import LogoWeHere from "../../components/LogoWeHere";
 import Navigation from "../../components/Navigation";
 import { Item$Navigation } from "../../components/Navigation/types";
-import TopAppBar from "../../components/TopAppBar";
+import ThemeProvider from "../../components/ThemeProvider";
 import { httpPost } from "../../utils/swr";
 
 import SectionFeatures from "./containers/SectionFeatures";
@@ -55,8 +55,9 @@ export default function PageHome({ className, style }: Props) {
   ];
 
   return (
-    <LayoutBasic.Root className={cx(styles.container, className)} style={style}>
-      {/* <LayoutBasic.Top>
+    <ThemeProvider className={cx(styles.container, className)} style={style}>
+      <LayoutBasic.Root>
+        {/* <LayoutBasic.Top>
         <TopAppBar.Root
           label={<TopAppBar.Label label={"Trò chuyện cùng WeHere"} />}
           iconL={
@@ -67,43 +68,44 @@ export default function PageHome({ className, style }: Props) {
           }
         />
       </LayoutBasic.Top> */}
-      <LayoutBasic.Left>
-        {layoutBasicApi.navigationSidebar ? (
-          <Navigation.Sidebar
-            items={items}
-            slotProduct={<LogoWeHere.Fixed variant="color" size="120px" />}
-          />
-        ) : layoutBasicApi.navigationRail ? (
-          <Navigation.Rail
-            items={items}
-            buttonMenu={layoutBasicApi.navigationRail.buttonMenu}
-          />
-        ) : (
-          <pre>
-            {JSON.stringify([
-              layoutBasicApi.navigationSidebar,
-              layoutBasicApi.navigationRail,
-            ])}
-          </pre>
-        )}
-      </LayoutBasic.Left>
-      <LayoutBasic.Center className={styles.LayoutBasic_Center}>
-        <EmphasisContainer
-          title={"WeHere"}
-          description={
-            "Chào mừng bạn đến với WeHere, dự án tâm lý phi lợi nhuận do Thư viện Dương Liễu bảo trợ. Chúng tôi chấp nhận và lắng nghe mọi người, đặc biệt là nhóm tuổi vị thành niên và mở rộng đến phụ huynh, giáo viên."
-          }
-          slotAction={
-            <ButtonFilled
-              label="Trò chuyện với WeHere"
-              onClick={handleStart}
-              disabled={busy}
+        <LayoutBasic.Left>
+          {layoutBasicApi.navigationSidebar ? (
+            <Navigation.Sidebar
+              items={items}
+              slotProduct={<LogoWeHere.Fixed variant="color" size="120px" />}
             />
-          }
-        />
-        <SectionOurMission />
-        <SectionFeatures />
-      </LayoutBasic.Center>
-    </LayoutBasic.Root>
+          ) : layoutBasicApi.navigationRail ? (
+            <Navigation.Rail
+              items={items}
+              buttonMenu={layoutBasicApi.navigationRail.buttonMenu}
+            />
+          ) : (
+            <pre>
+              {JSON.stringify([
+                layoutBasicApi.navigationSidebar,
+                layoutBasicApi.navigationRail,
+              ])}
+            </pre>
+          )}
+        </LayoutBasic.Left>
+        <LayoutBasic.Center className={styles.LayoutBasic_Center}>
+          <EmphasisContainer
+            title={"WeHere"}
+            description={
+              "Chào mừng bạn đến với WeHere, dự án tâm lý phi lợi nhuận do Thư viện Dương Liễu bảo trợ. Chúng tôi chấp nhận và lắng nghe mọi người, đặc biệt là nhóm tuổi vị thành niên và mở rộng đến phụ huynh, giáo viên."
+            }
+            slotAction={
+              <ButtonFilled
+                label="Trò chuyện với WeHere"
+                onClick={handleStart}
+                disabled={busy}
+              />
+            }
+          />
+          <SectionOurMission />
+          <SectionFeatures />
+        </LayoutBasic.Center>
+      </LayoutBasic.Root>
+    </ThemeProvider>
   );
 }

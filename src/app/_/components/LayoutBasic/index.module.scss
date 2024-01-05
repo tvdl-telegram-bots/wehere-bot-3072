@@ -1,5 +1,5 @@
 .Root {
-  // border: 1px solid hsl(1rad, 50%, 50%);
+  background-color: var(--md-sys-color-background);
   display: grid;
   grid-template-areas: "L T T" "L C R" "L B B";
   grid-template-columns: auto 1fr auto;
@@ -12,31 +12,25 @@
 }
 
 .Left {
-  grid-area: L;
-  // border: 1px solid hsl(2rad, 50%, 50%);
-  overflow-y: auto;
-  display: flex;
   align-items: stretch;
-  // border-right: 1px solid var(--color--outline-variant);
+  display: flex;
+  grid-area: L;
+  overflow-y: auto;
 }
 
 .Top {
   grid-area: T;
-  // border: 1px solid hsl(3rad, 50%, 50%);
 }
 
 .Center {
   grid-area: C;
-  // border: 1px solid hsl(4rad, 50%, 50%);
   overflow-y: auto;
 }
 
 .Right {
   grid-area: R;
-  // border: 1px solid hsl(5rad, 50%, 50%);
 }
 
 .Bottom {
   grid-area: B;
-  // border: 1px solid hsl(6rad, 50%, 50%);
 }
