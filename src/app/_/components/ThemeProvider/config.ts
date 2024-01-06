@@ -4,6 +4,7 @@ import { ThemeName } from "./typing";
 export const THEME: Record<ThemeName, string> = {
   light: styles.light,
   dark: styles.dark,
+  faith: styles.faith,
 };
 
 export const DEFAULT_THEME_NAME: ThemeName = "light";

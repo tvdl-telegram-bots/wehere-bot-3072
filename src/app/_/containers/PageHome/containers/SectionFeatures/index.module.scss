@@ -1,8 +1,14 @@
 .Card {
   padding: 16px;
   border-radius: 12px;
-  background-color: var(--md-sys-color-surface-container-low);
-  color: var(--md-sys-color-on-surface);
+  background-color: var(
+    --wehere--comp-card--color-surface-container,
+    var(--md-sys-color-surface-container-low)
+  );
+  color: var(
+    --wehere--comp-card--color-on-surface,
+    var(--md-sys-color-on-surface)
+  );
   overflow: hidden;
   box-shadow: 0px 1px 2px 0px rgb(0 0 0 / 30%), 0px 1px 3px 1px rgb(0 0 0 / 15%);
 

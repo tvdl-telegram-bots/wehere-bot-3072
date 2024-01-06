@@ -4,8 +4,14 @@
 
 .Sidebar {
   width: 360px;
-  background-color: var(--md-sys-color-surface-container);
-  color: var(--md-sys-color-on-surface-container);
+  background-color: var(
+    --wehere--comp-navigation--color-surface-container,
+    var(--md-sys-color-surface-container)
+  );
+  color: var(
+    --wehere--comp-navigation--color-on-surface,
+    var(--md-sys-color-on-surface-container)
+  );
   padding: 32px 28px;
 
   .slotProduct {
@@ -43,10 +49,16 @@
   border-radius: 28px;
   overflow: hidden;
   position: relative;
-  color: var(--md-sys-color-on-surface);
+  color: var(
+    --wehere--comp-navigation--color-on-surface,
+    var(--md-sys-color-on-surface)
+  );
 
   &:hover::before {
-    background-color: var(--md-sys-color-on-surface);
+    background-color: var(
+      --wehere--comp-navigation--color-on-surface,
+      var(--md-sys-color-on-surface)
+    );
     content: "";
     display: block;
     inset: 0;

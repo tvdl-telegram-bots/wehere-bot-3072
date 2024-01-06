@@ -132,7 +132,12 @@ function Rail({
             path: "/api/UpdateSessionState",
             params: {
               sessionState: {
-                themeName: Math.random() > 0.5 ? "dark" : "light",
+                themeName:
+                  Math.random() > 0.5
+                    ? "faith"
+                    : Math.random() > 0.5
+                    ? "light"
+                    : "dark",
               },
             } satisfies Params$UpdateSessionState,
           });

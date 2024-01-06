@@ -50,7 +50,8 @@
   --md-sys-color-surface-container-highest: rgb(225 226 233);
 }
 
-.dark {
+.dark,
+.faith {
   --md-sys-color-primary: rgb(166 200 255);
   --md-sys-color-surface-tint: rgb(166 200 255);
   --md-sys-color-on-primary: rgb(0 48 96);
@@ -100,4 +101,14 @@
   --md-sys-color-surface-container: rgb(29 32 36);
   --md-sys-color-surface-container-high: rgb(40 42 47);
   --md-sys-color-surface-container-highest: rgb(50 53 58);
+}
+
+.faith {
+  --wehere--color-primary: #1e1f85;
+  --wehere--color-gradient-dark: #1e2182;
+  --wehere--color-gradient-light: #1c79b9;
+  --wehere--comp-card--color-surface-container: #f6f6fa;
+  --wehere--comp-card--color-on-surface: #353591;
+  --wehere--comp-navigation--color-surface-container: #ffffff;
+  --wehere--comp-navigation--color-on-surface: rgb(25 28 32);
 }
