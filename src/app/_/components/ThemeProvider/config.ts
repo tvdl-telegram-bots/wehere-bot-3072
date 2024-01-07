@@ -7,7 +7,7 @@ export const THEME: Record<ThemeName, string> = {
   faith: styles.faith,
 };
 
-export const DEFAULT_THEME_NAME: ThemeName = "light";
+export const DEFAULT_THEME_NAME: ThemeName = "faith";
 
 export function toThemeName(text: string | undefined): ThemeName | undefined {
   const sp = ThemeName.safeParse(text);

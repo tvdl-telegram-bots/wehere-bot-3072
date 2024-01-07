@@ -77,7 +77,6 @@ export async function getBot0({
       return await c.handleCallbackQuery(ctx);
     }
 
-    console.log(url);
     ctx.reply("Unknown callback query");
   });
 

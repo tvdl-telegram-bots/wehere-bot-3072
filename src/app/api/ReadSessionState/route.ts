@@ -8,3 +8,8 @@ export const GET = withRouteErrorHandler(async (req) => {
   const result = await run$ReadSessionState({ reqCookies: req.cookies });
   return NextResponse.json(result);
 });
+
+export const POST = withRouteErrorHandler(async (req) => {
+  const result = await run$ReadSessionState({ reqCookies: req.cookies });
+  return NextResponse.json(result);
+});

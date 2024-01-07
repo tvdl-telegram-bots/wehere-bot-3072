@@ -36,7 +36,7 @@ export default function PageHome({ className, style }: Props) {
         {!layoutBasicApi.navigationSidebar && !layoutBasicApi.navigationRail ? (
           <LayoutBasic.Top>
             <TopAppBar.Root
-              label={<TopAppBar.Label label={"Trò chuyện cùng WeHere"} />}
+              label={<TopAppBar.Label label={"WeHere"} />}
               iconL={
                 layoutBasicApi.topAppBar.buttonMenu ? (
                   <TopAppBar.Button

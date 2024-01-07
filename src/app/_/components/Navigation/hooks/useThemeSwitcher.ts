@@ -4,7 +4,7 @@ import { z } from "zod";
 import { DEFAULT_THEME_NAME, THEME } from "../../ThemeProvider/config";
 import { ThemeName } from "../../ThemeProvider/typing";
 
-import { httpGet, httpPost } from "@/app/_/utils/swr";
+import { httpPost } from "@/app/_/utils/swr";
 import { Result$ReadSessionState } from "@/app/api/ReadSessionState/typing";
 import { Params$UpdateSessionState } from "@/app/api/UpdateSessionState/typing";
 
@@ -19,7 +19,7 @@ export function nextThemeName(themeName: ThemeName) {
 export function useThemeSwitcher() {
   const { data: result$ReadSessionState } = useSWR(
     { path: "/api/ReadSessionState", params: {} },
-    httpGet(Result$ReadSessionState)
+    httpPost(Result$ReadSessionState)
   );
 
   const themeName =

@@ -8,12 +8,13 @@
     --wehere--comp-navigation--color-on-surface,
     var(--md-sys-color-on-surface)
   );
-  overflow: auto;
-  padding: 32px 28px;
-  width: 360px;
+  align-items: stretch;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  overflow: auto;
+  padding: 32px 28px;
+  position: relative;
+  width: 360px;
 
   .slotProduct {
     display: flex;
@@ -40,6 +41,7 @@
     all: unset;
     display: flex;
 
+    position: relative;
     flex-direction: column;
     gap: 8px 0;
     padding: 16px 0;

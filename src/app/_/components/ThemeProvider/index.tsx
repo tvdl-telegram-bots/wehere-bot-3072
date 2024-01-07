@@ -2,7 +2,7 @@ import cx from "clsx";
 import React from "react";
 import useSWR from "swr";
 
-import { httpGet } from "../../utils/swr";
+import { httpPost } from "../../utils/swr";
 
 import { DEFAULT_THEME_NAME, THEME } from "./config";
 import styles from "./index.module.scss";
@@ -24,7 +24,7 @@ export default function ThemeProvider({
 }: Props) {
   const { data: result$ReadSessionState } = useSWR(
     { path: "/api/ReadSessionState", params: {} },
-    httpGet(Result$ReadSessionState)
+    httpPost(Result$ReadSessionState)
   );
 
   const themeName =
