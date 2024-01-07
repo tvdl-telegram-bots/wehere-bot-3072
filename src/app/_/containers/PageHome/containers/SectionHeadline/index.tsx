@@ -2,7 +2,7 @@ import cx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { MdChat, MdSend } from "react-icons/md";
+import { MdChat } from "react-icons/md";
 
 import jpgEins from "./assets/eins.jpg";
 import styles from "./index.module.scss";

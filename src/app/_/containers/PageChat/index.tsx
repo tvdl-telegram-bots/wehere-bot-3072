@@ -1,7 +1,6 @@
 "use client";
 
 import cx from "clsx";
-import { useRouter } from "next/navigation";
 import React from "react";
 import { MdArrowBack, MdChat, MdHome, MdMenu } from "react-icons/md";
 import useSWR from "swr";

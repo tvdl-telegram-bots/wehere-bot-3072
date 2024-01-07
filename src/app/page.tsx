@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { unstable_serialize } from "swr";
 
 import PageHome from "./_/containers/PageHome";
-import { run$ReadSessionState } from "./api/ReadSessionState/route";
+import { run$ReadSessionState } from "./api/ReadSessionState/handler";
 
 import { SWRConfig } from "@/app/_/components/SWRConfig";
 

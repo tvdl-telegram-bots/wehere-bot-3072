@@ -2,7 +2,6 @@ import cx from "clsx";
 import React from "react";
 import useSWR from "swr";
 
-import useBodyClasses from "../../hooks/useBodyClasses";
 import { httpGet } from "../../utils/swr";
 
 import { DEFAULT_THEME_NAME, THEME } from "./config";
