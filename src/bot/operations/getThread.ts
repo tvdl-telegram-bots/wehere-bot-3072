@@ -1,4 +1,4 @@
-import { Db } from "mongodb";
+import { Db, ObjectId } from "mongodb";
 
 import { createThread } from "./createThread";
 
@@ -44,4 +44,15 @@ export async function getThread$GivenMortalChatId(
   );
 
   return newThread;
+}
+
+export async function getThread_givenThreadId(
+  ctx: { db: Db },
+  threadId: ObjectId
+) {
+  return await ctx.db
+    .collection("thread")
+    .findOne(threadId)
+    .then((doc) => PersistentThread.parse(doc))
+    .catch(() => undefined);
 }

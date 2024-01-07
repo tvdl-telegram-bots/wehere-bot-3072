@@ -13,6 +13,9 @@ export async function run$UpdateSessionState(
   if (params.sessionState.themeName !== undefined) {
     ctx.responseCookies.set("theme", params.sessionState.themeName);
   }
+  if (params.sessionState.threadId !== undefined) {
+    ctx.responseCookies.set("threadId", params.sessionState.threadId);
+  }
 }
 
 export const POST = withRouteErrorHandler(async (req) => {

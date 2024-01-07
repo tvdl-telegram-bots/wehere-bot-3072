@@ -1,4 +1,5 @@
-.light {
+.light,
+.faith {
   --md-sys-color-primary: rgb(0 73 140);
   --md-sys-color-surface-tint: rgb(34 95 166);
   --md-sys-color-on-primary: rgb(255 255 255);
@@ -6,8 +7,8 @@
   --md-sys-color-on-primary-container: rgb(255 255 255);
   --md-sys-color-secondary: rgb(78 97 110);
   --md-sys-color-on-secondary: rgb(255 255 255);
-  --md-sys-color-secondary-container: rgb(141 160 174);
-  --md-sys-color-on-secondary-container: rgb(0 18 28);
+  --md-sys-color-secondary-container: #d1e5f5; // initially rgb(141 160 174);
+  --md-sys-color-on-secondary-container: #0a1e29; // initially rgb(0 18 28);
   --md-sys-color-tertiary: rgb(91 91 125);
   --md-sys-color-on-tertiary: rgb(255 255 255);
   --md-sys-color-tertiary-container: rgb(154 154 191);
@@ -50,8 +51,7 @@
   --md-sys-color-surface-container-highest: rgb(225 226 233);
 }
 
-.dark,
-.faith {
+.dark {
   --md-sys-color-primary: rgb(166 200 255);
   --md-sys-color-surface-tint: rgb(166 200 255);
   --md-sys-color-on-primary: rgb(0 48 96);
@@ -111,4 +111,14 @@
   --wehere--comp-card--color-on-surface: #353591;
   --wehere--comp-navigation--color-surface-container: #ffffff;
   --wehere--comp-navigation--color-on-surface: rgb(25 28 32);
+  --wehere--comp-navigation--color-secondary-container: #e4e2e3;
+  --wehere--comp-navigation--color-on-secondary-container: #1b1b1d;
+  --wehere--comp-message-viewer--bg-from-you: #0095cd;
+  --wehere--comp-message-viewer--fg-from-you: #f3f0f1;
+  --wehere--comp-message-viewer--bg-from-zir: #f3f0f1;
+  --wehere--comp-message-viewer--fg-from-zir: #1b1b1d;
+  --wehere--comp-message-composer--elem-text-area--bg: #f3f0f1;
+  --wehere--comp-message-composer--elem-text-area--fg: #1b1b1d;
+  --wehere--comp-message-composer--elem-button-send--bg: #f3f0f1;
+  --wehere--comp-message-composer--elem-button-send--fg: #0095cd;
 }

@@ -10,7 +10,7 @@ export default async function Home() {
   const cookieStore = cookies();
 
   const result$ReadSessionState = await run$ReadSessionState({
-    cookies: cookieStore,
+    reqCookies: cookieStore,
   });
 
   return (

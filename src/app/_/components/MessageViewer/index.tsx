@@ -5,7 +5,7 @@ import styles from "./index.module.scss";
 
 import { ThreadMessage } from "@/app/api/GetThreadMessages/typing";
 
-function FromMe({
+function FromYou({
   className,
   style,
   message,
@@ -15,14 +15,14 @@ function FromMe({
   message: ThreadMessage;
 }) {
   return (
-    <div className={cx(styles.FromMe, className)} style={style}>
+    <div className={cx(styles.FromYou, className)} style={style}>
       <div className={styles.space}></div>
       <div className={styles.content}>{message.text}</div>
     </div>
   );
 }
 
-function FromThem({
+function FromZir({
   className,
   style,
   message,
@@ -32,7 +32,7 @@ function FromThem({
   message: ThreadMessage;
 }) {
   return (
-    <div className={cx(styles.FromThem, className)} style={style}>
+    <div className={cx(styles.FromZir, className)} style={style}>
       <div className={styles.avatar}></div>
       <div className={styles.content}>{message.text}</div>
       <div className={styles.space}></div>
@@ -51,42 +51,12 @@ function Root({
 }) {
   switch (message.direction) {
     case "from_angel":
-      return <FromThem className={className} style={style} message={message} />;
+      return <FromZir className={className} style={style} message={message} />;
     case "from_mortal":
-      return <FromMe className={className} style={style} message={message} />;
+      return <FromYou className={className} style={style} message={message} />;
   }
 }
 
-function Legacy({
-  className,
-  style,
-  message,
-}: {
-  className?: string;
-  style?: React.CSSProperties;
-  message: ThreadMessage;
-}) {
-  return (
-    <div
-      className={cx(
-        styles.Legacy,
-        className,
-        message.direction === "from_mortal"
-          ? styles.direction_fromMortal
-          : message.direction === "from_angel"
-          ? styles.direction_fromAngel
-          : undefined
-      )}
-      style={style}
-      data-direction={message.direction}
-    >
-      <div className={styles.avatar}></div>
-      <div className={styles.content}>{message.text}</div>
-      <div className={styles.space}></div>
-    </div>
-  );
-}
-
-const MessageViewer = { Legacy, FromMe, FromThem, Root };
+const MessageViewer = { FromYou, FromZir, Root };
 
 export default MessageViewer;

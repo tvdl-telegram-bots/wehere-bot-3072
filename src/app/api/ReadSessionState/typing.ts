@@ -4,6 +4,7 @@ import { ThemeName } from "@/app/_/components/ThemeProvider/typing";
 
 export const SessionState = z.object({
   themeName: ThemeName,
+  threadId: z.string().optional(),
 });
 
 export type SessionState = z.infer<typeof SessionState>;

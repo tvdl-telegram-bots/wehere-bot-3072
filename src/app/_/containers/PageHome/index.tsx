@@ -51,7 +51,7 @@ export default function PageHome({ className, style }: Props) {
 
   const items: Item$Navigation[] = [
     { icon: <MdHome />, label: "Trang chủ", href: "/", active: true },
-    { icon: <MdChat />, label: "Trò chuyện", href: "/t" },
+    { icon: <MdChat />, label: "Trò chuyện", href: "/chat" },
   ];
 
   return (

@@ -15,7 +15,14 @@
   padding: 16px;
   flex: 1 1 auto;
   min-width: 0;
-  color: var(--md-sys-color-on-surface);
+  background-color: var(
+    --wehere--comp-message-composer--elem-text-area--bg,
+    transparent
+  );
+  color: var(
+    --wehere--comp-message-composer--elem-text-area--fg,
+    var(--md-sys-color-on-surface)
+  );
   height: 72px;
 
   &:hover {
@@ -34,9 +41,15 @@
   box-sizing: border-box;
 
   align-items: center;
-  background-color: var(--md-sys-color-primary);
+  background-color: var(
+    --wehere--comp-message-composer--elem-button-send--bg,
+    var(--md-sys-color-primary)
+  );
   border-radius: 36px;
-  color: var(--md-sys-color-on-primary);
+  color: var(
+    --wehere--comp-message-composer--elem-button-send--fg,
+    var(--md-sys-color-on-primary)
+  );
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 36px;

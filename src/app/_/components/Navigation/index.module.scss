@@ -13,25 +13,37 @@
     var(--md-sys-color-on-surface-container)
   );
   padding: 32px 28px;
+  overflow: auto;
 
   .slotProduct {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 36px 0;
-    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+
+    & + .divider {
+      all: unset;
+      display: flex;
+      box-sizing: border-box;
+
+      width: 100%;
+      border-bottom: 1px solid currentColor;
+      opacity: 0.16;
+    }
   }
 
-  ul {
+  & > ul {
     all: unset;
     display: flex;
 
     flex-direction: column;
-  }
+    gap: 8px 0;
+    padding: 16px 0;
 
-  li {
-    all: unset;
-    display: block;
+    & > li {
+      all: unset;
+      display: block;
+    }
   }
 }
 
@@ -40,40 +52,68 @@
   display: flex;
   box-sizing: border-box;
 
-  cursor: pointer;
-  align-items: center;
-  gap: 12px;
-  height: 56px;
-  padding: 8px 16px 8px 24px;
-  margin-left: -16px;
-  border-radius: 28px;
-  overflow: hidden;
   position: relative;
-  color: var(
-    --wehere--comp-navigation--color-on-surface,
-    var(--md-sys-color-on-surface)
-  );
+  overflow: hidden;
+  border-radius: 28px;
+  height: 56px;
+  cursor: pointer;
+  padding: 8px 16px;
 
-  &:hover::before {
+  --state-color: transparent;
+  --state-opacity: 0;
+
+  &.active {
     background-color: var(
+      --wehere--comp-navigation--color-secondary-container,
+      var(--md-sys-color-secondary-container)
+    );
+    color: var(
+      --wehere--comp-navigation--color-on-secondary-container,
+      var(--md-sys-color-on-secondary-container)
+    );
+  }
+
+  &:hover {
+    --state-opacity: var(--state--hover--state-layer-opacity);
+    --state-color: var(
       --wehere--comp-navigation--color-on-surface,
       var(--md-sys-color-on-surface)
     );
-    content: "";
-    display: block;
-    inset: 0;
+  }
+
+  & > .state {
     position: absolute;
-    opacity: var(--state--hover--state-layer-opacity);
+    inset: 0;
+    display: flex;
+
+    background-color: var(--state-color);
+    opacity: var(--state-opacity);
   }
 
-  .icon {
-    width: 24px;
-    height: 24px;
-    font-size: 24px;
-  }
+  & > .content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
 
-  .label {
-    font-size: 1rem;
+    & > .icon {
+      flex: 0 0 auto;
+      height: 24px;
+      width: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    & > .label {
+      flex: 0 1 auto;
+      min-width: 0;
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
 }
 

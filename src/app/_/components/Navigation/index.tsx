@@ -12,7 +12,7 @@ import { Item } from "./types";
 
 import { Params$UpdateSessionState } from "@/app/api/UpdateSessionState/typing";
 
-function ItemViewer({
+function ListItem({
   className,
   style,
   item,
@@ -23,13 +23,20 @@ function ItemViewer({
 }) {
   return (
     <Link
-      className={cx(styles.ItemViewer, className)}
+      className={cx(
+        styles.ItemViewer,
+        className,
+        item.active ? styles.active : undefined
+      )}
       style={style}
       title={item.tooltip}
       href={item.href}
     >
-      <div className={styles.icon}>{item.icon}</div>
-      <div className={styles.label}>{item.label}</div>
+      <div className={styles.state} />
+      <div className={styles.content}>
+        <div className={styles.icon}>{item.icon}</div>
+        <div className={styles.label}>{item.label}</div>
+      </div>
     </Link>
   );
 }
@@ -48,12 +55,15 @@ function Sidebar({
   return (
     <div className={cx(styles.Sidebar, className)} style={style}>
       {slotProduct ? (
-        <div className={styles.slotProduct}>{slotProduct}</div>
+        <>
+          <div className={styles.slotProduct}>{slotProduct}</div>
+          <hr className={styles.divider} />
+        </>
       ) : undefined}
       <ul>
         {items.map((item, index) => (
           <li key={item.key ?? index}>
-            <ItemViewer item={item} />
+            <ListItem item={item} />
           </li>
         ))}
       </ul>

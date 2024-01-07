@@ -13,18 +13,19 @@ type ICookies = {
 };
 
 type Context$ReadSessionState = {
-  cookies: ICookies;
+  reqCookies: ICookies;
 };
 
 export async function run$ReadSessionState(
   ctx: Context$ReadSessionState
 ): Promise<Result$ReadSessionState> {
   const themeName =
-    toThemeName(ctx.cookies.get("theme")?.value) || DEFAULT_THEME_NAME;
-  return { sessionState: { themeName } };
+    toThemeName(ctx.reqCookies.get("theme")?.value) || DEFAULT_THEME_NAME;
+  const threadId = ctx.reqCookies.get("threadId")?.value;
+  return { sessionState: { themeName, threadId } };
 }
 
 export const GET = withRouteErrorHandler(async (req) => {
-  const result = await run$ReadSessionState({ cookies: req.cookies });
+  const result = await run$ReadSessionState({ reqCookies: req.cookies });
   return NextResponse.json(result);
 });
