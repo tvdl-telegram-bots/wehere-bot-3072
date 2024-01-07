@@ -1,0 +1,162 @@
+.container {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+  flex-direction: column;
+
+  @media screen and (min-width: 840px) {
+    flex-direction: row;
+  }
+}
+
+.leftColumn {
+  background-color: var(
+    --wehere--comp-section-headline--elem-left--bg,
+    var(--md-sys-color-surface-container)
+  );
+  border-radius: 24px;
+  color: var(
+    --wehere--comp-section-headline--elem-left--fg,
+    var(--md-sys-color-on-surface)
+  );
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  padding: 48px;
+
+  & > h1 {
+    all: unset;
+    display: block;
+
+    font-size: 5rem;
+    font-weight: 500;
+    line-height: 125%;
+  }
+
+  & > p {
+    all: unset;
+    display: block;
+
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 125%;
+  }
+
+  & > a {
+    all: unset;
+    display: flex;
+    box-sizing: border-box;
+
+    margin-top: 36px;
+    cursor: pointer;
+    justify-content: center;
+    position: relative;
+    border-radius: 36px;
+    overflow: hidden;
+
+    --state-color: transparent;
+    --state-opacity: 0;
+
+    &:hover {
+      --state-color: var(
+        --wehere--comp-section-headline--elem-button--fg,
+        var(--md-sys-color-on-primary)
+      );
+      --state-opacity: var(--state--hover--state-layer-opacity);
+    }
+
+    &:active {
+      --state-color: var(
+        --wehere--comp-section-headline--elem-button--fg,
+        var(--md-sys-color-on-primary)
+      );
+      --state-opacity: var(--state--pressed--state-layer-opacity);
+    }
+
+    & > .background {
+      display: flex;
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: var(
+        --wehere--comp-section-headline--elem-button--bg,
+        var(--md-sys-color-primary)
+      );
+    }
+
+    & > .state {
+      display: flex;
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: var(--state-opacity);
+      background-color: var(--state-color);
+      transition-property: background-color, opacity;
+      transition-duration: 0.125s;
+    }
+
+    & > .content {
+      align-items: center;
+      color: var(
+        --wehere--comp-section-headline--elem-button--fg,
+        var(--md-sys-color-on-primary)
+      );
+      display: flex;
+      font-size: 24px;
+      gap: 8px;
+      height: 72px;
+      justify-content: center;
+      padding: 16px;
+      position: relative;
+
+      & > .icon {
+        display: flex;
+      }
+
+      & > .label {
+        font-size: 1rem;
+        display: block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.rightColumn {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageContainer {
+  border-radius: 24px;
+  object-fit: cover;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+
+  &::before {
+    display: flex;
+    width: 0;
+    content: "";
+    padding-top: 100%;
+  }
+
+  @media screen and (min-width: 840px) {
+    width: calc(50vw - 40px);
+    max-width: none;
+  }
+
+  @media screen and (min-width: 1240px) {
+    width: calc(50vw - 180px);
+    max-width: none;
+  }
+}

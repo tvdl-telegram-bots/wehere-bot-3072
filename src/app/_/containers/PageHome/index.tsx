@@ -17,6 +17,7 @@ import TopAppBar from "../../components/TopAppBar";
 import { httpPost } from "../../utils/swr";
 
 import SectionFeatures from "./containers/SectionFeatures";
+import SectionHeadline from "./containers/SectionHeadline";
 import SectionOurMission from "./containers/SectionOurMission";
 import styles from "./index.module.scss";
 
@@ -78,7 +79,6 @@ export default function PageHome({ className, style }: Props) {
             />
           </LayoutBasic.Top>
         ) : undefined}
-
         <LayoutBasic.Left>
           {layoutBasicApi.navigationSidebar ? (
             <Navigation.Sidebar
@@ -93,19 +93,7 @@ export default function PageHome({ className, style }: Props) {
           ) : undefined}
         </LayoutBasic.Left>
         <LayoutBasic.Center className={styles.LayoutBasic_Center}>
-          <EmphasisContainer
-            title={"WeHere"}
-            description={
-              "Chào mừng bạn đến với WeHere, dự án tâm lý phi lợi nhuận do Thư viện Dương Liễu bảo trợ. Chúng tôi chấp nhận và lắng nghe mọi người, đặc biệt là nhóm tuổi vị thành niên và mở rộng đến phụ huynh, giáo viên."
-            }
-            slotAction={
-              <ButtonFilled
-                label="Trò chuyện với WeHere"
-                onClick={handleStart}
-                disabled={busy}
-              />
-            }
-          />
+          <SectionHeadline />
           <SectionOurMission />
           <SectionFeatures />
         </LayoutBasic.Center>
