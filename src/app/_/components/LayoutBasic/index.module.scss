@@ -42,3 +42,9 @@
 .Bottom {
   grid-area: B;
 }
+
+.Modal {
+  display: flex;
+  position: fixed;
+  inset: 0;
+}

@@ -3,7 +3,7 @@
 import cx from "clsx";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { MdChat, MdHome } from "react-icons/md";
+import { MdArrowBack, MdChat, MdHome, MdMenu } from "react-icons/md";
 
 import ButtonFilled from "../../components/ButtonFilled";
 import EmphasisContainer from "../../components/EmphasisContainer";
@@ -13,6 +13,7 @@ import LogoWeHere from "../../components/LogoWeHere";
 import Navigation from "../../components/Navigation";
 import { Item$Navigation } from "../../components/Navigation/types";
 import ThemeProvider from "../../components/ThemeProvider";
+import TopAppBar from "../../components/TopAppBar";
 import { httpPost } from "../../utils/swr";
 
 import SectionFeatures from "./containers/SectionFeatures";
@@ -57,17 +58,27 @@ export default function PageHome({ className, style }: Props) {
   return (
     <ThemeProvider className={cx(styles.container, className)} style={style}>
       <LayoutBasic.Root>
-        {/* <LayoutBasic.Top>
-        <TopAppBar.Root
-          label={<TopAppBar.Label label={"Trò chuyện cùng WeHere"} />}
-          iconL={
-            <TopAppBar.Button
-              icon={<MdArrowBack />}
-              onClick={() => router.back()}
+        {!layoutBasicApi.navigationSidebar && !layoutBasicApi.navigationRail ? (
+          <LayoutBasic.Top>
+            <TopAppBar.Root
+              label={<TopAppBar.Label label={"Trò chuyện cùng WeHere"} />}
+              iconL={
+                layoutBasicApi.topAppBar.buttonMenu ? (
+                  <TopAppBar.Button
+                    icon={<MdMenu />}
+                    onClick={layoutBasicApi.topAppBar.buttonMenu.onClick}
+                  />
+                ) : layoutBasicApi.topAppBar.buttonBack ? (
+                  <TopAppBar.Button
+                    icon={<MdArrowBack />}
+                    onClick={layoutBasicApi.topAppBar.buttonBack.onClick}
+                  />
+                ) : undefined
+              }
             />
-          }
-        />
-      </LayoutBasic.Top> */}
+          </LayoutBasic.Top>
+        ) : undefined}
+
         <LayoutBasic.Left>
           {layoutBasicApi.navigationSidebar ? (
             <Navigation.Sidebar
@@ -79,14 +90,7 @@ export default function PageHome({ className, style }: Props) {
               items={items}
               buttonMenu={layoutBasicApi.navigationRail.buttonMenu}
             />
-          ) : (
-            <pre>
-              {JSON.stringify([
-                layoutBasicApi.navigationSidebar,
-                layoutBasicApi.navigationRail,
-              ])}
-            </pre>
-          )}
+          ) : undefined}
         </LayoutBasic.Left>
         <LayoutBasic.Center className={styles.LayoutBasic_Center}>
           <EmphasisContainer
@@ -105,6 +109,15 @@ export default function PageHome({ className, style }: Props) {
           <SectionOurMission />
           <SectionFeatures />
         </LayoutBasic.Center>
+        {layoutBasicApi.navigationModal ? (
+          <LayoutBasic.Modal>
+            <Navigation.Modal
+              items={items}
+              slotProduct={<LogoWeHere.Fixed variant="color" size="120px" />}
+              onClickScrim={layoutBasicApi.navigationModal.onClose}
+            />
+          </LayoutBasic.Modal>
+        ) : undefined}
       </LayoutBasic.Root>
     </ThemeProvider>
   );

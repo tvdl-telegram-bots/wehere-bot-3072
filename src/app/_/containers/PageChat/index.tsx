@@ -3,7 +3,7 @@
 import cx from "clsx";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { MdArrowBack, MdChat, MdHome } from "react-icons/md";
+import { MdArrowBack, MdChat, MdHome, MdMenu } from "react-icons/md";
 import useSWR from "swr";
 
 import AutoTrigger from "../../components/AutoTrigger";
@@ -36,8 +36,6 @@ type Props = {
 };
 
 export default function PageChat({ className, style, origin }: Props) {
-  const router = useRouter();
-
   const layoutBasicApi = useLayoutBasicApi();
 
   const items: Item$Navigation[] = [
@@ -91,10 +89,17 @@ export default function PageChat({ className, style, origin }: Props) {
           <TopAppBar.Root
             label={<TopAppBar.Label label={"Trò chuyện cùng WeHere"} />}
             iconL={
-              <TopAppBar.Button
-                icon={<MdArrowBack />}
-                onClick={() => router.back()}
-              />
+              layoutBasicApi.topAppBar.buttonBack ? (
+                <TopAppBar.Button
+                  icon={<MdArrowBack />}
+                  onClick={layoutBasicApi.topAppBar.buttonBack.onClick}
+                />
+              ) : layoutBasicApi.topAppBar.buttonMenu ? (
+                <TopAppBar.Button
+                  icon={<MdMenu />}
+                  onClick={layoutBasicApi.topAppBar.buttonMenu.onClick}
+                />
+              ) : undefined
             }
           />
         </LayoutBasic.Top>
@@ -109,14 +114,7 @@ export default function PageChat({ className, style, origin }: Props) {
               items={items}
               buttonMenu={layoutBasicApi.navigationRail.buttonMenu}
             />
-          ) : (
-            <pre>
-              {JSON.stringify([
-                layoutBasicApi.navigationSidebar,
-                layoutBasicApi.navigationRail,
-              ])}
-            </pre>
-          )}
+          ) : undefined}
         </LayoutBasic.Left>
         <LayoutBasic.Center className={styles.LayoutBasic_Center}>
           <div className={styles.loadingIndicator}>
@@ -167,6 +165,15 @@ export default function PageChat({ className, style, origin }: Props) {
             />
           ) : undefined}
         </LayoutBasic.Bottom>
+        {layoutBasicApi.navigationModal ? (
+          <LayoutBasic.Modal>
+            <Navigation.Modal
+              items={items}
+              slotProduct={<LogoWeHere.Fixed variant="color" size="120px" />}
+              onClickScrim={layoutBasicApi.navigationModal.onClose}
+            />
+          </LayoutBasic.Modal>
+        ) : undefined}
       </LayoutBasic.Root>
     </ThemeProvider>
   );

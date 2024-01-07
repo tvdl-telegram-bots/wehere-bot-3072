@@ -3,8 +3,11 @@
   min-height: 64px;
   padding: 8px 16px;
   gap: 12px;
-  background-color: var(--md-sys-color-surface);
-  color: var(--md-sys-color-on-surface);
+  background-color: var(
+    --wehere--comp-top-app-bar--bg,
+    var(--md-sys-color-surface-container)
+  );
+  color: var(--wehere--comp-top-app-bar--fg, var(--md-sys-color-on-surface));
 
   .icon {
     align-items: center;

@@ -36,6 +36,7 @@ const LayoutBasic = {
   Center: createContainer("Center", [styles.Center]),
   Right: createContainer("Right", [styles.Right]),
   Bottom: createContainer("Bottom", [styles.Bottom]),
+  Modal: createContainer("Modal", [styles.Modal]),
 };
 
 export default LayoutBasic;

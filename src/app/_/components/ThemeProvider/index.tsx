@@ -35,6 +35,7 @@ export default function ThemeProvider({
     <div
       className={cx(styles.container, className, THEME[themeName])}
       style={style}
+      {...(themeName === "dark" ? { "data-dark-theme": true } : undefined)}
     >
       {children}
     </div>

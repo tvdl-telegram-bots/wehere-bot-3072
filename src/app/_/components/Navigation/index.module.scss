@@ -1,19 +1,19 @@
-// Expanded: Standard (static, with product name)
-// Medium: Rail + Modal
-// Compact: Top App Bar + Modal
-
 .Sidebar {
-  width: 360px;
   background-color: var(
     --wehere--comp-navigation--color-surface-container,
     var(--md-sys-color-surface-container)
   );
+  border-right: 1px solid var(--md-sys-color-outline-variant);
   color: var(
     --wehere--comp-navigation--color-on-surface,
-    var(--md-sys-color-on-surface-container)
+    var(--md-sys-color-on-surface)
   );
-  padding: 32px 28px;
   overflow: auto;
+  padding: 32px 28px;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
   .slotProduct {
     display: flex;
@@ -21,33 +21,42 @@
     justify-content: center;
     padding: 36px 0;
 
-    & + .divider {
-      all: unset;
-      display: flex;
-      box-sizing: border-box;
-
-      width: 100%;
-      border-bottom: 1px solid currentColor;
-      opacity: 0.16;
+    [data-dark-theme] & {
+      filter: grayscale(1) brightness(8);
     }
   }
 
-  & > ul {
+  .slotProduct + .divider {
+    all: unset;
+    display: flex;
+    box-sizing: border-box;
+
+    width: 100%;
+    border-bottom: 1px solid currentColor;
+    opacity: 0.16;
+  }
+
+  & > .list {
     all: unset;
     display: flex;
 
     flex-direction: column;
     gap: 8px 0;
     padding: 16px 0;
+    flex: 1 0 auto;
 
     & > li {
       all: unset;
       display: block;
     }
   }
+
+  & > .buttonSwitchTheme {
+    flex: 0 0 auto;
+  }
 }
 
-.ItemViewer {
+.ListItem {
   all: unset;
   display: flex;
   box-sizing: border-box;
@@ -58,6 +67,11 @@
   height: 56px;
   cursor: pointer;
   padding: 8px 16px;
+  background-color: transparent;
+  color: var(
+    --wehere--comp-navigation--color-on-surface-variant,
+    var(--md-sys-color-on-surface-variant)
+  );
 
   --state-color: transparent;
   --state-opacity: 0;
@@ -117,15 +131,131 @@
   }
 }
 
+.ButtonIcon {
+  all: unset;
+  display: flex;
+  box-sizing: border-box;
+
+  cursor: pointer;
+  justify-content: center;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+
+  --state-color: transparent;
+  --state-opacity: 0;
+
+  &:hover {
+    --state-color: var(--md-sys-color-on-surface-variant);
+    --state-opacity: var(--state--hover--state-layer-opacity);
+  }
+
+  &:active {
+    --state-color: var(--md-sys-color-on-surface-variant);
+    --state-opacity: var(--state--pressed--state-layer-opacity);
+  }
+
+  .state {
+    display: flex;
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: var(--state-opacity);
+    background-color: var(--state-color);
+    transition-property: background-color, opacity;
+    transition-duration: 0.125s;
+  }
+
+  .content {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: var(--md-sys-color-on-surface-variant);
+  }
+}
+
+.ButtonText {
+  all: unset;
+  display: flex;
+  box-sizing: border-box;
+
+  cursor: pointer;
+  justify-content: center;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+
+  --state-color: transparent;
+  --state-opacity: 0;
+
+  &:hover {
+    --state-color: var(--md-sys-color-on-surface-variant);
+    --state-opacity: var(--state--hover--state-layer-opacity);
+  }
+
+  &:active {
+    --state-color: var(--md-sys-color-on-surface-variant);
+    --state-opacity: var(--state--pressed--state-layer-opacity);
+  }
+
+  & > .state {
+    display: flex;
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: var(--state-opacity);
+    background-color: var(--state-color);
+    transition-property: background-color, opacity;
+    transition-duration: 0.125s;
+  }
+
+  & > .content {
+    align-items: center;
+    color: var(--md-sys-color-primary);
+    display: flex;
+    font-size: 24px;
+    gap: 8px;
+    height: 48px;
+    justify-content: center;
+    padding: 16px;
+    position: relative;
+
+    & > .icon {
+      display: flex;
+    }
+
+    & > .label {
+      font-size: 1rem;
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+  }
+}
+
 .Rail {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80px;
-  padding: 56px 0;
+  padding: 8px 0;
   border-right: 1px solid var(--md-sys-color-outline-variant);
-  background-color: var(--md-sys-color-surface-container);
-  color: var(--md-sys-color-on-surface-container);
+
+  background-color: var(
+    --wehere--comp-navigation--color-surface-container,
+    var(--md-sys-color-surface-container)
+  );
+  border-right: 1px solid var(--md-sys-color-outline-variant);
+  color: var(
+    --wehere--comp-navigation--color-on-surface,
+    var(--md-sys-color-on-surface-container)
+  );
 
   ul {
     all: unset;
@@ -144,48 +274,16 @@
   }
 
   .buttonMenu {
-    all: unset;
-    display: flex;
-    box-sizing: border-box;
+    flex: 0 0 auto;
+    margin-bottom: 64px;
+  }
 
-    align-items: center;
-    cursor: pointer;
-    font-size: 24px;
-    height: 48px;
-    justify-content: center;
-    margin-bottom: 56px;
-    width: 48px;
-    position: relative;
-    border-radius: 24px;
-    overflow: hidden;
+  .list {
+    flex: 1 0 auto;
+  }
 
-    --state-color: transparent;
-    --state-opacity: 0;
-
-    &:hover {
-      --state-color: var(--md-sys-color-on-surface-variant);
-      --state-opacity: var(--state--hover--state-layer-opacity);
-    }
-
-    &:active {
-      --state-color: var(--md-sys-color-on-surface-variant);
-      --state-opacity: var(--state--pressed--state-layer-opacity);
-    }
-
-    &:before {
-      display: flex;
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: var(--state-opacity);
-      background-color: var(--state-color);
-      transition-property: background-color, opacity;
-      transition-duration: 0.125s;
-    }
-
-    & > * {
-      position: relative;
-    }
+  .buttonSwitchTheme {
+    flex: 0 0 auto;
   }
 }
 
@@ -264,5 +362,25 @@
     color: var(--label-fg);
     font-size: 0.8rem;
     font-weight: var(--label-weight);
+  }
+}
+
+.Modal {
+  display: flex;
+  position: fixed;
+  inset: 0;
+
+  & > .scrim {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  & > .content {
+    position: absolute;
+    inset: 0 auto 0 0;
+    display: flex;
+    align-items: stretch;
   }
 }

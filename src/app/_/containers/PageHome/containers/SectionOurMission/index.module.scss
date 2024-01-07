@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  // border: 1px solid hsl(1710rad, 50%, 50%);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -14,7 +13,10 @@
     box-sizing: border-box;
 
     font-size: 2rem;
-    color: var(--md-sys-color-primary);
+    color: var(
+      --wehere--comp-section-our-mission--elem-title--fg,
+      var(--md-sys-color-primary)
+    );
   }
 
   & > p {
@@ -24,6 +26,9 @@
 
     font-size: 1rem;
     max-width: 800px;
-    color: var(--md-sys-color-on-surface);
+    color: var(
+      --wehere--comp-section-our-mission--elem-description--fg,
+      var(--md-sys-color-on-surface)
+    );
   }
 }
