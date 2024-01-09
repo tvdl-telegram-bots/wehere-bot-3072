@@ -7,12 +7,12 @@
   gap: 24px;
   text-align: center;
 
-  & > h1 {
+  & > h2 {
     all: unset;
     display: block;
     box-sizing: border-box;
 
-    font-size: 2rem;
+    font: var(--wehere--headline-l--font);
     color: var(
       --wehere--comp-section-our-mission--elem-title--fg,
       var(--md-sys-color-primary)
@@ -24,7 +24,7 @@
     display: block;
     box-sizing: border-box;
 
-    font-size: 1rem;
+    font: var(--wehere--body-m--font);
     max-width: 800px;
     color: var(
       --wehere--comp-section-our-mission--elem-description--fg,

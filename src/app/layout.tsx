@@ -4,7 +4,7 @@ import "./globals.css";
 import cx from "clsx";
 import { Metadata } from "next";
 
-import { fontAlumniSans } from "./_/utils/fonts";
+import { fontBody, fontDisplay } from "./_/utils/fonts";
 
 export const metadata: Metadata = {
   title: "WeHere",
@@ -19,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi">
-      <body className={cx(fontAlumniSans.variable)}>{children}</body>
+      <body className={cx(fontBody.variable, fontDisplay.variable)}>
+        {children}
+      </body>
     </html>
   );
 }

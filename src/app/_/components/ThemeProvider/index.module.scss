@@ -1,4 +1,26 @@
 .light,
+.dark,
+.faith {
+  --wehere--hero--font: 475 112px/112px var(--font-display), serif;
+  --wehere--display-xl--font: 475 88px/96px var(--font-display), serif;
+  --wehere--display-l--font: 475 57px/64px var(--font-display), serif;
+  --wehere--display-m--font: 475 45px/52px var(--font-display), serif;
+  --wehere--display-s--font: 475 36px/44px var(--font-display), serif;
+  --wehere--headline-l--font: 475 32px/40px var(--font-display), serif;
+  --wehere--headline-m--font: 475 28px/36px var(--font-display), serif;
+  --wehere--headline-s--font: 475 24px/32px var(--font-display), serif;
+  --wehere--title-l--font: 400 22px/30px var(--font-body), sans-serif;
+  --wehere--title-m--font: 500 16px/24px var(--font-body), sans-serif;
+  --wehere--title-s--font: 500 14px/20px var(--font-body), sans-serif;
+  --wehere--label-l--font: 500 24px/36px var(--font-display), sans-serif;
+  --wehere--label-m--font: 500 20px/30px var(--font-display), sans-serif;
+  --wehere--label-s--font: 500 16px/24px var(--font-display), sans-serif;
+  --wehere--body-l--font: 400 20px/30px var(--font-body), sans-serif;
+  --wehere--body-m--font: 400 16px/24px var(--font-body), sans-serif;
+  --wehere--body-s--font: 400 12px/18px var(--font-body), sans-serif;
+}
+
+.light,
 .faith {
   --md-sys-color-primary: rgb(0, 73, 140);
   --md-sys-color-surface-tint: rgb(34, 95, 166);

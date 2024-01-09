@@ -8,6 +8,7 @@
     var(--md-sys-color-surface-container)
   );
   color: var(--wehere--comp-top-app-bar--fg, var(--md-sys-color-on-surface));
+  font-family: var(--font-display), sans-serif;
 
   .icon {
     align-items: center;
@@ -27,6 +28,8 @@
     align-items: center;
     justify-content: center;
     font-size: 1.375rem;
+    font-size: 30px;
+    line-height: 150%;
   }
 }
 

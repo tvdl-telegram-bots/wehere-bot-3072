@@ -7,6 +7,8 @@ import { MdChat } from "react-icons/md";
 import jpgEins from "./assets/eins.jpg";
 import styles from "./index.module.scss";
 
+import BlendedBeans from "@/app/_/components/BlendedBeans";
+
 type Props = {
   className?: string;
   style?: React.CSSProperties;
@@ -16,10 +18,25 @@ export default function SectionHeadline({ className, style }: Props) {
   return (
     <div className={cx(styles.container, className)} style={style}>
       <div className={styles.leftColumn}>
+        <BlendedBeans
+          className={styles.blendedBeans1}
+          numSteps={32}
+          strokeWidth={0.5}
+        />
+        <BlendedBeans
+          className={styles.blendedBeans2}
+          numSteps={16}
+          strokeWidth={0.5}
+        />
         <h1>{"WeHere"}</h1>
         <p>
           {
-            "Chào mừng bạn đến với WeHere, dự án tâm lý phi lợi nhuận do Thư viện Dương Liễu bảo trợ. Chúng tôi chấp nhận và lắng nghe mọi người, đặc biệt là nhóm tuổi vị thành niên và mở rộng đến phụ huynh, giáo viên."
+            "WeHere là dự án tâm lý do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức, câu chuyện, sự kiện về sức khỏe tinh thần của trẻ vị thành niên."
+          }
+        </p>
+        <p>
+          {
+            "Chào mừng đến với Trạm Lắng Nghe - một môi trường tâm lý an toàn dành cho những người gặp khó khăn về sức khỏe tinh thần. Dự án hoạt động trực tuyến trên nền tảng Telegram, cung cấp sự hỗ trợ tâm lý tức thời thông qua hoạt động lắng nghe, thấu cảm."
           }
         </p>
         <Link href="/chat">
@@ -39,7 +56,7 @@ export default function SectionHeadline({ className, style }: Props) {
             className={styles.image}
             src={jpgEins}
             alt=""
-            sizes="(min-width: 840px) 50vw, 100vw"
+            sizes="(min-width: 840px) 67vw, 100vw"
             fill
           />
         </div>

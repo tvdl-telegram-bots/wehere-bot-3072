@@ -1,4 +1,5 @@
 .Sidebar {
+  font: var(--wehere--label-m--font);
   background-color: var(
     --wehere--comp-navigation--color-surface-container,
     var(--md-sys-color-surface-container)
@@ -219,7 +220,7 @@
     align-items: center;
     color: var(--md-sys-color-primary);
     display: flex;
-    font-size: 24px;
+    font: var(--wehere--label-m--font);
     gap: 8px;
     height: 48px;
     justify-content: center;
@@ -228,15 +229,14 @@
 
     & > .icon {
       display: flex;
+      font-size: 24px;
     }
 
     & > .label {
-      font-size: 1rem;
       display: block;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
-      font-weight: 500;
     }
   }
 }
@@ -362,8 +362,7 @@
     overflow: hidden;
     white-space: nowrap;
     color: var(--label-fg);
-    font-size: 0.8rem;
-    font-weight: var(--label-weight);
+    font: var(--wehere--label-s--font);
   }
 }
 

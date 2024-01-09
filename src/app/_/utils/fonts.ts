@@ -1,8 +1,15 @@
-import { Alumni_Sans } from "next/font/google";
+import { Alumni_Sans, Inter } from "next/font/google";
 
-export const fontAlumniSans = Alumni_Sans({
+export const fontDisplay = Alumni_Sans({
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "500"],
-  variable: "--font-alumni-sans",
+  weight: "variable",
+  variable: "--font-display",
+  display: "swap",
+});
+
+export const fontBody = Inter({
+  subsets: ["latin", "vietnamese"],
+  weight: "variable",
+  variable: "--font-body",
   display: "swap",
 });

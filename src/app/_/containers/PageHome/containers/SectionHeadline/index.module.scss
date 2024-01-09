@@ -23,26 +23,52 @@
   flex-direction: column;
   flex: 1 1 auto;
   justify-content: center;
+  align-items: center;
   min-width: 0;
   overflow: hidden;
   padding: 48px;
+  position: relative;
+
+  & > * {
+    position: relative;
+  }
+
+  & > .blendedBeans1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: auto;
+    height: 100%;
+    opacity: 6%;
+    transform: translate(-33.3333%, 0) scale(1.5) rotate(-15deg);
+  }
+
+  & > .blendedBeans2 {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+    height: 100%;
+    opacity: 4%;
+    transform: translate(+33.3333%, -33.3333%) scale(0.75) rotate(0.5turn)
+      rotate(-15deg);
+  }
 
   & > h1 {
     all: unset;
     display: block;
 
-    font-size: 5rem;
-    font-weight: 500;
-    line-height: 125%;
+    font: var(--wehere--hero--font);
+    text-align: center;
   }
 
   & > p {
     all: unset;
     display: block;
 
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 125%;
+    max-width: 720px;
+    font: var(--wehere--body-m--font);
+    margin-top: 1em;
   }
 
   & > a {
@@ -50,6 +76,7 @@
     display: flex;
     box-sizing: border-box;
 
+    font: var(--wehere--label-l--font);
     margin-top: 36px;
     cursor: pointer;
     justify-content: center;
@@ -105,34 +132,35 @@
         var(--md-sys-color-on-primary)
       );
       display: flex;
-      font-size: 24px;
       gap: 8px;
       height: 72px;
       justify-content: center;
-      padding: 16px;
+      padding: 16px 72px;
       position: relative;
 
       & > .icon {
         display: flex;
+        font-size: 24px;
+        line-height: 1;
       }
 
       & > .label {
-        font-size: 1rem;
         display: block;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        font-weight: 500;
       }
     }
   }
 }
 
 .rightColumn {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // flex: 0 0 auto;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // TODO:
+  display: none;
 }
 
 .imageContainer {

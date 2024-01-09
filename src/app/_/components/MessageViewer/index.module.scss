@@ -3,6 +3,8 @@
   justify-content: flex-end;
   align-items: flex-end;
   gap: 8px;
+  font: var(--wehere--body-m--font);
+  white-space: pre-wrap;
 
   .space {
     min-width: 20%;
@@ -31,6 +33,8 @@
   justify-content: flex-start;
   align-items: flex-end;
   gap: 8px;
+  font: var(--wehere--body-m--font);
+  white-space: pre-wrap;
 
   .avatar {
     display: flex;
