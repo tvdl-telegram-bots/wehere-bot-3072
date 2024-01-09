@@ -12,17 +12,19 @@ function ListItem({
   className,
   style,
   item,
+  active,
 }: {
   className?: string;
   style?: React.CSSProperties;
   item: Item;
+  active?: boolean;
 }) {
   return (
     <Link
       className={cx(
         styles.ListItem,
         className,
-        item.active ? styles.active : undefined
+        active ? styles.active : undefined
       )}
       style={style}
       title={item.tooltip}
@@ -72,11 +74,13 @@ function Sidebar({
   style,
   items,
   slotProduct,
+  activeKey,
 }: {
   className?: string;
   style?: React.CSSProperties;
   items: Item[];
   slotProduct?: React.ReactNode;
+  activeKey?: React.Key;
 }) {
   const themeSwitcher = useThemeSwitcher();
 
@@ -91,7 +95,10 @@ function Sidebar({
       <ul className={styles.list}>
         {items.map((item, index) => (
           <li key={item.key ?? index}>
-            <ListItem item={item} />
+            <ListItem
+              item={item}
+              active={!!activeKey && activeKey === item.key}
+            />
           </li>
         ))}
       </ul>
@@ -113,19 +120,25 @@ function Modal({
   items,
   slotProduct,
   onClickScrim,
+  activeKey,
 }: {
   className?: string;
   style?: React.CSSProperties;
   items: Item[];
   slotProduct?: React.ReactNode;
   onClickScrim?: () => void;
+  activeKey?: React.Key;
 }) {
   return (
     <RemoveScroll>
       <div className={cx(styles.Modal, className)} style={style}>
         <div className={styles.scrim} onClick={onClickScrim}></div>
         <div className={styles.content}>
-          <Sidebar items={items} slotProduct={slotProduct} />
+          <Sidebar
+            items={items}
+            slotProduct={slotProduct}
+            activeKey={activeKey}
+          />
         </div>
       </div>
     </RemoveScroll>
@@ -161,17 +174,19 @@ function RailItem({
   className,
   style,
   item,
+  active,
 }: {
   className?: string;
   style?: React.CSSProperties;
   item: Item;
+  active?: boolean;
 }) {
   return (
     <Link
       className={cx(
         styles.RailItem,
         className,
-        item.active ? styles.active : undefined
+        active ? styles.active : undefined
       )}
       style={style}
       href={item.href}
@@ -187,11 +202,13 @@ function Rail({
   style,
   items,
   buttonMenu,
+  activeKey,
 }: {
   className?: string;
   style?: React.CSSProperties;
   items: Item[];
   buttonMenu?: { onClick?: () => void };
+  activeKey?: React.Key;
 }) {
   const themeSwitcher = useThemeSwitcher();
 
@@ -207,7 +224,10 @@ function Rail({
       <ul className={styles.list}>
         {items.map((item, index) => (
           <li key={item.key ?? index}>
-            <RailItem item={item} />
+            <RailItem
+              item={item}
+              active={!!activeKey && activeKey === item.key}
+            />
           </li>
         ))}
       </ul>

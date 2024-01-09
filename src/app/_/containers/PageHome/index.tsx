@@ -2,7 +2,7 @@
 
 import cx from "clsx";
 import React from "react";
-import { MdArrowBack, MdChat, MdHome, MdMenu } from "react-icons/md";
+import { MdArrowBack, MdChat, MdHome, MdMenu, MdPhone } from "react-icons/md";
 
 import LayoutBasic from "../../components/LayoutBasic";
 import { useLayoutBasicApi } from "../../components/LayoutBasic/hooks/useLayoutBasicApi";
@@ -26,8 +26,9 @@ export default function PageHome({ className, style }: Props) {
   const layoutBasicApi = useLayoutBasicApi();
 
   const items: Item$Navigation[] = [
-    { icon: <MdHome />, label: "Trang chủ", href: "/", active: true },
-    { icon: <MdChat />, label: "Trò chuyện", href: "/chat" },
+    { key: "home", icon: <MdHome />, label: "Trang chủ", href: "/" },
+    { key: "chat", icon: <MdChat />, label: "Trò chuyện", href: "/chat" },
+    { key: "contact", icon: <MdPhone />, label: "Liên hệ", href: "/contact" },
   ];
 
   return (
@@ -58,11 +59,13 @@ export default function PageHome({ className, style }: Props) {
             <Navigation.Sidebar
               items={items}
               slotProduct={<LogoWeHere.Fixed variant="color" size="120px" />}
+              activeKey="home"
             />
           ) : layoutBasicApi.navigationRail ? (
             <Navigation.Rail
               items={items}
               buttonMenu={layoutBasicApi.navigationRail.buttonMenu}
+              activeKey="home"
             />
           ) : undefined}
         </LayoutBasic.Left>

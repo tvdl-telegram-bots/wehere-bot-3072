@@ -4,7 +4,6 @@ export type Item = {
   label?: React.ReactNode;
   href: string;
   tooltip?: string;
-  active?: boolean;
 };
 
 export type Item$Navigation = Item;

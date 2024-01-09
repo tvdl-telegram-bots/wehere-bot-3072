@@ -1,7 +1,7 @@
 import cx from "clsx";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
-import { MdArrowBack, MdChat, MdHome, MdMenu } from "react-icons/md";
+import { MdArrowBack, MdChat, MdHome, MdMenu, MdPhone } from "react-icons/md";
 
 import LayoutBasic from "../LayoutBasic";
 import {
@@ -16,7 +16,7 @@ import TopAppBar from "../TopAppBar";
 
 import styles from "./index.module.scss";
 
-type ActivePage = "home" | "chat";
+type ActivePage = "home" | "chat" | "contact";
 
 type ContextValue$AppShell = {
   activePage: ActivePage | undefined;
@@ -36,24 +36,26 @@ const Context$AppShell = React.createContext<ContextValue$AppShell>({
   },
 });
 
-function getNavigationItems(
-  activePage: ActivePage | undefined
-): Item$Navigation[] {
-  return [
-    {
-      icon: <MdHome />,
-      label: "Trang chủ",
-      href: "/",
-      active: activePage === "home",
-    },
-    {
-      icon: <MdChat />,
-      label: "Trò chuyện",
-      href: "/chat",
-      active: activePage === "chat",
-    },
-  ];
-}
+const NAVIGATION_ITEMS: Item$Navigation[] = [
+  {
+    key: "home" satisfies ActivePage,
+    icon: <MdHome />,
+    label: "Trang chủ",
+    href: "/",
+  },
+  {
+    key: "chat" satisfies ActivePage,
+    icon: <MdChat />,
+    label: "Trò chuyện",
+    href: "/chat",
+  },
+  {
+    key: "contact" satisfies ActivePage,
+    icon: <MdPhone />,
+    label: "Liên hệ",
+    href: "/contact",
+  },
+];
 
 function Root({
   className,
@@ -94,9 +96,10 @@ function Root({
           {showModal ? (
             <LayoutBasic.Modal>
               <Navigation.Modal
-                items={getNavigationItems(activePage)}
+                items={NAVIGATION_ITEMS}
                 slotProduct={<LogoWeHere.Fixed variant="color" size="120px" />}
                 onClickScrim={() => setShowModal(false)}
+                activeKey={activePage}
               />
             </LayoutBasic.Modal>
           ) : undefined}
@@ -153,13 +156,15 @@ function Left({
     <LayoutBasic.Left className={cx(styles.Left, className)} style={style}>
       {api.windowSizeClass === "expanded" ? (
         <Navigation.Sidebar
-          items={getNavigationItems(api.activePage)}
+          items={NAVIGATION_ITEMS}
           slotProduct={<LogoWeHere.Fixed variant="color" size="120px" />}
+          activeKey={api.activePage}
         />
       ) : api.windowSizeClass === "medium" ? (
         <Navigation.Rail
-          items={getNavigationItems(api.activePage)}
+          items={NAVIGATION_ITEMS}
           buttonMenu={{ onClick: () => api.navigationModal.setVisible(true) }}
+          activeKey={api.activePage}
         />
       ) : undefined}
     </LayoutBasic.Left>
