@@ -39,6 +39,10 @@ export async function getAppFluent() {
   return await memoize(getFluent, "af1cfb86")(FTL);
 }
 
+// TODO: The current problem is that memoized function only accept serializable arguments
+// Let's use `WeakRef` to fix this. Suggestion:
+// memoize({ arg: { db, fluent, env }, key: (...) => ..., cb: (...) => ... })
+// memoizeWithKey<R>(key: string)(cb: () => R)
 export async function getAppBot() {
   return await memoize(getBot, "aaae8238")({ env: ENV, ftl: FTL });
 }

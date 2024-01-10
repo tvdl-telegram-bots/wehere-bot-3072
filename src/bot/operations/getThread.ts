@@ -30,7 +30,7 @@ export async function getThread$GivenMortalChatId(
     return existingThread;
   }
 
-  const newThread = await createThread(ctx);
+  const newThread = await createThread(ctx, { platform: "telegram" });
 
   await ctx.db.collection("mortal_subscription").updateOne(
     { chatId },

@@ -34,6 +34,9 @@ export type MessageId = z.infer<typeof UserId>;
 export const MessageDirection = z.enum(["from_mortal", "from_angel"]);
 export type MessageDirection = z.infer<typeof MessageDirection>;
 
+export const ThreadPlatform = z.enum(["web", "telegram"]);
+export type ThreadPlatform = z.infer<typeof ThreadPlatform>;
+
 export const Role = z.enum(["mortal", "angel", "admin"]);
 export type Role = z.infer<typeof Role>;
 

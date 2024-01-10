@@ -7,6 +7,7 @@ import {
   MessageDirection,
   MessageId,
   Role,
+  ThreadPlatform,
   Timestamp,
   UserId,
 } from "./common";
@@ -20,6 +21,7 @@ export const PersistentThread = z.object({
   name: z.string().nullish(), // unique
   emoji: z.string().nullish(),
   createdAt: Timestamp.nullish(),
+  platform: ThreadPlatform.nullish(),
 });
 
 export type PersistentThread = z.infer<typeof PersistentThread>;

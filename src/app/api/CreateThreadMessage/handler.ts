@@ -14,8 +14,8 @@ export async function run$CreateThreadMessage(
   const message: WithoutId<PersistentThreadMessage> = {
     threadId: ObjectId.createFromHexString(params.threadId),
     direction: "from_mortal",
-    originChatId: undefined, // TODO: handle this case
-    originMessageId: undefined, // TODO: handle this case
+    originChatId: undefined,
+    originMessageId: undefined,
     text: params.text,
     plainText: true,
     createdAt: Date.now(),

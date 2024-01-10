@@ -1,4 +1,5 @@
 import { conversations } from "@grammyjs/conversations";
+import { MongoDBAdapter } from "@grammyjs/storage-mongodb";
 import { Fluent } from "@moebius/fluent";
 import { Bot, GrammyError, HttpError, session } from "grammy";
 import { Db } from "mongodb";
@@ -6,8 +7,6 @@ import { Db } from "mongodb";
 import { getDb } from "./getDb";
 import { getFluent } from "./getFluent";
 
-import Connect from "@/bot/commands/Connect";
-import Disconnect from "@/bot/commands/Disconnect";
 import GetRole from "@/bot/commands/GetRole";
 import Reply from "@/bot/commands/Reply";
 import SendMessage from "@/bot/commands/SendMessage";
@@ -37,13 +36,20 @@ export async function getBot0({
     await next();
   });
 
-  bot.use(session({ initial: () => ({}) })); // TODO: persistent session
+  // https://grammy.dev/plugins/conversations#installing-and-entering-a-conversation
+  // https://grammy.dev/plugins/session#external-storage-solutions
+  // https://github.com/grammyjs/storages/blob/main/packages/mongodb/examples/node.ts
+  bot.use(
+    session({
+      initial: () => ({}),
+      storage: new MongoDBAdapter({ collection: db.collection("sessions") }),
+    })
+  );
+
   bot.use(conversations());
 
   const commands: Command[] = [
-    Connect,
-    Disconnect,
-    GetRole,
+    GetRole, // Status should allow admin to see all angels
     Reply,
     SetRole,
     Start,

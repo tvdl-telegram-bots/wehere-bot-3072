@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@grammyjs/conversations": "^1.1.2",
+    "@grammyjs/storage-free": "^2.4.1",
+    "@grammyjs/storage-mongodb": "^2.4.1",
     "@moebius/fluent": "^1.1.0",
     "@picocss/pico": "^1.5.10",
     "clsx": "^2.0.0",

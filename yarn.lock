@@ -144,6 +144,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@grammyjs/storage-free@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "@grammyjs/storage-free@npm:2.4.1"
+  dependencies:
+    node-fetch: "npm:^2.6.6"
+  checksum: b9721a6b08f3382e8cfa51ee0353cc0a07218378b67dfe75f92faa7cd6493add09368af888cb055ec7c58482230773b51c787fb3767fc3fa40ba63fa1e335fce
+  languageName: node
+  linkType: hard
+
+"@grammyjs/storage-mongodb@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "@grammyjs/storage-mongodb@npm:2.4.1"
+  checksum: 34e465634aa944bd4bb436cb75b6c45aec1db95be9c19b1d59d564c33e87798986d1549a8dbe132c847d97f618ab6cf0d9de91ea29688b73e78ca296daabd4f7
+  languageName: node
+  linkType: hard
+
 "@grammyjs/types@npm:3.3.0, @grammyjs/types@npm:^3.1.1":
   version: 3.3.0
   resolution: "@grammyjs/types@npm:3.3.0"
@@ -3294,7 +3310,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.7.0":
+"node-fetch@npm:^2.6.6, node-fetch@npm:^2.7.0":
   version: 2.7.0
   resolution: "node-fetch@npm:2.7.0"
   dependencies:
@@ -4922,6 +4938,8 @@ __metadata:
   resolution: "wehere-bot-3072@workspace:."
   dependencies:
     "@grammyjs/conversations": "npm:^1.1.2"
+    "@grammyjs/storage-free": "npm:^2.4.1"
+    "@grammyjs/storage-mongodb": "npm:^2.4.1"
     "@moebius/fluent": "npm:^1.1.0"
     "@picocss/pico": "npm:^1.5.10"
     "@types/html-escaper": "npm:^3"

@@ -11,6 +11,7 @@ import {
   getThreadFromMortalChatId,
 } from "../operations/__deprecated/mortal";
 import { getChatLocale } from "../operations/getChatLocale";
+import { getThread_givenThreadId } from "../operations/getThread";
 import notifyNewMessage from "../operations/notifyNewMessage";
 import { withDefaultErrorHandler } from "../utils/error";
 
@@ -50,7 +51,7 @@ async function handlerForAngel(ctx: BotContext) {
   const angelSub = await getAngelSubscription(ctx.db, { chatId: msg0.chat.id });
 
   if (!angelSub) {
-    ctx.api.sendMessage(
+    await ctx.api.sendMessage(
       msg0.chat.id,
       ctx.withLocale(locale)("html-not-subscribing"),
       {
@@ -59,13 +60,17 @@ async function handlerForAngel(ctx: BotContext) {
           ctx.withLocale(locale)("text-subscribe"),
           `wehere:/subscribe`
         ),
-      } //
+      }
     );
     return;
   }
 
   if (!angelSub.replyingToThreadId) {
-    await ctx.reply("You are not replying to anyone.");
+    await ctx.api.sendMessage(
+      msg0.chat.id,
+      ctx.withLocale(locale)("html-not-replying-anyone"),
+      { parse_mode: "HTML" }
+    );
     return;
   }
 
@@ -81,6 +86,23 @@ async function handlerForAngel(ctx: BotContext) {
 
   await createMessage(ctx.db, message);
   await notifyNewMessage(ctx, { message });
+
+  if (!isMessagePlainText(msg0)) {
+    const threadPlatform = await getThread_givenThreadId(
+      ctx,
+      angelSub.replyingToThreadId
+    )
+      .then((t) => t?.platform)
+      .catch(() => undefined);
+    if (threadPlatform === "web") {
+      await ctx.api.sendMessage(
+        msg0.chat.id,
+        ctx.withLocale(locale)("html-can-only-send-plaintext"),
+        { parse_mode: "HTML" }
+      );
+      return;
+    }
+  }
 }
 
 const handler = withDefaultErrorHandler(async (ctx) => {

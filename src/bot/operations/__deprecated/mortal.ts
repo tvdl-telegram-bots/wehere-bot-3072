@@ -162,7 +162,7 @@ export async function getThreadFromMortalChatId(
     return existingThread;
   }
 
-  const newThread = await createThread({ db });
+  const newThread = await createThread({ db }, { platform: "telegram" });
 
   await db.collection("mortal_subscription").updateOne(
     { chatId },

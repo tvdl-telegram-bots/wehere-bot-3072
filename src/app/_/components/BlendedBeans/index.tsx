@@ -55,7 +55,7 @@ export default function BlendedBeans({
           key={i}
           d={d(i / numSteps)}
           stroke="currentColor"
-          stroke-width={strokeWidth}
+          strokeWidth={strokeWidth}
         />
       ))}
     </svg>

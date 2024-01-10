@@ -23,3 +23,4 @@ html-you-not-subscribing = You are not subscribing to updates. New messages will
 html-you-subscribed-but-replying = You are subscribing to updates. You are not replying to anyone.
 html-you-subscribed-and-replying-to = You are subscribing to updates. You are replying to {$thread}.
 text-stop-replying = Stop replying to {$thread}
+html-can-only-send-plaintext = Caution. Because the mortal is using Web, they will only see plaintext (no photo, no video, no text formatting).
