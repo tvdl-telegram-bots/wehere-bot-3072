@@ -15,12 +15,12 @@ function Card({
   description?: React.ReactNode;
 }) {
   return (
-    <div className={cx(styles.Card, className)} style={style}>
+    <section className={cx(styles.Card, className)} style={style}>
       {title ? <div className={styles.title}>{title}</div> : undefined}
       {description ? (
         <div className={styles.description}>{description}</div>
       ) : undefined}
-    </div>
+    </section>
   );
 }
 

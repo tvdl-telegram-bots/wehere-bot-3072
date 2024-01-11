@@ -25,6 +25,11 @@ export async function run$CreateThread(
   ctx: Context$CreateThread,
   params: Params$CreateThread
 ): Promise<Result$CreateThread> {
+  if (params.oneTimeUse) {
+    const thread = await createThread(ctx, { platform: "web" });
+    return { threadId: thread._id.toHexString() };
+  }
+
   if (!params.force) {
     // NOTE: currently, if some error occurs, e.g. DB connection lost,
     // the mortal might end up losing the existing conversation entirely.

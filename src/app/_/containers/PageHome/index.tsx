@@ -14,6 +14,7 @@ import TopAppBar from "../../components/TopAppBar";
 
 import SectionFeatures from "./containers/SectionFeatures";
 import SectionHeadline from "./containers/SectionHeadline";
+import SectionNewsSubscription from "./containers/SectionNewsSubscription";
 import SectionOurMission from "./containers/SectionOurMission";
 import styles from "./index.module.scss";
 
@@ -73,6 +74,7 @@ export default function PageHome({ className, style }: Props) {
           <SectionHeadline />
           <SectionOurMission />
           <SectionFeatures />
+          <SectionNewsSubscription style={{ margin: "56px 0" }} />
         </LayoutBasic.Center>
         {layoutBasicApi.navigationModal ? (
           <LayoutBasic.Modal>

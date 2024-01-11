@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const Params$CreateThread = z.object({
+  oneTimeUse: z.boolean().nullish(), // for email subscription
   force: z.boolean().nullish(),
 });
 

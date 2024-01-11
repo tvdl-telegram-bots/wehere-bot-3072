@@ -241,6 +241,6 @@ function Rail({
   );
 }
 
-const Navigation = { Sidebar, Modal, Rail };
+const Navigation = { Sidebar, Modal, Rail, ButtonIcon, ButtonText };
 
 export default Navigation;

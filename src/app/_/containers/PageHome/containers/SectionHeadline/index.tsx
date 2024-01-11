@@ -16,7 +16,7 @@ type Props = {
 
 export default function SectionHeadline({ className, style }: Props) {
   return (
-    <div className={cx(styles.container, className)} style={style}>
+    <section className={cx(styles.container, className)} style={style}>
       <div className={styles.leftColumn}>
         <BlendedBeans
           className={styles.blendedBeans1}
@@ -61,6 +61,6 @@ export default function SectionHeadline({ className, style }: Props) {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
