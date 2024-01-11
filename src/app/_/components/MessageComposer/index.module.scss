@@ -11,6 +11,7 @@
   display: flex;
   box-sizing: border-box;
 
+  white-space: pre-wrap;
   border: 1px solid var(--md-sys-color-outline);
   border-radius: 12px;
   padding: 16px;
@@ -25,6 +26,8 @@
     var(--md-sys-color-on-surface)
   );
   height: 72px;
+  min-height: 72px;
+  max-height: 144px;
 
   &:hover {
     border-color: var(--md-sys-color-on-surface);

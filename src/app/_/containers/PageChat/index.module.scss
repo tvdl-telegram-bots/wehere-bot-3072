@@ -17,3 +17,14 @@
   opacity: 80%;
   text-align: center;
 }
+
+.loadingOverlay {
+  align-items: center;
+  background-color: #00000044;
+  color: #ffffff;
+  display: flex;
+  font-size: 128px;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}

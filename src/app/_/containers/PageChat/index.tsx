@@ -10,6 +10,7 @@ import MessageComposer from "../../components/MessageComposer";
 import MessageViewer from "../../components/MessageViewer";
 import { httpGet, httpPost, useResourceInfinite } from "../../utils/swr";
 
+import WehereLoadingIndicator from "./components/WehereLoadingIndicator";
 import styles from "./index.module.scss";
 
 import {
@@ -115,15 +116,20 @@ export default function PageChat({ className, style, origin }: Props) {
             />
           )}
         </div>
+        {swr$CreateThread.isLoading ? (
+          <div className={styles.loadingOverlay}>
+            <WehereLoadingIndicator numSteps={12} strokeWidth={0.16} />
+          </div>
+        ) : undefined}
       </AppShell.Center>
-      <AppShell.Bottom className={styles.bottom}>
-        {threadId ? (
+      {threadId ? (
+        <AppShell.Bottom className={styles.bottom}>
           <MessageComposer
             threadId={threadId}
             onMessageSent={() => resource_nextMessages.swr.mutate()}
           />
-        ) : undefined}
-      </AppShell.Bottom>
+        </AppShell.Bottom>
+      ) : undefined}
     </AppShell.Root>
   );
 }

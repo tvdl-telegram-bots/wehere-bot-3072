@@ -1,6 +1,8 @@
 import cx from "clsx";
 import React from "react";
 
+import { zip } from "../../utils/array";
+
 import styles from "./index.module.scss";
 
 type Props = {
@@ -16,13 +18,6 @@ const A =
 const B =
   "M 60.3311 134.781 C 49.0726 133.688 35.421 126.086 24.7608 114.985 C 15.6234 105.524 4.20178 89.063 1.59111 64.6179 C 1.37356 63.2507 -4.11972 29.7276 23.2379 9.27466 C 29.4382 4.62627 35.9649 1.8919 42.6003 1.18097 C 46.2988 0.798165 49.9428 1.01694 53.5869 1.89193 C 65.4436 4.73565 73.4388 13.2668 76.7021 19.7746 C 86.6009 39.5712 81.7603 52.2586 69.3596 68.8288 C 55.3273 87.5317 62.1803 94.477 69.414 101.805 C 75.0161 107.492 81.3252 113.891 77.5723 125.922 C 75.7231 131.773 70.5562 135 63.1593 135 Z" //
     .split(" ");
-
-function zip<A, B>(a: A[], b: B[]): [A, B][] {
-  return Array.from(
-    Array(Math.min(a.length, b.length)), //
-    (_, i) => [a[i], b[i]]
-  );
-}
 
 function lerp(a: string, b: string, t: number): string {
   if (a === b) return a;

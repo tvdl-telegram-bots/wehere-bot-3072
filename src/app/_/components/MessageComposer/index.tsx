@@ -49,6 +49,7 @@ export default function MessageComposer({
         className={styles.textarea}
         value={text}
         onChange={(e) => setText(e.target.value)}
+        maxLength={2048}
       />
       <button className={styles.button} onClick={handleSend} disabled={busy}>
         <MdSend />
