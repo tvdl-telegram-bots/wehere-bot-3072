@@ -1,6 +1,8 @@
 import cx from "clsx";
 import React from "react";
 
+import LogoWeHere from "../LogoWeHere";
+
 import styles from "./index.module.scss";
 
 import { ThreadMessage } from "@/app/api/GetThreadMessages/typing";
@@ -33,7 +35,9 @@ function FromZir({
 }) {
   return (
     <div className={cx(styles.FromZir, className)} style={style}>
-      <div className={styles.avatar}></div>
+      <div className={styles.avatar}>
+        <LogoWeHere.Fixed size="48px" variant="color" />
+      </div>
       <div className={styles.content}>{message.text}</div>
       <div className={styles.space}></div>
     </div>

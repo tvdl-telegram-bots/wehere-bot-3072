@@ -2,6 +2,7 @@
 
 import cx from "clsx";
 import React from "react";
+import { MdInfo } from "react-icons/md";
 import useSWR from "swr";
 
 import AppShell from "../../components/AppShell";
@@ -93,6 +94,14 @@ export default function PageChat({ className, style, origin }: Props) {
               }
             />
           )}
+        </div>
+        <div className={styles.reminder}>
+          <MdInfo />
+          <span>
+            {
+              "Trạm Lắng Nghe sẵn sàng hỗ trợ từ 20:00 đến 23:00, thứ Hai, thứ Tư, thứ Sáu và Chủ nhật hàng tuần."
+            }
+          </span>
         </div>
         <div className={styles.messageList}>
           {messages.map((m) => (
