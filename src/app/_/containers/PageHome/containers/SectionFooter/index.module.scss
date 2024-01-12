@@ -1,0 +1,81 @@
+.container {
+  font: var(--wehere--body-m--font);
+  color: var(--wehere--comp-section-footer--fg, var(--md-sys-color-on-surface));
+}
+
+.divider {
+  opacity: 0.2;
+  margin-bottom: 48px;
+}
+
+.content {
+  display: flex;
+  gap: 36px 12px;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+
+  @media screen and (min-width: 840px) {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  p {
+    margin: 0 0 12px 0;
+  }
+
+  a {
+    cursor: pointer;
+    color: var(
+      --wehere--comp-section-footer--elem-link--fg,
+      var(--md-sys-color-primary)
+    );
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline currentColor solid 1px;
+    }
+  }
+
+  strong {
+    font: var(--wehere--label-m--font);
+    opacity: 50%;
+  }
+
+  ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1em;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+}
+
+.firstColumn {
+  flex: 3 3 0;
+  min-width: 0;
+
+  p {
+    max-width: 400px;
+  }
+
+  p + p {
+    margin-top: 3em;
+  }
+}
+
+.nextColumn {
+  flex: 2 2 0;
+  min-width: 0;
+}
+
+.pngQrTelegram {
+  border-radius: 12px;
+  box-shadow: 0px 1px 2px 0px rgb(0 0 0 / 30%), 0px 1px 3px 1px rgb(0 0 0 / 15%);
+}

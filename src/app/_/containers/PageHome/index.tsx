@@ -13,6 +13,7 @@ import ThemeProvider from "../../components/ThemeProvider";
 import TopAppBar from "../../components/TopAppBar";
 
 import SectionFeatures from "./containers/SectionFeatures";
+import SectionFooter from "./containers/SectionFooter";
 import SectionHeadline from "./containers/SectionHeadline";
 import SectionNewsSubscription from "./containers/SectionNewsSubscription";
 import SectionOurMission from "./containers/SectionOurMission";
@@ -75,6 +76,7 @@ export default function PageHome({ className, style }: Props) {
           <SectionOurMission />
           <SectionFeatures />
           <SectionNewsSubscription style={{ margin: "56px 0" }} />
+          <SectionFooter />
         </LayoutBasic.Center>
         {layoutBasicApi.navigationModal ? (
           <LayoutBasic.Modal>
