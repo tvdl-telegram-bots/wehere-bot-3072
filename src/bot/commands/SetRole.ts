@@ -1,11 +1,10 @@
 import { createConversation } from "@grammyjs/conversations";
-import { escape } from "html-escaper";
 import { z } from "zod";
 
 import { BotContext, Command } from "../../types";
-import { ChatId, Role, UserIsh } from "../../typing/common";
-import { toUserId } from "../../utils/id";
+import { Role, UserId } from "../../typing/common";
 import { getChatLocale } from "../operations/getChatLocale";
+import { getRole } from "../operations/getRole";
 import {
   withConversationErrorHandler,
   withDefaultErrorHandler,
@@ -14,23 +13,30 @@ import html from "../utils/html";
 import { parseCallbackQueryData } from "../utils/parse";
 
 import { PersistentRole } from "@/typing/server";
-import { nonNullable } from "@/utils/assert";
+import { assert, nonNullable } from "@/utils/assert";
 
-const id = "3e4d600d-3be5-40be-82f4-cf806ec1459d";
+const id = "796477c3-6c18-426f-b436-d12b5bf344d3";
 
-const converse = withConversationErrorHandler(async (conversation, ctx) => {
-  await ctx.reply("Which user?");
-  ctx = await conversation.waitFor("message:text");
-  const userIsh = UserIsh.parse(ctx.message?.text);
-  const userId = toUserId(userIsh);
+const converse = withConversationErrorHandler(async (c, ctx) => {
+  const msg0 = nonNullable(ctx.message);
+  const locale = await c.external(() => getChatLocale(ctx, msg0.chat.id));
+  const role0 = await c.external(() => getRole(ctx, msg0.from.id));
+  assert(role0 === "admin", "forbidden");
+  await ctx.api.sendMessage(
+    msg0.chat.id,
+    ctx.withLocale(locale)("html-which-user"),
+    { parse_mode: "HTML" }
+  );
 
+  ctx = await c.waitFor("message:text");
+  const userId = UserId.parse(ctx.message?.text);
   await ctx.reply("Which role?");
-  ctx = await conversation.waitFor("message:text");
-  const role = Role.parse(ctx.message?.text);
 
+  ctx = await c.waitFor("message:text");
+  const role = Role.parse(ctx.message?.text);
   await ctx.reply(`Setting ${userId} as ${role}...`);
 
-  const ack = await conversation.external(
+  const ack = await c.external(
     async () =>
       await ctx.db.collection("role").updateOne(
         { userId },
@@ -45,8 +51,14 @@ const converse = withConversationErrorHandler(async (conversation, ctx) => {
   );
 
   await ctx.api.sendMessage(
-    ChatId.parse(ctx.chat?.id),
-    `<pre>${escape(JSON.stringify({ ack }))}</pre>`,
+    msg0.chat.id,
+    [
+      ctx.withLocale(locale)("html-set-role-success", {
+        user: html.strong(html.literal(userId)),
+        role: html.strong(role),
+      }),
+      html.pre(html.literal(JSON.stringify({ ack }))),
+    ].join("\n\n"),
     { parse_mode: "HTML" }
   );
 });
@@ -89,7 +101,7 @@ const handleCallbackQuery = withDefaultErrorHandler(async (ctx) => {
 
 const SetRole: Command = {
   commandName: "set_role",
-  handler: async (ctx: BotContext) => await ctx.conversation.enter(id),
+  handleMessage: async (ctx: BotContext) => await ctx.conversation.enter(id),
   handleCallbackQuery,
   middleware: createConversation(converse, id),
 };

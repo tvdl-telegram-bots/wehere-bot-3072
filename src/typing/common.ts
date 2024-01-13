@@ -15,10 +15,6 @@ export const Ftl = z.object({
 
 export type Ftl = z.infer<typeof Ftl>;
 
-/** @deprecated use UserId instead */
-export const UserIsh = z.string().min(1);
-export type UserIsh = z.infer<typeof UserIsh>;
-
 export const UserId = z.coerce.number().int().safe();
 export type UserId = z.infer<typeof UserId>;
 

@@ -1,8 +1,9 @@
 import { Conversation } from "@grammyjs/conversations";
-import { escape } from "html-escaper";
 
 import { BotContext } from "../../types";
 import { ChatId } from "../../typing/common";
+
+import html from "./html";
 
 export function withConversationErrorHandler(
   converse: (conversation: Conversation<BotContext>, ctx: BotContext) => void
@@ -14,7 +15,7 @@ export function withConversationErrorHandler(
       if (error instanceof Error) {
         await ctx.api.sendMessage(
           ChatId.parse(ctx.chat?.id),
-          `<pre>${escape(error.message)}</pre>`,
+          html.pre(html.literal(error.message)),
           { parse_mode: "HTML" }
         );
       }
@@ -32,7 +33,7 @@ export function withDefaultErrorHandler(handler: (ctx: BotContext) => void) {
         const chatId = ChatId.parse(ctx.chat?.id);
         await ctx.api.sendMessage(
           chatId,
-          `<pre>${escape(error.message)}</pre>`,
+          html.pre(html.literal(error.message)),
           { parse_mode: "HTML" }
         );
       }

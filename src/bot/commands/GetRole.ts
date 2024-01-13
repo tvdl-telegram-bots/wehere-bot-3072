@@ -1,22 +1,24 @@
 import { createConversation } from "@grammyjs/conversations";
 
 import { BotContext, Command } from "../../types";
-import { UserIsh } from "../../typing/common";
-import { toUserId } from "../../utils/id";
-import { getRole } from "../operations/__deprecated/admin";
+import { UserId } from "../../typing/common";
+import { getRole } from "../operations/getRole";
 import { withConversationErrorHandler } from "../utils/error";
 
-const id = "a1fa4dc2-80d0-4eae-9cd2-e186e7637652";
+import { assert, nonNullable } from "@/utils/assert";
+
+const id = "0e1e5067-3c10-4dc8-b196-2ac32b86ba5e";
 
 const converse = withConversationErrorHandler(async (conversation, ctx) => {
+  const msg0 = nonNullable(ctx.message);
+  const role = await conversation.external(() => getRole(ctx, msg0.from.id));
+  assert(["angel", "admin"].includes(role), "forbidden");
   await ctx.reply("Which user?");
+
   ctx = await conversation.waitFor("message:text");
-  const userIsh = UserIsh.parse(ctx.message?.text);
-  const userId = toUserId(userIsh);
-  const role = await conversation.external(
-    async () => await getRole(ctx.db, userId)
-  );
-  ctx.reply(`The role of ${userId} is ${role}.`);
+  const userId = UserId.parse(ctx.message?.text);
+  const userRole = await conversation.external(() => getRole(ctx, userId));
+  ctx.reply(`The role of ${userId} is ${userRole}.`);
 });
 
 const GetRole: Command = {

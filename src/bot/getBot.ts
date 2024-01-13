@@ -44,7 +44,7 @@ export async function getBot0({
   bot.use(
     session({
       initial: () => ({}),
-      storage: new MongoDBAdapter({ collection: db.collection("sessions") }),
+      storage: new MongoDBAdapter({ collection: db.collection("session") }),
     })
   );
 
