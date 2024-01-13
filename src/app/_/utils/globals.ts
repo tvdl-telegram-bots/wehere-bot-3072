@@ -43,6 +43,7 @@ export async function getAppFluent() {
 // Let's use `WeakRef` to fix this. Suggestion:
 // memoize({ arg: { db, fluent, env }, key: (...) => ..., cb: (...) => ... })
 // memoizeWithKey<R>(key: string)(cb: () => R)
+// TODO: we are gonna remove this unused function
 export async function getAppBot() {
   return await memoize(getBot, "aaae8238")({ env: ENV, ftl: FTL });
 }

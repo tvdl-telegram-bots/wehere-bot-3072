@@ -1,5 +1,7 @@
+import { autoRetry } from "@grammyjs/auto-retry";
 import { conversations } from "@grammyjs/conversations";
 import { MongoDBAdapter } from "@grammyjs/storage-mongodb";
+import { apiThrottler } from "@grammyjs/transformer-throttler";
 import { Fluent } from "@moebius/fluent";
 import { Bot, GrammyError, HttpError, session } from "grammy";
 import { Db } from "mongodb";
@@ -47,6 +49,9 @@ export async function getBot0({
   );
 
   bot.use(conversations());
+
+  bot.api.config.use(apiThrottler());
+  bot.api.config.use(autoRetry());
 
   const commands: Command[] = [
     GetRole, // Status should allow admin to see all angels
