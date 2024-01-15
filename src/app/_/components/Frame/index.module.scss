@@ -1,0 +1,24 @@
+.Fixed {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+}
+
+.Fill {
+  position: absolute;
+  inset: 0;
+}
+
+.AutoHeight {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    display: flex;
+    width: 100%;
+    padding-top: var(--relative-height);
+    position: absolute;
+  }
+}

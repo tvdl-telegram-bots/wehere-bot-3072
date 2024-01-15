@@ -2,4 +2,14 @@
   font: var(--wehere--body-m--font);
   padding: 16px;
   color: var(--wehere--color-on-primary, var(--md-sys-color-on-surface));
+
+  a {
+    cursor: pointer;
+    color: currentColor;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline currentColor solid 1px;
+    }
+  }
 }

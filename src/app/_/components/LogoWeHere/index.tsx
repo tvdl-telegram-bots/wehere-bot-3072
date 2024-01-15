@@ -3,36 +3,50 @@ import Image from "next/image";
 import React from "react";
 
 import pngColor from "./assets/color.png";
-import pngWhite from "./assets/white.png";
 import styles from "./index.module.scss";
 
 type Length = `${number}${"px" | "em"}`;
-type Variant = "color" | "white";
 
 function Fixed({
   className,
   style,
-  variant,
   size,
+  useCurrentColor,
 }: {
   className?: string;
   style?: React.CSSProperties;
-  variant: Variant;
+  variant?: "color";
   size: Length;
+  useCurrentColor?: boolean;
 }) {
-  const imageUrl =
-    variant === "color"
-      ? pngColor
-      : variant === "white"
-      ? pngWhite
-      : "#disabled";
+  const [src, setSrc] = React.useState<string>();
+
+  const imageOpacity = useCurrentColor ? "0" : "100%";
+  const matteOpacity = useCurrentColor && src ? "100%" : "0";
 
   return (
     <div
-      className={cx(styles.container, className)}
-      style={{ ...style, width: size, height: size, position: "relative" }}
+      className={cx(styles.Fixed, className)}
+      style={
+        {
+          ...style,
+          "--size": size,
+          "--mask-image": src ? `url(${src})` : undefined,
+        } as React.CSSProperties
+      }
     >
-      <Image src={imageUrl} alt="logo WeHere" sizes={size} fill />
+      <Image
+        className={styles.image}
+        style={{ opacity: imageOpacity }}
+        src={pngColor}
+        alt="logo WeHere"
+        sizes={size}
+        fill
+        onLoad={(e) => setSrc(e.currentTarget.src)}
+      />
+      {useCurrentColor ? (
+        <div className={styles.colorMatte} style={{ opacity: matteOpacity }} />
+      ) : undefined}
     </div>
   );
 }

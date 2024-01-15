@@ -1,0 +1,28 @@
+.container {
+  color: var(
+    --wehere--comp-section-hero--color-on-surface,
+    var(--md-sys-color-on-surface)
+  );
+
+  align-items: center;
+  display: flex;
+  min-height: calc(100dvh - 96px);
+  min-height: calc(100vh - 96px);
+  justify-content: center;
+  padding: 56px 24px;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 640px;
+  font: var(--wehere--label-m--font);
+
+  p {
+    margin: 0.5em 0;
+  }
+}

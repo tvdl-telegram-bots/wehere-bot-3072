@@ -1,6 +1,7 @@
 "use client";
 
 import cx from "clsx";
+import Link from "next/link";
 import React from "react";
 
 import AppShell from "../../components/AppShell";
@@ -28,8 +29,16 @@ export default function PageContact({ className, style }: Props) {
           }
         </p>
         <ul>
-          <li>{"Email: wehere.vn@gmail.com"}</li>
-          <li>{"Hotline: 099 9999999"}</li>
+          <li>
+            <span>{"Email: "}</span>
+            <Link href="mailto:wehere.vn@gmail.com">
+              {"wehere.vn@gmail.com"}
+            </Link>
+          </li>
+          <li>
+            <span>{"Hotline: "}</span>
+            <Link href="tel:+84968776964">{"(+84) 96-877-6964"}</Link>
+          </li>
         </ul>
         <p>
           {

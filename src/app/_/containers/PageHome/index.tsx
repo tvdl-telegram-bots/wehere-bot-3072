@@ -12,10 +12,12 @@ import { Item$Navigation } from "../../components/Navigation/types";
 import ThemeProvider from "../../components/ThemeProvider";
 import TopAppBar from "../../components/TopAppBar";
 
+import WaveDivider from "./components/WaveDivider";
 import SectionFeatures from "./containers/SectionFeatures";
 import SectionFooter from "./containers/SectionFooter";
-import SectionHeadline from "./containers/SectionHeadline";
-import SectionNewsSubscription from "./containers/SectionNewsSubscription";
+// import SectionHeadline from "./containers/SectionHeadline";
+import SectionHero from "./containers/SectionHero";
+// import SectionNewsSubscription from "./containers/SectionNewsSubscription";
 import SectionOurMission from "./containers/SectionOurMission";
 import styles from "./index.module.scss";
 
@@ -72,10 +74,19 @@ export default function PageHome({ className, style }: Props) {
           ) : undefined}
         </LayoutBasic.Left>
         <LayoutBasic.Center className={styles.LayoutBasic_Center}>
-          <SectionHeadline />
+          <SectionHero />
+          {/* <SectionHeadline /> */}
+          <WaveDivider
+            className={styles.waveDivider}
+            style={{ margin: "56px 0" }}
+          />
           <SectionOurMission />
           <SectionFeatures />
-          <SectionNewsSubscription style={{ margin: "56px 0" }} />
+          {/* <SectionNewsSubscription style={{ margin: "56px 0" }} /> */}
+          <WaveDivider
+            className={styles.waveDivider}
+            style={{ margin: "56px 0" }}
+          />
           <SectionFooter />
         </LayoutBasic.Center>
         {layoutBasicApi.navigationModal ? (

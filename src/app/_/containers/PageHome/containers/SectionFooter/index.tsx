@@ -14,52 +14,43 @@ type Props = {
 export default function SectionFooter({ className, style }: Props) {
   return (
     <div className={cx(styles.container, className)} style={style}>
-      <div className={styles.divider}>
-        <svg aria-hidden="true" width="100%" height="8" fill="none">
-          <pattern
-            id="5b784c0d1b9c"
-            width="91"
-            height="8"
-            patternUnits="userSpaceOnUse"
-          >
-            <g clipPath="url(#clip0_2426_11367)">
-              <path
-                d="M114 4c-5.067 4.667-10.133 4.667-15.2 0S88.667-.667 83.6 4 73.467 8.667 68.4 4 58.267-.667 53.2 4 43.067 8.667 38 4 27.867-.667 22.8 4 12.667 8.667 7.6 4-2.533-.667-7.6 4s-10.133 4.667-15.2 0S-32.933-.667-38 4s-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0-10.133-4.667-15.2 0-10.133 4.667-15.2 0"
-                stroke="currentColor"
-                strokeLinecap="square"
-              />
-            </g>
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#5b784c0d1b9c)" />
-        </svg>
-      </div>
       <div className={styles.content}>
         <div className={styles.firstColumn}>
-          <strong>{"WeHere"}</strong>
-          <p>
-            {
-              "Là dự án do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức về tâm lý cho tuổi vị thành niên."
-            }
-          </p>
+          <strong>{"WeHere Vietnam"}</strong>
+          <p>{"Proudly created by Duonglieu Library"}</p>
           <p>{"© 2024 WeHere. Tất cả các quyền được bảo lưu."}</p>
         </div>
         <div className={styles.nextColumn}>
           <strong>{"Mạng xã hội"}</strong>
           <ul>
             <li>
-              <Link href="#">{"Facebook"}</Link>
+              <Link
+                href="https://www.facebook.com/weherevietnam"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {"Facebook"}
+              </Link>
             </li>
             <li>
-              <Link href="#">{"Instagram"}</Link>
+              <Link
+                href="https://www.instagram.com/wehere.vn/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {"Instagram"}
+              </Link>
             </li>
           </ul>
           <strong>{"Liên hệ"}</strong>
           <ul>
             <li>
-              <Link href="#">{"support@example.com"}</Link>
+              <Link href="mailto:wehere.vn@gmail.com">
+                {"wehere.vn@gmail.com"}
+              </Link>
             </li>
             <li>
-              <Link href="#">{"+99 999999999"}</Link>
+              <Link href="tel:+84968776964">{"(+84) 96-877-6964"}</Link>
             </li>
           </ul>
         </div>
@@ -67,7 +58,13 @@ export default function SectionFooter({ className, style }: Props) {
           <strong>{"Trạm Lắng Nghe trên Telegram"}</strong>
           <ul>
             <li>
-              <Link href="#">{"WeHere_bot"}</Link>
+              <Link
+                href="https://t.me/WeHere_bot"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {"WeHere_bot"}
+              </Link>
             </li>
           </ul>
           <p>

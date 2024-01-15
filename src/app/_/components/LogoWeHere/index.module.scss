@@ -1,0 +1,23 @@
+.Fixed {
+  width: var(--size);
+  height: var(--size);
+  position: relative;
+
+  * {
+    transition-property: opacity, background-color, color;
+    transition-duration: 125ms;
+  }
+
+  & > .colorMatte {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    background-color: currentColor;
+
+    mask-image: var(--mask-image);
+    mask-type: alpha;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: cover;
+  }
+}

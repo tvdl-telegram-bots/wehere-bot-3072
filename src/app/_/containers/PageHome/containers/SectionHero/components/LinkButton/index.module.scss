@@ -1,0 +1,81 @@
+.container {
+  all: unset;
+  display: flex;
+  box-sizing: border-box;
+
+  font: var(--wehere--label-l--font);
+  margin-top: 36px;
+  cursor: pointer;
+  justify-content: center;
+  position: relative;
+  border-radius: 36px;
+  overflow: hidden;
+
+  --state-color: transparent;
+  --state-opacity: 0;
+
+  &:hover {
+    --state-color: var(
+      --wehere--comp-section-headline--elem-button--fg,
+      var(--md-sys-color-on-primary)
+    );
+    --state-opacity: var(--state--hover--state-layer-opacity);
+  }
+
+  &:active {
+    --state-color: var(
+      --wehere--comp-section-headline--elem-button--fg,
+      var(--md-sys-color-on-primary)
+    );
+    --state-opacity: var(--state--pressed--state-layer-opacity);
+  }
+
+  & > .background {
+    display: flex;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(
+      --wehere--comp-section-headline--elem-button--bg,
+      var(--md-sys-color-primary)
+    );
+  }
+
+  & > .state {
+    display: flex;
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: var(--state-opacity);
+    background-color: var(--state-color);
+    transition-property: background-color, opacity;
+    transition-duration: 0.125s;
+  }
+
+  & > .content {
+    align-items: center;
+    color: var(
+      --wehere--comp-section-headline--elem-button--fg,
+      var(--md-sys-color-on-primary)
+    );
+    display: flex;
+    gap: 8px;
+    height: 72px;
+    justify-content: center;
+    padding: 16px 36px;
+    position: relative;
+
+    & > .icon {
+      display: flex;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    & > .label {
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}

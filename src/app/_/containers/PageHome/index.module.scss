@@ -1,3 +1,10 @@
 .LayoutBasic_Center {
   padding: 16px;
 }
+
+.waveDivider {
+  color: var(
+    --wehere--comp-section-hero--color-on-surface,
+    var(--md-sys-color-on-surface)
+  );
+}
