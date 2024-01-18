@@ -7,6 +7,7 @@ import useSWR from "swr";
 
 import AppShell from "../../components/AppShell";
 import AutoTrigger from "../../components/AutoTrigger";
+import BlendedBeans from "../../components/BlendedBeans";
 import MessageComposer from "../../components/MessageComposer";
 import MessageViewer from "../../components/MessageViewer";
 import { httpGet, httpPost, useResourceInfinite } from "../../utils/swr";
@@ -75,8 +76,13 @@ export default function PageChat({ className, style, origin }: Props) {
       style={style}
       activePage="chat"
     >
+      <BlendedBeans
+        className={styles.watermark}
+        numSteps={24}
+        strokeWidth={0.25}
+      />
       <AppShell.Left />
-      <AppShell.Top label="Trò chuyện cùng WeHere" />
+      <AppShell.Top className={styles.top} label="Trò chuyện cùng WeHere" />
       <AppShell.Center className={styles.center}>
         <div className={styles.loadingIndicator}>
           {resource_prevMessages.isLoading ? (
@@ -99,7 +105,7 @@ export default function PageChat({ className, style, origin }: Props) {
           <MdInfo />
           <span>
             {
-              "Trạm Lắng Nghe sẵn sàng hỗ trợ từ 20:00 đến 23:00, thứ Hai, thứ Tư, thứ Sáu và Chủ nhật hàng tuần."
+              "Trạm Lắng Nghe sẵn sàng hỗ trợ từ 20:00 đến 23:00, T2, T4, T6 và CN hàng tuần."
             }
           </span>
         </div>

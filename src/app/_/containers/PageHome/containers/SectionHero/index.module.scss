@@ -20,9 +20,18 @@
   align-items: center;
   text-align: center;
   max-width: 640px;
-  font: var(--wehere--label-m--font);
+  font: var(--wehere--body-m--font);
 
   p {
     margin: 0.5em 0;
+  }
+}
+
+.subtitle {
+  opacity: 0.8;
+  font: var(--wehere--display-m--font);
+
+  @media screen and (min-width: 840px) {
+    font: var(--wehere--display-l--font);
   }
 }

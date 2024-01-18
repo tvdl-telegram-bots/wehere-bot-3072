@@ -2,6 +2,13 @@ import cx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaInstagram,
+  FaPhoneAlt,
+  FaTelegram,
+} from "react-icons/fa";
 
 import pngQrTelegram from "./assets/qr-telegram.png";
 import styles from "./index.module.scss";
@@ -16,41 +23,63 @@ export default function SectionFooter({ className, style }: Props) {
     <div className={cx(styles.container, className)} style={style}>
       <div className={styles.content}>
         <div className={styles.firstColumn}>
-          <strong>{"WeHere Vietnam"}</strong>
-          <p>{"Proudly created by Duonglieu Library"}</p>
-          <p>{"© 2024 WeHere. Tất cả các quyền được bảo lưu."}</p>
+          <p style={{ fontWeight: "600" }}>{"WeHere Vietnam"}</p>
+          <p>
+            <span>{"Proudly created by "}</span>
+            <Link
+              href="https://thuvienduonglieu.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {"Duonglieu Library"}
+            </Link>
+          </p>
         </div>
         <div className={styles.nextColumn}>
           <strong>{"Mạng xã hội"}</strong>
           <ul>
             <li>
               <Link
+                className={styles.socialLinkWithIcon}
                 href="https://www.facebook.com/weherevietnam"
                 target="_blank"
                 rel="noreferrer"
               >
-                {"Facebook"}
+                <FaFacebook />
+                <span>{"Facebook"}</span>
               </Link>
             </li>
             <li>
               <Link
+                className={styles.socialLinkWithIcon}
                 href="https://www.instagram.com/wehere.vn/"
                 target="_blank"
                 rel="noreferrer"
               >
-                {"Instagram"}
+                <FaInstagram />
+                <span>{"Instagram"}</span>
               </Link>
             </li>
           </ul>
           <strong>{"Liên hệ"}</strong>
           <ul>
             <li>
-              <Link href="mailto:wehere.vn@gmail.com">
-                {"wehere.vn@gmail.com"}
+              <Link
+                className={styles.socialLinkWithIcon}
+                href="mailto:wehere.vn@gmail.com"
+              >
+                <FaEnvelope />
+                <span>{"wehere.vn@gmail.com"}</span>
               </Link>
             </li>
             <li>
-              <Link href="tel:+84968776964">{"(+84) 96-877-6964"}</Link>
+              <Link
+                className={styles.socialLinkWithIcon}
+                href="tel:+84968776964"
+              >
+                <FaPhoneAlt />
+                <span>{"(+84) 96-877-6964"}</span>
+              </Link>
             </li>
           </ul>
         </div>
@@ -59,24 +88,34 @@ export default function SectionFooter({ className, style }: Props) {
           <ul>
             <li>
               <Link
+                className={styles.socialLinkWithIcon}
                 href="https://t.me/WeHere_bot"
                 target="_blank"
                 rel="noreferrer"
               >
-                {"WeHere_bot"}
+                <span>{"@WeHere_bot"}</span>
               </Link>
             </li>
           </ul>
           <p>
-            <Image
-              className={styles.pngQrTelegram}
-              style={{ width: "180px", height: "180px" }}
-              src={pngQrTelegram}
-              alt=""
-            />
+            <Link
+              href="https://t.me/WeHere_bot"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                className={styles.pngQrTelegram}
+                style={{ width: "200px", height: "200px" }}
+                src={pngQrTelegram}
+                alt="link to WeHere_bot"
+              />
+            </Link>
           </p>
         </div>
       </div>
+      <p className={styles.afterContent}>
+        {"© 2024 WeHere. Tất cả các quyền được bảo lưu."}
+      </p>
     </div>
   );
 }

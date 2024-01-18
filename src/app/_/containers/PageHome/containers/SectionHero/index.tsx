@@ -17,6 +17,7 @@ export default function SectionHero({ className, style }: Props) {
     <div className={cx(styles.container, className)} style={style}>
       <div className={styles.content}>
         <LogoWeHere.Fixed size="192px" useCurrentColor />
+        <p className={styles.subtitle}>{"“you always have WeHere”"}</p>
         <p>
           {
             "WeHere là dự án tâm lý do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức, câu chuyện, sự kiện về sức khỏe tinh thần của trẻ vị thành niên."
@@ -24,7 +25,7 @@ export default function SectionHero({ className, style }: Props) {
         </p>
         <p>
           {
-            "Chào mừng đến với Trạm Lắng Nghe - một môi trường tâm lý an toàn dành cho những người gặp khó khăn về sức khỏe tinh thần. Dự án hoạt động trực tuyến trên nền tảng Telegram, cung cấp sự hỗ trợ tâm lý tức thời thông qua hoạt động lắng nghe, thấu cảm."
+            "Chào mừng đến với Trạm Lắng Nghe - một môi trường tâm lý an toàn dành cho những người gặp khó khăn về sức khỏe tinh thần. Dự án hoạt động trực tuyến trên nền tảng Telegram và website chính thức của WeHere, cung cấp sự hỗ trợ tâm lý tức thời thông qua hoạt động lắng nghe, thấu cảm."
           }
         </p>
         <LinkButton

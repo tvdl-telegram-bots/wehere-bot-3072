@@ -12,6 +12,11 @@
   overflow: hidden;
   box-shadow: 0px 1px 2px 0px rgb(0 0 0 / 30%), 0px 1px 3px 1px rgb(0 0 0 / 15%);
 
+  & > .icon {
+    font-size: 96px;
+    margin: 16px 0 0 0;
+  }
+
   & > .title {
     font: var(--wehere--headline-m--font);
     margin-bottom: 0.5rem;
