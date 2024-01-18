@@ -34,6 +34,7 @@ async function handlerForMortal(ctx: BotContext) {
     originChatId: msg0.chat.id,
     originMessageId: msg0.message_id,
     text: msg0.text,
+    entities: msg0.entities,
     plainText: isMessagePlainText(msg0),
     createdAt: Date.now(),
   };
@@ -80,6 +81,7 @@ async function handlerForAngel(ctx: BotContext) {
     originChatId: msg0.chat.id,
     originMessageId: msg0.message_id,
     text: msg0.text,
+    entities: msg0.entities,
     plainText: isMessagePlainText(msg0),
     createdAt: Date.now(),
   };

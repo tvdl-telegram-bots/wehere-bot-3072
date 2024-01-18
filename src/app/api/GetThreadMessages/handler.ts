@@ -1,6 +1,10 @@
 import { Db, ObjectId } from "mongodb";
 
-import { Params$GetThreadMessages, Result$GetThreadMessages } from "./typing";
+import {
+  Params$GetThreadMessages,
+  Result$GetThreadMessages,
+  ThreadMessage,
+} from "./typing";
 
 import { toPipeline } from "@/app/_/utils/routing";
 import { PersistentThreadMessage } from "@/typing/server";
@@ -35,12 +39,16 @@ export async function run$GetThreadMessages(
 
   const messages = parseDocs(PersistentThreadMessage)(docs.slice(0, limit))
     .sort((a, b) => compareObjectId(a._id, b._id))
-    .map((p) => ({
-      id: p._id.toHexString(),
-      direction: p.direction,
-      text: p.text,
-      createdAt: p.createdAt,
-    }));
+    .map(
+      (p) =>
+        ({
+          id: p._id.toHexString(),
+          direction: p.direction,
+          text: p.text,
+          entities: p.entities,
+          createdAt: p.createdAt,
+        } satisfies ThreadMessage)
+    );
 
   return {
     nextPrior:

@@ -1,11 +1,13 @@
 import { z } from "zod";
 
 import { MessageDirection, Timestamp } from "@/typing/common";
+import * as Telegram from "@/typing/telegram";
 
 export const ThreadMessage = z.object({
   id: z.string(),
   direction: MessageDirection,
   text: z.string().nullish(),
+  entities: Telegram.MessageEntity.array().nullish(),
   createdAt: Timestamp.nullish(),
 });
 

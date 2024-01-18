@@ -17,6 +17,7 @@ export async function run$CreateThreadMessage(
     originChatId: undefined,
     originMessageId: undefined,
     text: params.text,
+    entities: params.entities,
     plainText: true,
     createdAt: Date.now(),
   };

@@ -12,6 +12,8 @@ import {
   UserId,
 } from "./common";
 
+import * as Telegram from "@/typing/telegram";
+
 export const PersistentObjectId = z.instanceof(ObjectId);
 
 export type PersistentObjectId = z.infer<typeof PersistentObjectId>;
@@ -55,6 +57,7 @@ export const PersistentThreadMessage = z.object({
   originChatId: ChatId.nullish(),
   originMessageId: MessageId.nullish(),
   text: z.string().nullish(),
+  entities: Telegram.MessageEntity.array().nullish(),
   plainText: z.boolean().nullish(),
   createdAt: Timestamp.nullish(),
 });
