@@ -96,7 +96,22 @@ async function handlerForAngel(ctx: BotContext) {
     )
       .then((t) => t?.platform)
       .catch(() => undefined);
-    if (threadPlatform === "web") {
+    if (
+      threadPlatform === "web" &&
+      message.entities?.some(
+        (ent) =>
+          ![
+            "url",
+            "bold",
+            "italic",
+            "underline",
+            "strikethrough",
+            "code",
+            "pre",
+            "text_link",
+          ].includes(ent.type)
+      )
+    ) {
       await ctx.api.sendMessage(
         msg0.chat.id,
         ctx.withLocale(locale)("html-can-only-send-plaintext"),

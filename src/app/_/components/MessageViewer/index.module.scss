@@ -7,7 +7,7 @@
   white-space: pre-wrap;
 
   .space {
-    min-width: 20%;
+    min-width: 10%;
     flex: 1 0 auto;
   }
 
@@ -25,6 +25,11 @@
     min-height: 48px;
     min-width: 0;
     padding: 16px;
+
+    a {
+      color: currentColor;
+      opacity: 0.8;
+    }
   }
 }
 
@@ -63,10 +68,14 @@
     min-height: 48px;
     min-width: 0;
     padding: 16px;
+
+    a {
+      color: var(--md-sys-color-primary);
+    }
   }
 
   .space {
-    min-width: 20%;
+    min-width: 10%;
     flex: 1 0 auto;
   }
 }

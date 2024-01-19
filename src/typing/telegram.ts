@@ -49,7 +49,7 @@ const TextLinkMessageEntity = AbstractMessageEntity.extend({
 
 const TextMentionMessageEntity = AbstractMessageEntity.extend({
   type: z.literal("text_mention"),
-  user: User, // Assuming User is already defined from the previous example
+  user: User,
 });
 
 const CustomEmojiMessageEntity = AbstractMessageEntity.extend({
