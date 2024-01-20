@@ -25,5 +25,7 @@ html-you-subscribed-but-replying = Bạn đang theo dõi cập nhật. Bạn đa
 html-you-subscribed-and-replying-to = Bạn đang theo dõi cập nhật. Bạn đang trả lời {$thread}.
 text-stop-replying = Dừng trả lời {$thread}
 html-can-only-send-plaintext = Lưu ý. Vì mortal đang dùng Web, họ sẽ chỉ thấy nội dung chữ với định dạng cơ bản (không ảnh, không video).
+html-setting-user-as = Đang gán {$user} vai trò {$role}...
 html-set-role-success = Xong! Đã đặt {$user} thành {$role}.
 html-which-user = User nào? (Mã định danh Telegram)
+html-which-role = Vai trò nào? (admin/angel/mortal)

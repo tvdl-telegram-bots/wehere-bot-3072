@@ -15,7 +15,7 @@ import { parseCallbackQueryData } from "../utils/parse";
 import { PersistentRole } from "@/typing/server";
 import { assert, nonNullable } from "@/utils/assert";
 
-const id = "796477c3-6c18-426f-b436-d12b5bf344d3";
+const id = "2c2a00ee-300a-4022-a125-0a81615f3323";
 
 const converse = withConversationErrorHandler(async (c, ctx) => {
   const msg0 = nonNullable(ctx.message);
@@ -30,11 +30,23 @@ const converse = withConversationErrorHandler(async (c, ctx) => {
 
   ctx = await c.waitFor("message:text");
   const userId = UserId.parse(ctx.message?.text);
-  await ctx.reply("Which role?");
+  await ctx.api.sendMessage(
+    msg0.chat.id,
+    ctx.withLocale(locale)("html-which-role"),
+    { parse_mode: "HTML" }
+  );
 
   ctx = await c.waitFor("message:text");
   const role = Role.parse(ctx.message?.text);
-  await ctx.reply(`Setting ${userId} as ${role}...`);
+
+  await ctx.api.sendMessage(
+    msg0.chat.id,
+    ctx.withLocale(locale)("html-setting-user-as", {
+      user: html.strong(html.literal(userId)),
+      role: html.strong(role),
+    }),
+    { parse_mode: "HTML" }
+  );
 
   const ack = await c.external(
     async () =>
