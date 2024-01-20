@@ -9,7 +9,22 @@ import { fontBody, fontDisplay } from "./_/utils/fonts";
 export const metadata: Metadata = {
   title: "WeHere",
   description:
-    "Là dự án do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức về tâm lý cho tuổi vị thành niên.",
+    "Dự án tâm lý do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức, câu chuyện, sự kiện về sức khỏe tinh thần của  trẻ vị thành niên.",
+  openGraph: {
+    title: "WeHere",
+    description:
+      "Dự án tâm lý do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức, câu chuyện, sự kiện về sức khỏe tinh thần của  trẻ vị thành niên.",
+    siteName: "WeHere",
+    images: [
+      {
+        url: "https://d33szaedamwhlg.cloudfront.net/blobs/65abe9facdda0d7a62c5d8f6",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "vi_VN",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -19,7 +34,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi">
-      <body className={cx(fontBody.variable, fontDisplay.variable)}>
+      <body
+        className={cx(fontBody.variable, fontDisplay.variable)}
+        data-VERCEL_URL={process.env.VERCEL_URL}
+      >
         {children}
       </body>
     </html>
