@@ -1,7 +1,6 @@
 import "normalize.css";
 import "./globals.css";
 
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import cx from "clsx";
 import { Metadata } from "next";
 
@@ -43,7 +42,6 @@ export default function RootLayout({
         data-VERCEL_URL={process.env.VERCEL_URL}
       >
         {children}
-        <SpeedInsights />
       </body>
     </html>
   );
