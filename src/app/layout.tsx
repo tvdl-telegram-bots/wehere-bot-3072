@@ -6,7 +6,10 @@ import { Metadata } from "next";
 
 import { fontBody, fontDisplay } from "./_/utils/fonts";
 
+import { CLIENT_ENV } from "@/env/next-client";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(CLIENT_ENV.METADATA_BASE),
   title: "WeHere",
   description:
     "Dự án tâm lý do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức, câu chuyện, sự kiện về sức khỏe tinh thần của  trẻ vị thành niên.",
