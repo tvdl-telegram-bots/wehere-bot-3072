@@ -37,6 +37,11 @@
     border-color: var(--md-sys-color-primary);
     outline: solid 1px var(--md-sys-color-primary);
   }
+
+  &:disabled {
+    opacity: 0.8;
+    filter: grayscale(100%);
+  }
 }
 
 .button {
@@ -75,6 +80,14 @@
   &:active {
     --state-color: var(--md-sys-color-on-primary);
     --state-opacity: var(--state--pressed--state-layer-opacity);
+  }
+
+  &:disabled {
+    opacity: 0.8;
+    --state-color: transparent;
+    --state-opacity: 0;
+    cursor: not-allowed;
+    filter: grayscale(100%);
   }
 
   &:before {

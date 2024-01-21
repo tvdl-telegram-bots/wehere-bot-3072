@@ -2,6 +2,7 @@ import cx from "clsx";
 import React from "react";
 import { MdSend } from "react-icons/md";
 
+import { useWithErrorHandler } from "../../hooks/useWithErrorHandler";
 import { httpPost } from "../../utils/swr";
 
 import styles from "./index.module.scss";
@@ -22,25 +23,21 @@ export default function MessageComposer({
   threadId,
   onMessageSent,
 }: Props) {
-  const [text, setText] = React.useState("");
-  const [busy, setBusy] = React.useState(false);
+  const { busy, withErrorHandler } = useWithErrorHandler((error) => {
+    console.error(error);
+    alert(["Đã có lỗi xảy ra.", formatErrorShallowly(error)].join("\n\n"));
+  });
 
-  const handleSend = async () => {
-    try {
-      setBusy(true);
-      await httpPost(Result$CreateThreadMessage)({
-        path: "/api/CreateThreadMessage",
-        params: { text, threadId },
-      });
-      setText("");
-      onMessageSent?.();
-    } catch (e) {
-      console.error(e);
-      alert(formatErrorShallowly(e));
-    } finally {
-      setBusy(false);
-    }
-  };
+  const [text, setText] = React.useState("");
+
+  const handleSend = withErrorHandler(async () => {
+    await httpPost(Result$CreateThreadMessage)({
+      path: "/api/CreateThreadMessage",
+      params: { text, threadId },
+    });
+    setText("");
+    onMessageSent?.();
+  });
 
   return (
     <div className={cx(styles.container, className)} style={style}>
