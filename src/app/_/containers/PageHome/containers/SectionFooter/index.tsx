@@ -7,7 +7,6 @@ import {
   FaFacebook,
   FaInstagram,
   FaPhoneAlt,
-  FaTelegram,
 } from "react-icons/fa";
 
 import pngQrTelegram from "./assets/qr-telegram.png";

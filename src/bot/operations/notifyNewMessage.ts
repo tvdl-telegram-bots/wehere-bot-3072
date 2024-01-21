@@ -14,7 +14,11 @@ import {
 } from "@/typing/server";
 import { parseDocs } from "@/utils/array";
 import { assert } from "@/utils/assert";
-import { formatThread } from "@/utils/format";
+import {
+  formatErrorAsObject,
+  formatErrorDeeply,
+  formatThread,
+} from "@/utils/format";
 
 type Params = {
   message: WithoutId<PersistentThreadMessage>;
@@ -69,36 +73,41 @@ export default async function notifyNewMessage(
         ].join(" ");
 
   for (const sub of angelSubs) {
-    const locale = await getChatLocale(ctx, sub.chatId);
-    const keyboard =
-      message.direction === "from_mortal"
-        ? new InlineKeyboard().text(
-            ctx.withLocale(locale)("text-reply"),
-            `wehere:/reply?threadId=${thread._id.toHexString()}`
-          )
-        : undefined;
+    try {
+      const locale = await getChatLocale(ctx, sub.chatId);
+      const keyboard =
+        message.direction === "from_mortal"
+          ? new InlineKeyboard().text(
+              ctx.withLocale(locale)("text-reply"),
+              `wehere:/reply?threadId=${thread._id.toHexString()}`
+            )
+          : undefined;
 
-    if (message.text && message.plainText) {
-      await ctx.api.sendMessage(
-        sub.chatId,
-        [subject, html.literal(message.text)].join("\n"),
-        { parse_mode: "HTML", reply_markup: keyboard }
-      );
-    } else if (message.originChatId && message.originMessageId) {
-      const msg1 = await ctx.api.sendMessage(
-        sub.chatId,
-        subject,
-        { parse_mode: "HTML", reply_markup: keyboard } //
-      );
+      if (message.text && message.plainText) {
+        await ctx.api.sendMessage(
+          sub.chatId,
+          [subject, html.literal(message.text)].join("\n"),
+          { parse_mode: "HTML", reply_markup: keyboard }
+        );
+      } else if (message.originChatId && message.originMessageId) {
+        const msg1 = await ctx.api.sendMessage(
+          sub.chatId,
+          subject,
+          { parse_mode: "HTML", reply_markup: keyboard } //
+        );
 
-      await ctx.api.copyMessage(
-        sub.chatId,
-        message.originChatId,
-        message.originMessageId,
-        { reply_to_message_id: msg1.message_id }
-      );
-    } else {
-      console.error("invalid message");
+        await ctx.api.copyMessage(
+          sub.chatId,
+          message.originChatId,
+          message.originMessageId,
+          { reply_to_message_id: msg1.message_id }
+        );
+      } else {
+        console.error("invalid message");
+      }
+    } catch (error) {
+      console.error(formatErrorDeeply(error));
+      await ctx.db.collection("error").insertOne(formatErrorAsObject(error));
     }
   }
 }
