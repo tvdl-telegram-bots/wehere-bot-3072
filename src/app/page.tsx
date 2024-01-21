@@ -6,6 +6,8 @@ import { run$ReadSessionState } from "./api/ReadSessionState/handler";
 
 import { SWRConfig } from "@/app/_/components/SWRConfig";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const cookieStore = cookies();
 

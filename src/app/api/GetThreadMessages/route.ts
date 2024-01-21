@@ -6,6 +6,8 @@ import { Params$GetThreadMessages } from "./typing";
 import { getAppDb } from "@/app/_/utils/globals";
 import { getQuery, withRouteErrorHandler } from "@/app/_/utils/routing";
 
+export const dynamic = "force-dynamic";
+
 export const GET = withRouteErrorHandler(async (req) => {
   const db = await getAppDb();
   const params = Params$GetThreadMessages.parse(getQuery(req));
