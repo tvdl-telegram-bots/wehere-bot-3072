@@ -1,3 +1,5 @@
+import { HttpError } from "grammy";
+
 import { notNullish } from "./array";
 
 import { PersistentThread } from "@/typing/server";
@@ -23,7 +25,12 @@ export function flattenError(error: unknown) {
 
   while (error) {
     causes.push(error);
-    error = error instanceof Error && error.cause ? error.cause : undefined;
+    error =
+      error instanceof HttpError
+        ? error.error
+        : error instanceof Error && error.cause
+        ? error.cause
+        : undefined;
   }
 
   return causes;
