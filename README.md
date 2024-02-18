@@ -5,8 +5,8 @@
 yarn
 
 # Start the bot (development)
-yarn dev:node
+yarn workspace wehere-web dev:node
 
 # Start the web (development)
-yarn dev:next
+yarn workspace wehere-web dev:next
 ```

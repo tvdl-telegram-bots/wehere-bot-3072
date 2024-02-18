@@ -4090,6 +4090,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"root-workspace-0b6124@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "root-workspace-0b6124@workspace:."
+  languageName: unknown
+  linkType: soft
+
 "run-parallel@npm:^1.1.9":
   version: 1.2.0
   resolution: "run-parallel@npm:1.2.0"
@@ -4967,9 +4973,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wehere-bot-3072@workspace:.":
+"wehere-web@workspace:wehere-web":
   version: 0.0.0-use.local
-  resolution: "wehere-bot-3072@workspace:."
+  resolution: "wehere-web@workspace:wehere-web"
   dependencies:
     "@grammyjs/auto-retry": "npm:^1.1.1"
     "@grammyjs/conversations": "npm:^1.1.2"
