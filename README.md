@@ -9,4 +9,10 @@ yarn workspace wehere-web dev:node
 
 # Start the web (development)
 yarn workspace wehere-web dev:next
+
+# Start the CMS (development)
+PORT=3088 yarn workspace wehere-cms dev
 ```
+
+https://keystonejs.com/docs/graphql/overview#using-the-api
+https://www.apollographql.com/docs/react/get-started/#2-initialize-apolloclient

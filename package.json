@@ -1,6 +1,7 @@
 {
   "workspaces": [
-    "wehere-web"
+    "wehere-web",
+    "wehere-cms"
   ],
   "packageManager": "yarn@4.0.2"
 }
