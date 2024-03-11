@@ -9,6 +9,7 @@ type User {
   posts(where: PostWhereInput! = {}, orderBy: [PostOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PostWhereUniqueInput): [Post!]
   postsCount(where: PostWhereInput! = {}): Int
   createdAt: DateTime
+  avatar: ImageFieldOutput
 }
 
 type PasswordState {
@@ -16,6 +17,22 @@ type PasswordState {
 }
 
 scalar DateTime @specifiedBy(url: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6")
+
+type ImageFieldOutput {
+  id: ID!
+  filesize: Int!
+  width: Int!
+  height: Int!
+  extension: ImageExtension!
+  url: String!
+}
+
+enum ImageExtension {
+  jpg
+  png
+  webp
+  gif
+}
 
 input UserWhereUniqueInput {
   id: ID
@@ -107,6 +124,7 @@ input UserUpdateInput {
   password: String
   posts: PostRelateToManyForUpdateInput
   createdAt: DateTime
+  avatar: ImageFieldInput
 }
 
 input PostRelateToManyForUpdateInput {
@@ -115,6 +133,13 @@ input PostRelateToManyForUpdateInput {
   create: [PostCreateInput!]
   connect: [PostWhereUniqueInput!]
 }
+
+input ImageFieldInput {
+  upload: Upload!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 input UserUpdateArgs {
   where: UserWhereUniqueInput!
@@ -127,6 +152,7 @@ input UserCreateInput {
   password: String
   posts: PostRelateToManyForCreateInput
   createdAt: DateTime
+  avatar: ImageFieldInput
 }
 
 input PostRelateToManyForCreateInput {
@@ -136,7 +162,10 @@ input PostRelateToManyForCreateInput {
 
 type Post {
   id: ID!
+  name: String
   title: String
+  parent: Post
+  heroImage: ImageFieldOutput
   content: Post_content_Document
   author: User
   tags(where: TagWhereInput! = {}, orderBy: [TagOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: TagWhereUniqueInput): [Tag!]
@@ -156,7 +185,9 @@ input PostWhereInput {
   OR: [PostWhereInput!]
   NOT: [PostWhereInput!]
   id: IDFilter
+  name: StringFilter
   title: StringFilter
+  parent: PostWhereInput
   author: UserWhereInput
   tags: TagManyRelationFilter
 }
@@ -169,14 +200,24 @@ input TagManyRelationFilter {
 
 input PostOrderByInput {
   id: OrderDirection
+  name: OrderDirection
   title: OrderDirection
 }
 
 input PostUpdateInput {
+  name: String
   title: String
+  parent: PostRelateToOneForUpdateInput
+  heroImage: ImageFieldInput
   content: JSON
   author: UserRelateToOneForUpdateInput
   tags: TagRelateToManyForUpdateInput
+}
+
+input PostRelateToOneForUpdateInput {
+  create: PostCreateInput
+  connect: PostWhereUniqueInput
+  disconnect: Boolean
 }
 
 input UserRelateToOneForUpdateInput {
@@ -198,10 +239,18 @@ input PostUpdateArgs {
 }
 
 input PostCreateInput {
+  name: String
   title: String
+  parent: PostRelateToOneForCreateInput
+  heroImage: ImageFieldInput
   content: JSON
   author: UserRelateToOneForCreateInput
   tags: TagRelateToManyForCreateInput
+}
+
+input PostRelateToOneForCreateInput {
+  create: PostCreateInput
+  connect: PostWhereUniqueInput
 }
 
 input UserRelateToOneForCreateInput {

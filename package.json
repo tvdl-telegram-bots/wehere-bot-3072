@@ -3,5 +3,8 @@
     "wehere-web",
     "wehere-cms"
   ],
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.0.2",
+  "resolutions": {
+    "graphql": "16.8.1"
+  }
 }

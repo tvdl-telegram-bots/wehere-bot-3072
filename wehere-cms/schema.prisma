@@ -12,22 +12,37 @@ generator client {
 }
 
 model User {
-  id        String    @id @default(cuid())
-  name      String    @default("")
-  email     String    @unique @default("")
-  password  String
-  posts     Post[]    @relation("Post_author")
-  createdAt DateTime? @default(now())
+  id               String    @id @default(cuid())
+  name             String    @default("")
+  email            String    @unique @default("")
+  password         String
+  posts            Post[]    @relation("Post_author")
+  createdAt        DateTime? @default(now())
+  avatar_filesize  Int?
+  avatar_extension String?
+  avatar_width     Int?
+  avatar_height    Int?
+  avatar_id        String?
 }
 
 model Post {
-  id       String  @id @default(cuid())
-  title    String  @default("")
-  content  String  @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  author   User?   @relation("Post_author", fields: [authorId], references: [id])
-  authorId String? @map("author")
-  tags     Tag[]   @relation("Post_tags")
+  id                  String  @id @default(cuid())
+  name                String  @default("")
+  title               String  @default("")
+  parent              Post?   @relation("Post_parent", fields: [parentId], references: [id])
+  parentId            String? @map("parent")
+  heroImage_filesize  Int?
+  heroImage_extension String?
+  heroImage_width     Int?
+  heroImage_height    Int?
+  heroImage_id        String?
+  content             String  @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  author              User?   @relation("Post_author", fields: [authorId], references: [id])
+  authorId            String? @map("author")
+  tags                Tag[]   @relation("Post_tags")
+  from_Post_parent    Post[]  @relation("Post_parent")
 
+  @@index([parentId])
   @@index([authorId])
 }
 

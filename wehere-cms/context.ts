@@ -1,4 +1,4 @@
-import { Context } from ".keystone/types";
+import type { Context } from ".keystone/types";
 import * as PrismaModule from ".prisma/client";
 import { getContext } from "@keystone-6/core/context";
 
@@ -11,3 +11,5 @@ export const keystoneContext: Context =
 if (process.env.NODE_ENV !== "production") {
   (globalThis as any).keystoneContext = keystoneContext;
 }
+
+export type { PrismaModule };

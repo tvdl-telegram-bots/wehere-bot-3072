@@ -38,3 +38,13 @@ export type Role = z.infer<typeof Role>;
 
 export const Locale = z.enum(["en", "vi"]);
 export type Locale = z.infer<typeof Locale>;
+
+export type ImageHandle = z.infer<typeof ImageHandle>;
+export const ImageHandle = z.object({
+  id: z.string(),
+  extension: z.string(),
+  filesize: z.number(),
+  height: z.number(),
+  width: z.number(),
+  url: z.string(),
+});

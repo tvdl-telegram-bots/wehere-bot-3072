@@ -17,7 +17,7 @@ import {
   relationship,
   password,
   timestamp,
-  select,
+  image,
 } from "@keystone-6/core/fields";
 
 // the document field is a more complicated field, so it has it's own package
@@ -50,15 +50,9 @@ export const lists: Lists = {
       }),
 
       password: password({ validation: { isRequired: true } }),
-
-      // we can use this field to see what Posts this User has authored
-      //   more on that in the Post list below
       posts: relationship({ ref: "Post.author", many: true }),
-
-      createdAt: timestamp({
-        // this sets the timestamp to Date.now() when the user is first created
-        defaultValue: { kind: "now" },
-      }),
+      createdAt: timestamp({ defaultValue: { kind: "now" } }),
+      avatar: image({ storage: "arn:aws:s3:::wehere-bot-storage" }),
     },
   }),
 
@@ -68,13 +62,20 @@ export const lists: Lists = {
     //   if you want to prevent random people on the internet from accessing your data,
     //   you can find out more at https://keystonejs.com/docs/guides/auth-and-access-control
     access: allowAll,
-
-    // this is the fields for our Post list
     fields: {
+      name: text({
+        ui: { description: "URL segment (slug) for the post" },
+        validation: {
+          isRequired: true,
+          match: {
+            regex: /^[a-zA-Z0-9-]*$/,
+            explanation: "Only letters, numbers and hyphens are allowed",
+          },
+        },
+      }),
       title: text({ validation: { isRequired: true } }),
-
-      // the document field can be used for making rich editable content
-      //   you can find out more at https://keystonejs.com/docs/guides/document-fields
+      parent: relationship({ ref: "Post", many: false }),
+      heroImage: image({ storage: "arn:aws:s3:::wehere-bot-storage" }),
       content: document({
         formatting: true,
         layouts: [

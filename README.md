@@ -8,7 +8,7 @@ yarn
 yarn workspace wehere-web dev:node
 
 # Start the web (development)
-yarn workspace wehere-web dev:next
+PORT=3072 yarn workspace wehere-web dev:next
 
 # Start the CMS (development)
 PORT=3088 yarn workspace wehere-cms dev
