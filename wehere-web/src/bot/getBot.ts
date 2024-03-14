@@ -2,24 +2,26 @@ import { autoRetry } from "@grammyjs/auto-retry";
 import { conversations } from "@grammyjs/conversations";
 import { MongoDBAdapter } from "@grammyjs/storage-mongodb";
 import { apiThrottler } from "@grammyjs/transformer-throttler";
-import { Fluent } from "@moebius/fluent";
+import type { Fluent } from "@moebius/fluent";
 import { Bot, GrammyError, HttpError, session } from "grammy";
-import { Db } from "mongodb";
+import type { Db } from "mongodb";
 
+import AngelSay from "./default-commands/AngelSay";
+import MortalSay from "./default-commands/MortalSay";
 import { getDb } from "./getDb";
 import { getFluent } from "./getFluent";
+import { getRole } from "./operations/getRole";
 
 import GetRole from "@/bot/commands/GetRole";
 import Reply from "@/bot/commands/Reply";
-import SendMessage from "@/bot/commands/SendMessage";
 import SetRole from "@/bot/commands/SetRole";
 import Start from "@/bot/commands/Start";
 import Status from "@/bot/commands/Status";
 import Subscribe from "@/bot/commands/Subscribe";
 import Unsubscribe from "@/bot/commands/Unsubscribe";
-import { BotContext, Command } from "@/types";
-import { Env, Ftl } from "@/typing/common";
-import { assert } from "@/utils/assert";
+import type { BotContext, Command } from "@/types";
+import type { Env, Ftl } from "@/typing/common";
+import { assert, nonNullable } from "@/utils/assert";
 
 export async function getBot0({
   db,
@@ -96,7 +98,13 @@ export async function getBot0({
   });
 
   bot.on("message", async (ctx) => {
-    return await SendMessage.handler?.(ctx);
+    const msg0 = nonNullable(ctx.message);
+    const role = await getRole(ctx, msg0.from.id);
+    if (role === "mortal") {
+      return await MortalSay.handleMessage(ctx);
+    } else {
+      return await AngelSay.handleMessage(ctx);
+    }
   });
 
   bot.catch((err) => {

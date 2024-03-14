@@ -1,16 +1,16 @@
 import { InlineKeyboard } from "grammy";
-import { WithoutId } from "mongodb";
+import type { WithoutId } from "mongodb";
 
 import html from "../utils/html";
 
 import { getChatLocale } from "./getChatLocale";
 
-import { EssentialContext } from "@/types";
-import { ChatId } from "@/typing/common";
+import type { EssentialContext } from "@/types";
+import type { ChatId } from "@/typing/common";
+import type { PersistentThreadMessage } from "@/typing/server";
 import {
   PersistentAngelSubscription,
   PersistentMortalSubscription,
-  PersistentThreadMessage,
 } from "@/typing/server";
 import { parseDocs } from "@/utils/array";
 import { assert } from "@/utils/assert";
@@ -25,7 +25,7 @@ type Params = {
   excludesChats?: ChatId[];
 };
 
-export default async function notifyNewMessage(
+export async function notifyNewMessage(
   ctx: EssentialContext,
   { message, excludesChats = [] }: Params
 ) {

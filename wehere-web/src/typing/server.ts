@@ -28,6 +28,14 @@ export const PersistentThread = z.object({
 
 export type PersistentThread = z.infer<typeof PersistentThread>;
 
+/**
+ * A mortal subscription is a subscription from a mortal user to a thread.
+ * Technically, it indicates a relationship between a `chatId` and a `threadId`.
+ * One `chatId` can connect to at most one `threadId`.
+ */
+export type PersistentMortalSubscription = z.infer<
+  typeof PersistentMortalSubscription
+>;
 export const PersistentMortalSubscription = z.object({
   _id: PersistentObjectId,
   chatId: ChatId, // primary key
@@ -35,9 +43,6 @@ export const PersistentMortalSubscription = z.object({
   updatedAt: Timestamp.nullish(),
 });
 
-export type PersistentMortalSubscription = z.infer<
-  typeof PersistentMortalSubscription
->;
 
 export const PersistentAngelSubscription = z.object({
   _id: PersistentObjectId,

@@ -1,11 +1,12 @@
-import { Db, ObjectId } from "mongodb";
+import type { Db } from "mongodb";
+import { ObjectId } from "mongodb";
 
 import { run$ReadSessionState } from "../ReadSessionState/handler";
 
-import { Params$CreateThread, Result$CreateThread } from "./typing";
+import type { Params$CreateThread, Result$CreateThread } from "./typing";
 
+import { getThread_givenThreadId } from "@/bot/commands/GetThread";
 import { createThread } from "@/bot/operations/createThread";
-import { getThread_givenThreadId } from "@/bot/operations/getThread";
 
 type IRequestCookies = {
   get(name: string): { value: string } | undefined;

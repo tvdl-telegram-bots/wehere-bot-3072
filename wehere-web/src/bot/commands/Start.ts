@@ -1,14 +1,15 @@
 import { InlineKeyboard } from "grammy";
 
-import { Command } from "../../types";
+import type { Command } from "../../types";
 import { nonNullable } from "../../utils/assert";
 import { getAngelSubscription } from "../operations/getAngelSubscription";
 import { getChatLocale } from "../operations/getChatLocale";
-import { getThread$GivenMortalChatId } from "../operations/getThread";
 import { withDefaultErrorHandler } from "../utils/error";
 import html from "../utils/html";
 
-import { Role } from "@/typing/common";
+import { getThread_givenMortalChatId } from "./GetThread";
+
+import type { Role } from "@/typing/common";
 import { PersistentRole, PersistentThread } from "@/typing/server";
 import { parseDocs } from "@/utils/array";
 import { formatThread } from "@/utils/format";
@@ -119,7 +120,7 @@ const handleMessage = withDefaultErrorHandler(async (ctx) => {
   };
 
   const greetMortal = async () => {
-    const thread = await getThread$GivenMortalChatId(ctx, msg0.chat.id);
+    const thread = await getThread_givenMortalChatId(ctx, msg0.chat.id);
     await ctx.api.sendMessage(
       msg0.chat.id,
       ctx.withLocale(locale)(

@@ -1,18 +1,21 @@
-import { ObjectId, WithoutId } from "mongodb";
+import type { WithoutId } from "mongodb";
+import { ObjectId } from "mongodb";
 
-import { Params$CreateThreadMessage } from "./typing";
+import type { Params$CreateThreadMessage } from "./typing";
 
+import { autoReplyIfNeeded } from "@/bot/operations/autoReply";
 import { createMessage } from "@/bot/operations/createMessage";
-import notifyNewMessage from "@/bot/operations/notifyNewMessage";
-import { EssentialContext } from "@/types";
-import { PersistentThreadMessage } from "@/typing/server";
+import { notifyNewMessage } from "@/bot/operations/notifyNewMessage";
+import type { EssentialContext } from "@/types";
+import type { PersistentThreadMessage } from "@/typing/server";
 
 export async function run$CreateThreadMessage(
   ctx: EssentialContext,
   params: Params$CreateThreadMessage
 ) {
+  const threadId = ObjectId.createFromHexString(params.threadId);
   const message: WithoutId<PersistentThreadMessage> = {
-    threadId: ObjectId.createFromHexString(params.threadId),
+    threadId,
     direction: "from_mortal",
     originChatId: undefined,
     originMessageId: undefined,
@@ -22,6 +25,7 @@ export async function run$CreateThreadMessage(
     createdAt: Date.now(),
   };
 
-  await createMessage(ctx.db, message);
+  await createMessage(ctx, { message });
   await notifyNewMessage(ctx, { message });
+  await autoReplyIfNeeded(ctx, { threadId });
 }

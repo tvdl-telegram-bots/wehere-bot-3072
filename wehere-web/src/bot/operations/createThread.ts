@@ -1,17 +1,13 @@
-import { Db, WithoutId } from "mongodb";
+import type { Db, WithoutId } from "mongodb";
 
 import { generateThreadEmoji, generateThreadName } from "./__deprecated/mortal";
 
-import { ThreadPlatform } from "@/typing/common";
-import { PersistentThread } from "@/typing/server";
-
-type Params = {
-  platform: ThreadPlatform;
-};
+import type { ThreadPlatform } from "@/typing/common";
+import type { PersistentThread } from "@/typing/server";
 
 export async function createThread(
   ctx: { db: Db },
-  params: Params
+  params: { platform: ThreadPlatform }
 ): Promise<PersistentThread> {
   const thread: WithoutId<PersistentThread> = {
     name: generateThreadName(),
