@@ -6,6 +6,7 @@ import type { Fluent } from "@moebius/fluent";
 import { Bot, GrammyError, HttpError, session } from "grammy";
 import type { Db } from "mongodb";
 
+import Availability from "./commands/Availability";
 import AngelSay from "./default-commands/AngelSay";
 import MortalSay from "./default-commands/MortalSay";
 import { getDb } from "./getDb";
@@ -63,6 +64,7 @@ export async function getBot0({
     Status,
     Subscribe,
     Unsubscribe,
+    Availability,
   ];
 
   for (const c of commands) {

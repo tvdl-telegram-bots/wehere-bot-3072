@@ -14,10 +14,10 @@ import {
 
 import * as Telegram from "@/typing/telegram";
 
+export type PersistentObjectId = z.infer<typeof PersistentObjectId>;
 export const PersistentObjectId = z.instanceof(ObjectId);
 
-export type PersistentObjectId = z.infer<typeof PersistentObjectId>;
-
+export type PersistentThread = z.infer<typeof PersistentThread>;
 export const PersistentThread = z.object({
   _id: PersistentObjectId,
   name: z.string().nullish(), // unique
@@ -25,8 +25,6 @@ export const PersistentThread = z.object({
   createdAt: Timestamp.nullish(),
   platform: ThreadPlatform.nullish(),
 });
-
-export type PersistentThread = z.infer<typeof PersistentThread>;
 
 /**
  * A mortal subscription is a subscription from a mortal user to a thread.
@@ -43,17 +41,15 @@ export const PersistentMortalSubscription = z.object({
   updatedAt: Timestamp.nullish(),
 });
 
-
+export type PersistentAngelSubscription = z.infer<
+  typeof PersistentAngelSubscription
+>;
 export const PersistentAngelSubscription = z.object({
   _id: PersistentObjectId,
   chatId: ChatId, // primary key
   replyingToThreadId: z.instanceof(ObjectId).nullish(),
   updatedAt: Timestamp.nullish(),
 });
-
-export type PersistentAngelSubscription = z.infer<
-  typeof PersistentAngelSubscription
->;
 
 export const PersistentThreadMessage = z.object({
   _id: PersistentObjectId,
@@ -69,6 +65,7 @@ export const PersistentThreadMessage = z.object({
 
 export type PersistentThreadMessage = z.infer<typeof PersistentThreadMessage>;
 
+export type PersistentChat = z.infer<typeof PersistentChat>;
 export const PersistentChat = z.object({
   _id: PersistentObjectId,
   chatId: ChatId,
@@ -76,12 +73,16 @@ export const PersistentChat = z.object({
   updatedAt: Timestamp.nullish(),
 });
 
-export type PersistentChat = z.infer<typeof PersistentChat>;
-
+export type PersistentRole = z.infer<typeof PersistentRole>;
 export const PersistentRole = z.object({
   userId: UserId,
   role: Role.nullish(),
   updatedAt: Timestamp.nullish(),
 });
 
-export type PersistentRole = z.infer<typeof PersistentRole>;
+export type PersistentAvailability = z.infer<typeof PersistentAvailability>;
+export const PersistentAvailability = z.object({
+  _id: PersistentObjectId,
+  createdAt: Timestamp, // primary key
+  value: z.boolean(),
+});
