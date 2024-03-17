@@ -3,16 +3,29 @@ import { z } from "zod";
 
 import { getAvailability } from "../operations/getAvailability";
 import { getChatLocale } from "../operations/getChatLocale";
+import { getRole } from "../operations/getRole";
 import { setAvailability } from "../operations/setAvailability";
 import { withDefaultErrorHandler } from "../utils/error";
 import { parseCallbackQueryData } from "../utils/parse";
 
 import type { Command } from "@/types";
-import { nonNullable } from "@/utils/assert";
+import { assert, nonNullable } from "@/utils/assert";
 
 const handleMessage = withDefaultErrorHandler(async (ctx) => {
   const msg0 = nonNullable(ctx.message);
+  const role = await getRole(ctx, msg0.from.id);
   const locale = await getChatLocale(ctx, msg0.chat.id);
+
+  if (role === "mortal") {
+    ctx.api.sendMessage(
+      msg0.chat.id,
+      ctx.withLocale(locale)("html-forbidden"),
+      { parse_mode: "HTML" }
+    );
+    return;
+  }
+
+  assert(["angel", "admin"].includes(role), "forbidden");
   const availability = await getAvailability(ctx);
   const messageBody = availability.value
     ? ctx.withLocale(locale)("html-we-are-available")
