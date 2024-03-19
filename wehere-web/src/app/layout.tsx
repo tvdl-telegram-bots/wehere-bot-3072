@@ -2,7 +2,7 @@ import "normalize.css";
 import "./globals.css";
 
 import cx from "clsx";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import { fontBody, fontDisplay } from "./_/utils/fonts";
 
@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(CLIENT_ENV.METADATA_BASE),
   title: "WeHere",
   description:
-    "Dự án tâm lý do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức, câu chuyện, sự kiện về sức khỏe tinh thần của  trẻ vị thành niên.",
+    "Dự án tâm lý do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức, câu chuyện, sự kiện về sức khỏe tinh thần của người trẻ.",
   openGraph: {
     title: "WeHere",
     description:
-      "Dự án tâm lý do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức, câu chuyện, sự kiện về sức khỏe tinh thần của  trẻ vị thành niên.",
+      "Dự án tâm lý do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức, câu chuyện, sự kiện về sức khỏe tinh thần của người trẻ.",
     siteName: "WeHere",
     images: [
       {

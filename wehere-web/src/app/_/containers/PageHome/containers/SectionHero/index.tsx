@@ -20,7 +20,7 @@ export default function SectionHero({ className, style }: Props) {
         <p className={styles.subtitle}>{"“you always have WeHere”"}</p>
         <p>
           {
-            "WeHere là dự án tâm lý do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức, câu chuyện, sự kiện về sức khỏe tinh thần của trẻ vị thành niên."
+            "WeHere là dự án tâm lý do Thư viện Dương Liễu sáng lập, nhằm chia sẻ kiến thức, câu chuyện, sự kiện về sức khỏe tinh thần của người trẻ."
           }
         </p>
         <p>

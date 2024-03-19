@@ -1,22 +1,28 @@
 import cx from "clsx";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
-import { MdArrowBack, MdChat, MdHome, MdMenu, MdPhone } from "react-icons/md";
+import {
+  MdArrowBack,
+  MdChat,
+  MdHome,
+  MdInfo,
+  MdInfoOutline,
+  MdMenu,
+  MdPhone,
+} from "react-icons/md";
 
 import LayoutBasic from "../LayoutBasic";
-import {
-  WindowSizeClass,
-  useWindowSizeClass,
-} from "../LayoutBasic/hooks/useWindowSizeClass";
+import type { WindowSizeClass } from "../LayoutBasic/hooks/useWindowSizeClass";
+import { useWindowSizeClass } from "../LayoutBasic/hooks/useWindowSizeClass";
 import LogoWeHere from "../LogoWeHere";
 import Navigation from "../Navigation";
-import { Item$Navigation } from "../Navigation/types";
+import type { Item$Navigation } from "../Navigation/types";
 import ThemeProvider from "../ThemeProvider";
 import TopAppBar from "../TopAppBar";
 
 import styles from "./index.module.scss";
 
-type ActivePage = "home" | "chat" | "contact";
+type ActivePage = "home" | "chat" | "contact" | "info";
 
 type ContextValue$AppShell = {
   activePage: ActivePage | undefined;
@@ -54,6 +60,12 @@ const NAVIGATION_ITEMS: Item$Navigation[] = [
     icon: <MdPhone />,
     label: "Liên hệ",
     href: "/contact",
+  },
+  {
+    key: "info" satisfies ActivePage,
+    icon: <MdInfoOutline />,
+    label: "Thông tin",
+    href: "/info",
   },
 ];
 

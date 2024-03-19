@@ -36,18 +36,27 @@ export default function PagePost({ className, style, post, heroImage }: Props) {
       <AppShell.Top label={post.title} />
       <AppShell.Center>
         {heroImage ? (
-          <Image
-            className={styles.heroImage}
-            src={heroImage.url}
-            alt={post.title}
-            width={heroImage.width}
-            height={heroImage.height}
-          />
+          <div className={styles.heroImageContainer}>
+            <Image
+              className={styles.heroImage}
+              style={
+                heroImage.width / heroImage.height < Math.exp(1 / 16)
+                  ? { maxWidth: "480px" }
+                  : undefined
+              }
+              src={heroImage.url}
+              alt={post.title}
+              width={heroImage.width}
+              height={heroImage.height}
+            />
+          </div>
         ) : null}
-        <DocumentRenderer
-          document={JSON.parse(post.content)}
-          renderers={renderers}
-        />
+        <div className={styles.DocumentRenderer_container}>
+          <DocumentRenderer
+            document={JSON.parse(post.content)}
+            renderers={renderers}
+          />
+        </div>
       </AppShell.Center>
     </AppShell.Root>
   );
