@@ -1,3 +1,11 @@
+.LayoutBasic_Root {
+  background-image: linear-gradient(
+    -45deg,
+    var(--wehere--color-gradient-dark),
+    var(--wehere--color-gradient-light)
+  );
+}
+
 .LayoutBasic_Center {
   padding: 16px;
 }

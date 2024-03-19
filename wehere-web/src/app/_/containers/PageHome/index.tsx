@@ -8,7 +8,7 @@ import LayoutBasic from "../../components/LayoutBasic";
 import { useLayoutBasicApi } from "../../components/LayoutBasic/hooks/useLayoutBasicApi";
 import LogoWeHere from "../../components/LogoWeHere";
 import Navigation from "../../components/Navigation";
-import { Item$Navigation } from "../../components/Navigation/types";
+import type { Item$Navigation } from "../../components/Navigation/types";
 import ThemeProvider from "../../components/ThemeProvider";
 import TopAppBar from "../../components/TopAppBar";
 
@@ -37,7 +37,7 @@ export default function PageHome({ className, style }: Props) {
 
   return (
     <ThemeProvider className={cx(styles.container, className)} style={style}>
-      <LayoutBasic.Root>
+      <LayoutBasic.Root className={styles.LayoutBasic_Root}>
         {!layoutBasicApi.navigationSidebar && !layoutBasicApi.navigationRail ? (
           <LayoutBasic.Top>
             <TopAppBar.Root
