@@ -1,5 +1,7 @@
 const path = require("path");
 
+const { PrismaPlugin } = require("@prisma/nextjs-monorepo-workaround-plugin");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ["wehere-cms"],
@@ -12,6 +14,7 @@ const nextConfig = {
       ...config.resolve.alias,
       graphql$: path.join(__dirname, "../node_modules/graphql/index.js"),
     };
+    config.plugins = [...config.plugins, new PrismaPlugin()];
     return config;
   },
   images: {

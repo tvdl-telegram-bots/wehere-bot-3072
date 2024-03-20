@@ -2996,6 +2996,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prisma/nextjs-monorepo-workaround-plugin@npm:^5.11.0":
+  version: 5.11.0
+  resolution: "@prisma/nextjs-monorepo-workaround-plugin@npm:5.11.0"
+  checksum: e3cdf0de2d25e4f247ecf891f108ef194fbd52e197ee6d48f1de08bd9d1a8a57e3bff5a5c19bf50d86d255ac3567335efde8c024e77dcdcae53f49f05db8d262
+  languageName: node
+  linkType: hard
+
 "@prisma/prisma-fmt-wasm@npm:4.16.1-1.4bc8b6e1b66cb932731fb1bdbbc550d1e010de81":
   version: 4.16.1-1.4bc8b6e1b66cb932731fb1bdbbc550d1e010de81
   resolution: "@prisma/prisma-fmt-wasm@npm:4.16.1-1.4bc8b6e1b66cb932731fb1bdbbc550d1e010de81"
@@ -12450,6 +12457,7 @@ __metadata:
     "@keystone-6/document-renderer": "npm:^1.1.2"
     "@moebius/fluent": "npm:^1.1.0"
     "@picocss/pico": "npm:^1.5.10"
+    "@prisma/nextjs-monorepo-workaround-plugin": "npm:^5.11.0"
     "@types/html-escaper": "npm:^3"
     "@types/node": "npm:^20.10.0"
     "@types/react": "npm:^18"

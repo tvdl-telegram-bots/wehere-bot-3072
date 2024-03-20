@@ -1,6 +1,10 @@
+import { config } from "dotenv";
+
 import ftl_en from "@/resources/locales/en.ftl";
 import ftl_vi from "@/resources/locales/vi.ftl";
 import { Env, Ftl } from "@/typing/common";
+
+config({ path: "../.env" });
 
 export const ENV = Env.parse({
   TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,

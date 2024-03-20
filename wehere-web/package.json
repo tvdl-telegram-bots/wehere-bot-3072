@@ -5,7 +5,7 @@
   "scripts": {
     "dev:next": "next dev",
     "dev:node": "nodemon --signal SIGTERM --watch src --ext .ts,.js,.json,.ftl scripts/dev-node.ts",
-    "build": "next build",
+    "build": "yarn workspace wehere-cms generate-prisma && ls ../node_modules/.prisma/client && next build",
     "start": "next start",
     "lint": "next lint --dir .",
     "lint:fix": "next lint --fix --dir .",
@@ -39,6 +39,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@prisma/nextjs-monorepo-workaround-plugin": "^5.11.0",
     "@types/html-escaper": "^3",
     "@types/node": "^20.10.0",
     "@types/react": "^18",

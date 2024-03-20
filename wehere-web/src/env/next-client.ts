@@ -1,4 +1,7 @@
+import { config } from "dotenv";
 import { z } from "zod";
+
+config({ path: "../.env" });
 
 export const CLIENT_ENV = {
   METADATA_BASE: z
