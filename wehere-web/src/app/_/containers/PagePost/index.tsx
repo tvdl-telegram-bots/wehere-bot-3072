@@ -30,7 +30,7 @@ export default function PagePost({ className, style, post, heroImage }: Props) {
     <AppShell.Root
       className={cx(styles.container, className)}
       style={style}
-      // activePage=
+      activePage="info"
     >
       <AppShell.Left />
       <AppShell.Top label={post.title} />
@@ -53,7 +53,7 @@ export default function PagePost({ className, style, post, heroImage }: Props) {
         ) : null}
         <div className={styles.DocumentRenderer_container}>
           <DocumentRenderer
-            document={JSON.parse(post.content)}
+            document={post.content as any}
             renderers={renderers}
           />
         </div>

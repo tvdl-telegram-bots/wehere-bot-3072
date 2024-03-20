@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "WeHere",
     images: [
       {
-        url: "https://d33szaedamwhlg.cloudfront.net/blobs/65abe9facdda0d7a62c5d8f6",
+        url: "https://d33szaedamwhlg.cloudfront.net/blobs/65faed3fb7ee0f14666fe390",
         width: 1200,
         height: 630,
       },

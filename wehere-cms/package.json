@@ -6,7 +6,8 @@
     "dev": "keystone dev",
     "start": "keystone start",
     "build": "keystone build",
-    "postinstall": "keystone build --no-ui --frozen"
+    "postinstall": "keystone build --no-ui --frozen",
+    "generate-prisma": "keystone prisma generate"
   },
   "dependencies": {
     "@keystone-6/auth": "^7.0.0",

@@ -4,7 +4,7 @@ import { config } from "dotenv";
 
 import { Env, Ftl } from "@/typing/common";
 
-config();
+config({ path: "../.env" });
 
 export const ENV = Env.parse({
   TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN,
