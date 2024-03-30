@@ -1,10 +1,6 @@
 {
   "workspaces": [
-    "wehere-web",
-    "wehere-cms"
+    "wehere-web"
   ],
-  "packageManager": "yarn@4.0.2",
-  "resolutions": {
-    "graphql": "16.8.1"
-  }
+  "packageManager": "yarn@4.0.2"
 }

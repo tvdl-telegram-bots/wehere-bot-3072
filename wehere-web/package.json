@@ -5,7 +5,7 @@
   "scripts": {
     "dev:next": "next dev",
     "dev:node": "nodemon --signal SIGTERM --watch src --ext .ts,.js,.json,.ftl scripts/dev-node.ts",
-    "build": "yarn workspace wehere-cms generate-prisma && ls ../node_modules/.prisma/client && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint --dir .",
     "lint:fix": "next lint --fix --dir .",
@@ -18,7 +18,6 @@
     "@grammyjs/storage-free": "^2.4.1",
     "@grammyjs/storage-mongodb": "^2.4.1",
     "@grammyjs/transformer-throttler": "^1.2.1",
-    "@keystone-6/document-renderer": "^1.1.2",
     "@moebius/fluent": "^1.1.0",
     "@picocss/pico": "^1.5.10",
     "clsx": "^2.0.0",
@@ -35,11 +34,9 @@
     "react-remove-scroll": "^2.5.7",
     "sass": "^1.69.5",
     "swr": "^2.2.4",
-    "wehere-cms": "workspace:^",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@prisma/nextjs-monorepo-workaround-plugin": "^5.11.0",
     "@types/html-escaper": "^3",
     "@types/node": "^20.10.0",
     "@types/react": "^18",

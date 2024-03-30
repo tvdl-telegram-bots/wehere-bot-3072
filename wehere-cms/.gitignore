@@ -1,6 +1,0 @@
-node_modules
-.keystone/admin
-keystone.db
-*.log
-config.js
-config.js.map

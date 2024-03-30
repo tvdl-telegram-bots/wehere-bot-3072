@@ -2,14 +2,7 @@
 
 import cx from "clsx";
 import React from "react";
-import {
-  MdArrowBack,
-  MdChat,
-  MdHome,
-  MdInfoOutline,
-  MdMenu,
-  MdPhone,
-} from "react-icons/md";
+import { MdArrowBack, MdChat, MdHome, MdMenu, MdPhone } from "react-icons/md";
 
 import LayoutBasic from "../../components/LayoutBasic";
 import { useLayoutBasicApi } from "../../components/LayoutBasic/hooks/useLayoutBasicApi";
@@ -40,7 +33,6 @@ export default function PageHome({ className, style }: Props) {
     { key: "home", icon: <MdHome />, label: "Trang chủ", href: "/" },
     { key: "chat", icon: <MdChat />, label: "Trò chuyện", href: "/chat" },
     { key: "contact", icon: <MdPhone />, label: "Liên hệ", href: "/contact" },
-    { key: "info", icon: <MdInfoOutline />, label: "Thông tin", href: "/info" },
   ];
 
   return (

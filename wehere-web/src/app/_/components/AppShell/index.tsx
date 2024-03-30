@@ -1,15 +1,7 @@
 import cx from "clsx";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
-import {
-  MdArrowBack,
-  MdChat,
-  MdHome,
-  MdInfo,
-  MdInfoOutline,
-  MdMenu,
-  MdPhone,
-} from "react-icons/md";
+import { MdArrowBack, MdChat, MdHome, MdMenu, MdPhone } from "react-icons/md";
 
 import LayoutBasic from "../LayoutBasic";
 import type { WindowSizeClass } from "../LayoutBasic/hooks/useWindowSizeClass";
@@ -60,12 +52,6 @@ const NAVIGATION_ITEMS: Item$Navigation[] = [
     icon: <MdPhone />,
     label: "Liên hệ",
     href: "/contact",
-  },
-  {
-    key: "info" satisfies ActivePage,
-    icon: <MdInfoOutline />,
-    label: "Thông tin",
-    href: "/info",
   },
 ];
 
