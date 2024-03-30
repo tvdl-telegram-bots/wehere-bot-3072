@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+export type User = z.infer<typeof User>;
 export const User = z.object({
   id: z.number(),
   is_bot: z.boolean(),
@@ -10,8 +11,6 @@ export const User = z.object({
   is_premium: z.boolean().nullish(), // optional field
   added_to_attachment_menu: z.boolean().nullish(), // optional field
 });
-
-export type User = z.infer<typeof User>;
 
 const AbstractMessageEntity = z.object({
   type: z.string(),
@@ -33,6 +32,7 @@ const CommonMessageEntity = AbstractMessageEntity.extend({
     "underline",
     "strikethrough",
     "spoiler",
+    "blockquote",
     "code",
   ]),
 });
@@ -57,6 +57,7 @@ const CustomEmojiMessageEntity = AbstractMessageEntity.extend({
   custom_emoji_id: z.string(),
 });
 
+export type MessageEntity = z.infer<typeof MessageEntity>;
 export const MessageEntity = z.union([
   CommonMessageEntity,
   CustomEmojiMessageEntity,
@@ -64,5 +65,3 @@ export const MessageEntity = z.union([
   TextLinkMessageEntity,
   TextMentionMessageEntity,
 ]);
-
-export type MessageEntity = z.infer<typeof MessageEntity>;

@@ -16,6 +16,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    serverMinification: false,
+  },
 };
 
 module.exports = nextConfig;
