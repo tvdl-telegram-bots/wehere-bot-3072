@@ -47,7 +47,10 @@ export async function getBot0({
   bot.use(
     session({
       initial: () => ({}),
-      storage: new MongoDBAdapter({ collection: db.collection("session") }),
+      storage: new MongoDBAdapter({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        collection: db.collection("session") as any,
+      }),
     })
   );
 
