@@ -8,6 +8,8 @@ export const Env = z.object({
   TELEGRAM_BOT_TOKEN: z.string(),
   MONGODB_URI: z.string().startsWith("mongodb"),
   MONGODB_DBNAME: z.string().min(1),
+  PORT: z.coerce.number().default(3070),
+  HOST: z.string().default("0.0.0.0"),
 });
 
 export type Ftl = z.infer<typeof Ftl>;
