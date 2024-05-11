@@ -1,17 +1,16 @@
 import { InlineKeyboard } from "grammy";
 
 import type { Command } from "../../types";
-import html from "../../utils/html";
-import { getAngelSubscription } from "../operations/AngelSubscription";
+import { getAngelSubscription } from "../operations/Angel";
 import { getChatLocale } from "../operations/Chat";
-import { getThread_givenMortalChatId } from "../operations/thread";
+import { getThread_givenMortalChatId } from "../operations/Thread";
 
 import type { Role } from "@/typing/common";
 import { PersistentRole, PersistentThread } from "@/typing/server";
 import { parseDocs } from "@/utils/array";
 import { nonNullable } from "@/utils/assert";
 import { withDefaultErrorHandler } from "@/utils/error";
-import { formatThread } from "@/utils/format";
+import { formatThread, html } from "@/utils/format";
 
 const handleMessage = withDefaultErrorHandler(async (ctx) => {
   const msg0 = nonNullable(ctx.message);

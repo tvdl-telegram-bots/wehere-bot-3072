@@ -1,4 +1,6 @@
 import { HttpError } from "grammy";
+import type { Message } from "grammy/types";
+import { escape } from "html-escaper";
 
 import { notNullish } from "./array";
 
@@ -86,3 +88,21 @@ export function formatErrorAsObject(error: unknown): {
     };
   }
 }
+
+export function isMessagePlainText(msg: Message): boolean {
+  return !!msg.text && msg.text.length <= 2048 && !msg.entities?.length;
+}
+
+// https://core.telegram.org/bots/api#formatting-options
+export const html = {
+  b: (text: string) => "<b>" + text + "</b>",
+  code: (text: string) => "<code>" + text + "</code>",
+  em: (text: string) => "<em>" + text + "</em>",
+  i: (text: string) => "<i>" + text + "</i>",
+  ins: (text: string) => "<ins>" + text + "</ins>",
+  pre: (text: string) => "<pre>" + text + "</pre>",
+  s: (text: string) => "<s>" + text + "</s>",
+  strong: (text: string) => "<strong>" + text + "</strong>",
+  u: (text: string) => "<u>" + text + "</u>",
+  literal: (value: string | number | boolean | null) => escape(`${value}`),
+};

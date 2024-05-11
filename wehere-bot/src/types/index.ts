@@ -1,6 +1,6 @@
-import { Fluent } from "@moebius/fluent";
-import { Context, Middleware } from "grammy";
-import { Db } from "mongodb";
+import type { Fluent } from "@moebius/fluent";
+import type { Context, Middleware } from "grammy";
+import type { Db } from "mongodb";
 import { z } from "zod";
 
 export type Env = z.infer<typeof Env>;

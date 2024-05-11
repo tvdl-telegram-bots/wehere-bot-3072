@@ -1,7 +1,7 @@
 import { nonNullable } from "./assert";
-import html from "./html";
+import { html } from "./format";
 
-import { BotContext } from "@/types";
+import type { BotContext } from "@/types";
 
 export function withDefaultErrorHandler(handler: (ctx: BotContext) => void) {
   return async (ctx: BotContext) => {

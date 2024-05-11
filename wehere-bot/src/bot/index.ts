@@ -4,10 +4,14 @@ import { Fluent } from "@moebius/fluent";
 import { Bot, GrammyError, HttpError } from "grammy";
 import { MongoClient } from "mongodb";
 
+import AngelSay from "./commands/AngelSay";
+import MortalSay from "./commands/MortalSay";
 import Start from "./commands/Start";
+import Subscribe from "./commands/Subscribe";
+import { getRole } from "./operations/Role";
 
 import type { BotContext, Command, Env, Ftl } from "@/types";
-import { assert } from "@/utils/assert";
+import { assert, nonNullable } from "@/utils/assert";
 
 export async function createBot(env: Env, ftl: Ftl): Promise<Bot<BotContext>> {
   // get db
@@ -33,7 +37,7 @@ export async function createBot(env: Env, ftl: Ftl): Promise<Bot<BotContext>> {
   bot.api.config.use(apiThrottler());
   bot.api.config.use(autoRetry());
 
-  const commands: Command[] = [Start];
+  const commands: Command[] = [Start, Subscribe];
 
   for (const c of commands) {
     if (c.middleware) {
@@ -65,14 +69,13 @@ export async function createBot(env: Env, ftl: Ftl): Promise<Bot<BotContext>> {
   });
 
   bot.on("message", async (ctx) => {
-    ctx.reply(ctx.message.text || "?");
-    // const msg0 = nonNullable(ctx.message);
-    // const role = await getRole(ctx, msg0.from.id);
-    // if (role === "mortal") {
-    //   return await MortalSay.handleMessage(ctx);
-    // } else {
-    //   return await AngelSay.handleMessage(ctx);
-    // }
+    const msg0 = nonNullable(ctx.message);
+    const role = await getRole(ctx, msg0.from.id);
+    if (role === "mortal") {
+      return await MortalSay.handleMessage(ctx);
+    } else {
+      return await AngelSay.handleMessage(ctx);
+    }
   });
 
   bot.catch((err) => {
